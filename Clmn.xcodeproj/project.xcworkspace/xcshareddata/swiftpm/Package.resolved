@@ -1,0 +1,59 @@
+{
+  "pins" : [
+    {
+      "identity" : "bsoncoder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vexy/bsoncoder",
+      "state" : {
+        "branch" : "main",
+        "revision" : "838e4e78aeb3a0886c9478812b7bb6ed59d269c5"
+      }
+    },
+    {
+      "identity" : "fridge",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vexy/Fridge",
+      "state" : {
+        "branch" : "main",
+        "revision" : "d55e52bb4777047fb5b66b3b8e98568cb6d4eabd"
+      }
+    },
+    {
+      "identity" : "swift-atomics",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-atomics.git",
+      "state" : {
+        "revision" : "919eb1d83e02121cdb434c7bfc1f0c66ef17febe",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "swift-extras-base64",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swift-extras/swift-extras-base64",
+      "state" : {
+        "revision" : "778e00dd7cc2b7970742f061cffc87dd570e6bfa",
+        "version" : "0.5.0"
+      }
+    },
+    {
+      "identity" : "swift-extras-json",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swift-extras/swift-extras-json",
+      "state" : {
+        "revision" : "122b9454ef01bf89a4c190b8fd3717ddd0a2fbd0",
+        "version" : "0.6.0"
+      }
+    },
+    {
+      "identity" : "swift-nio",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-nio",
+      "state" : {
+        "revision" : "b4e0a274f7f34210e97e2f2c50ab02a10b549250",
+        "version" : "2.41.1"
+      }
+    }
+  ],
+  "version" : 2
+}
