@@ -9,18 +9,20 @@ class BoardsViewModel: ObservableObject {
     }
 
     /// Creates a new board.
-    func addNewBoard(_ name: String) -> Board {
+    func addNewBoard(_ name: String) {
         let newBoard = Board(name: name, order: boards.countNextOrder())
         boards.append(newBoard)
-        return newBoard
     }
 
     /// Deletes a board.
     func deleteBoard(_ boardToDelete: Board) {
-        boards.removeElement(object: boardToDelete)
+        boards.removeElement(boardToDelete)
     }
 
+    /// Updates the board.
     func updateBoard(_ boardToUpdate: Board, _ name: String) {
-        boardToUpdate.name = name
+        boards.withElement(boardToUpdate) { i in
+            boards[i].name = name
+        }
     }
 }

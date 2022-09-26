@@ -5,7 +5,6 @@ struct ContentView: View {
     @StateObject var boardsVM = BoardsViewModel()
 
     @State private var boardDetails: ModelOpt<Board>?
-    @State private var addBoard: Bool
 
     var body: some View {
         #if DEBUG
@@ -46,11 +45,9 @@ struct ContentView: View {
             }
             .sheet(item: $boardDetails) { item in
                 BoardSheet(board: item.model) { boardName in
-                    if (item.isNew()) {
+                    item.apply {
                         boardsVM.addNewBoard(boardName)
-                    } else {
-                        boardsVM.updateBoard(item.get(), boardName)
-                    }
+                    } or: { b in boardsVM.updateBoard(b, boardName) }
                 }
             }
             .onAppear {

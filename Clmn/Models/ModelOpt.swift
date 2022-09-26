@@ -8,20 +8,19 @@ struct ModelOpt<T> : Identifiable {
         self.model = model
     }
 
-    func isNew() -> Bool {
-        model == nil
-    }
-    func isExisting() -> Bool {
-        model != nil
-    }
-    func get() -> T {
-        return model!
-    }
-
     static func ofNew<R>() -> ModelOpt<R> {
         ModelOpt<R>(model: nil)
     }
     static func of<R>(_ model: R) -> ModelOpt<R> {
         ModelOpt<R>(model: model)
+    }
+
+    func apply(ifEmpty: () -> Void, or ifExisting: (T) -> Void) {
+        if (model == nil) {
+            ifEmpty()
+        }
+        else {
+            ifExisting(model!)
+        }
     }
 }
