@@ -2,17 +2,20 @@ import SwiftUI
 
 struct SheetHeader: View {
     private var title: String
+
     init(_ title: String) {
         self.title = title
     }
+
     var body: some View {
         VStack(alignment: .center) {
             Text(title)
-                .padding()
+            .padding()
         }
         .frame(
             maxWidth: .infinity
         )
+//        .background(Color.App.sheetBackground)
     }
 }
 

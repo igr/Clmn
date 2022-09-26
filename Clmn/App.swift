@@ -1,0 +1,5 @@
+let APP_SITE = "https://igo.rs"
+let APP_EMAIL = "clmn@igo.rs"
+let APP_GROUP = "ac.obl.clmn.Clmn"
+let APP_NAME = "Clmn"
+let APP_TITLE = "Clmn: Tasks & Columns"

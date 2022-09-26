@@ -1,10 +1,13 @@
 import SwiftUI
 
-struct Board : Identifiable, Equatable, Hashable, Orderable {
+typealias BoardId = UUID
 
-    let id: UUID = UUID()
+struct Board: Identifiable, Equatable, Hashable, Orderable, Codable {
+
+    var id: BoardId = BoardId()
     var name: String
     var order: Int
     var timestamp: Date = Date.now
 
+    public static let foo = Board(name: "n/a", order: -1)
 }

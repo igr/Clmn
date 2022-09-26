@@ -1,6 +1,6 @@
 import CoreData
 
-struct ModelOpt<T> : Identifiable {
+struct ModelOpt<T>: Identifiable {
     let id: UUID = UUID()
     let model: T?
 
@@ -11,6 +11,7 @@ struct ModelOpt<T> : Identifiable {
     static func ofNew<R>() -> ModelOpt<R> {
         ModelOpt<R>(model: nil)
     }
+
     static func of<R>(_ model: R) -> ModelOpt<R> {
         ModelOpt<R>(model: model)
     }
@@ -18,9 +19,13 @@ struct ModelOpt<T> : Identifiable {
     func apply(ifEmpty: () -> Void, or ifExisting: (T) -> Void) {
         if (model == nil) {
             ifEmpty()
-        }
-        else {
+        } else {
             ifExisting(model!)
         }
+    }
+
+    /// Returns true if optional model exists.
+    func exists() -> Bool {
+        model != nil
     }
 }

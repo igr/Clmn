@@ -1,11 +1,10 @@
-
 public struct Services {
-    let boardService: BoardService
-    let taskListsService: TaskListService
+    let boards: BoardsService
+    let lists: TaskListsService
 }
 
-// Static reference to all services.
+/// Static reference to all services.
 let services = Services(
-    boardService: BoardService(),
-    taskListsService: TaskListService()
+    boards: BoardsService(),
+    lists: TaskListsService()
 )

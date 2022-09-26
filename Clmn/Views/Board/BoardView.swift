@@ -1,13 +1,11 @@
 import SwiftUI
 
 struct BoardView: View {
-    private var board: Board
+    var board: Board
+    @Binding var taskListDetails: ModelOpt<TaskList>?
 
-    @StateObject var listsVM = TaskListsViewModel()
-
-    init(_ board: Board) {
-        self.board = board
-    }
+    @StateObject var listsVM = TaskListsVM()
+    @EnvironmentObject var dragTaskList: DragTaskListModel
 
     var body: some View {
         #if DEBUG
@@ -15,24 +13,33 @@ struct BoardView: View {
         #endif
 
         VStack(spacing: 0) {
-            Divider()
             if (listsVM.lists.isEmpty) {
-                EmptyBoardView()
+                EmptyBoardView(taskListDetails: $taskListDetails)
             } else {
+                Divider()
                 HStack(
                     alignment: .top,
                     spacing: 2
                 ) {
                     ForEach(listsVM.lists, id: \.id) { list in
-                        Text(list.title)
-//                            TaskListView(list: list)
-//                            .frame(minWidth: 200, minHeight: 200)
+                        TaskListView(list: list, listsVM: listsVM)
+                        .frame(minWidth: 200, minHeight: 200)
+                        .onDrop(of: [TASKLIST_UTI], delegate: DragTaskListDropOnTaskList(source: dragTaskList.list, target: list, reorder: listsVM.reorder))
                     }
                 }
             }
         }
+        .sheet(item: $taskListDetails) { item in
+            TaskListSheet(taskList: item.model) { (title, description) in
+                listsVM.addOrUpdate(item: item, title, description)
+            }
+        }
         .onAppear {
             listsVM.loadLists(board: board)
+        }
+        .onDisappear {
+            // TODO
+            print("Save tasklists!")
         }
     }
 }

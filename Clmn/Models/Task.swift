@@ -1,14 +1,14 @@
 import CoreData
 
-struct Task : Identifiable, Equatable, Orderable {
+typealias TaskId = UUID
 
-    let id: UUID = UUID()
-    var list: TaskList?
+struct Task: Identifiable, Equatable, Orderable, Codable {
+
+    var id: TaskId = TaskId()
     var name: String
     var order: Int
     var completed: Bool = false
     var inProgress: Int = 0
     var created: Date = Date.now
-    let tasks: [Task] = []
 
 }
