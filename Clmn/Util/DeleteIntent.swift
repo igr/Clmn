@@ -1,3 +1,5 @@
+import SwiftUI
+
 /// Simple struct to store pair of values:
 /// one flag for the UI confirmation dialog and the target item.
 struct DeleteIntent<T> {

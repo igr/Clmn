@@ -1,6 +1,6 @@
 import SwiftUI
 
-class BoardsVM: ObservableObject {
+class AllBoardsVM: ObservableObject {
 
     @Published private(set) var boards: [Board] = []
 
@@ -13,26 +13,27 @@ class BoardsVM: ObservableObject {
     }
 
     /// Creates a new board.
-    func addNewBoard(_ name: String) {
-        let newBoard = Board(name: name, order: boards.countNextOrder())
+    private func addNewBoard(_ name: String) {
+        let newBoard = Board(name: name)
         boards.append(newBoard)
-        services.boards.storeBoardsAsync(boards)
+        saveBoards()
     }
 
     /// Deletes a board.
     func deleteBoard(_ boardToDelete: Board) {
         boards.removeElement(boardToDelete)
-        services.lists.dropBoardLists(boardToDelete)
+        saveBoards()
     }
 
     /// Updates the board.
-    func updateBoard(_ boardToUpdate: Board, _ name: String) {
+    private func updateBoard(_ boardToUpdate: Board, _ name: String) {
         boards.withElement(boardToUpdate) { i in
             boards[i].name = name
         }
     }
 
-    func addOrUpdate(item: ModelOpt<Board>, boardName: String) {
+    /// Adds or updates the board.
+    func addOrUpdateBoard(item: ModelOpt<Board>, boardName: String) {
         item.apply {
             addNewBoard(boardName)
         } or: { b in
@@ -43,11 +44,6 @@ class BoardsVM: ObservableObject {
     /// Reorders the boards.
     func reorder(from set: IndexSet, to destinationIndex: Int) {
         boards.move(fromOffsets: set, toOffset: destinationIndex)
-        boards.reorder(setOrder: setBoardOrder)
         saveBoards()
-    }
-
-    private func setBoardOrder(index: Int, newOrder: Int) {
-        boards[index].order = newOrder
     }
 }

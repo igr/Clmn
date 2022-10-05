@@ -4,7 +4,7 @@ struct BoardView: View {
     var board: Board
     @Binding var taskListDetails: ModelOpt<TaskList>?
 
-    @StateObject var listsVM = TaskListsVM()
+    @StateObject var allListsVM = AllTaskListsVM()
     @EnvironmentObject var dragTaskList: DragTaskListModel
 
     var body: some View {
@@ -13,7 +13,7 @@ struct BoardView: View {
         #endif
 
         VStack(spacing: 0) {
-            if (listsVM.lists.isEmpty) {
+            if (allListsVM.lists.isEmpty) {
                 EmptyBoardView(taskListDetails: $taskListDetails)
             } else {
                 Divider()
@@ -21,25 +21,31 @@ struct BoardView: View {
                     alignment: .top,
                     spacing: 2
                 ) {
-                    ForEach(listsVM.lists, id: \.id) { list in
-                        TaskListView(list: list, listsVM: listsVM)
+                    ForEach(allListsVM.lists, id: \.id) { list in
+                        TaskListView(allListsVM: allListsVM, listVM: TaskListVM(list))
                         .frame(minWidth: 200, minHeight: 200)
-                        .onDrop(of: [TASKLIST_UTI], delegate: DragTaskListDropOnTaskList(source: dragTaskList.list, target: list, reorder: listsVM.reorder))
+                        .onDrop(of: [TASKLIST_UTI], delegate: DragTaskListDropOnTaskList(source: dragTaskList.list, target: list, reorder: allListsVM.reorder))
                     }
                 }
             }
         }
         .sheet(item: $taskListDetails) { item in
             TaskListSheet(taskList: item.model) { (title, description) in
-                listsVM.addOrUpdate(item: item, title, description)
+                allListsVM.addOrUpdateList(item: item, title, description)
             }
         }
         .onAppear {
-            listsVM.loadLists(board: board)
+            allListsVM.loadLists(board: board)
         }
         .onDisappear {
-            // TODO
-            print("Save tasklists!")
+            allListsVM.handleListChanges {
+                allListsVM.saveLists()
+            }
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.willTerminateNotification), perform: { output in
+            allListsVM.handleListChanges {
+                allListsVM.saveLists()
+            }
+        })
     }
 }

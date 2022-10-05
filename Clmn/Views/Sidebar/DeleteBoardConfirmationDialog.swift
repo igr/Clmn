@@ -17,9 +17,8 @@ struct DeleteBoardConfirmationDialog: ViewModifier {
     }
 }
 
-// DOESNT WORK
-//extension View {
-//    func deleteBoardConfirmation(_ deleteIntent: Binding<DeleteIntent<Board>>, onCommit: @escaping (Board) -> Void) -> some View {
-//        self.modifier(DeleteBoardConfirmationDialog(deleteIntent: deleteIntent, onCommit: onCommit))
-//    }
-//}
+extension View {
+    func deleteBoardConfirmation(_ deleteIntent: Binding<DeleteIntent<Board>>, onCommit: @escaping (Board) -> Void) -> some View {
+        self.modifier(DeleteBoardConfirmationDialog(deleteIntent: deleteIntent, onCommit: onCommit))
+    }
+}

@@ -9,7 +9,7 @@ struct EmptyBoardView: View {
             Button(
                 action: { taskListDetails = ModelOpt<TaskList>.ofNew() },
                 label: {
-                    Image(systemName: Icons.plusSquareFill)
+                    Image(systemName: Icons.plusSquare)
                     Text("Add List")
                 }
             )

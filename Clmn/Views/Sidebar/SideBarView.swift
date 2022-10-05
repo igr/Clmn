@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SideBarView: View {
-    @StateObject var boardsVM = BoardsVM()
+    @StateObject var allBoardsVM = AllBoardsVM()
 
     @State private var selectedBoard: Board?
     @State private var taskListDetails: ModelOpt<TaskList>?
@@ -15,14 +15,13 @@ struct SideBarView: View {
         #endif
         VStack(spacing: 0) {
             List {
-                ForEach(boardsVM.boards, id: \.id) { board in
+                ForEach(allBoardsVM.boards, id: \.id) { board in
                     NavigationLink(destination: BoardView(board: board, taskListDetails: $taskListDetails),
                         tag: board,
                         selection: $selectedBoard) {
-                        Text("\(board.name) \(board.order)")
+                        Text(board.name)
                         .font(Font.App.sideboard)
                     }
-                    .modifier(DeleteBoardConfirmationDialog(deleteIntent: $deleteBoard) { deletedBoard in boardsVM.deleteBoard(deletedBoard) })
                     .contextMenu {
                         Button {
                             boardDetails = ModelOpt<Board>.of(board)
@@ -46,19 +45,20 @@ struct SideBarView: View {
                     }
                 }
                 .onMove { indices, newOffset in
-                    boardsVM.reorder(from: indices, to: newOffset)
+                    allBoardsVM.reorder(from: indices, to: newOffset)
                 }
             }
             .listStyle(.sidebar)
         }
         .sheet(item: $boardDetails) { item in
             BoardSheet(board: item.model) { boardName in
-                boardsVM.addOrUpdate(item: item, boardName: boardName)
+                allBoardsVM.addOrUpdateBoard(item: item, boardName: boardName)
             }
         }
+        .deleteBoardConfirmation($deleteBoard) { deletedBoard in allBoardsVM.deleteBoard(deletedBoard) }
         .onAppear {
-            boardsVM.loadBoards()
-            selectedBoard = boardsVM.boards.first
+            allBoardsVM.loadBoards()
+            selectedBoard = allBoardsVM.boards.first
         }
         Spacer()
         Divider()

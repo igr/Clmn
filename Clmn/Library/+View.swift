@@ -1,7 +1,7 @@
 import SwiftUI
 
 extension View {
-    
+
     /// Solution to control attributes inclusion/exclusion.
     /// Usage: `.if(colored) { view in view.background(Color.blue) }`
     @ViewBuilder
@@ -9,5 +9,5 @@ extension View {
         if condition { transform(self) }
         else { self }
     }
-    
+
 }

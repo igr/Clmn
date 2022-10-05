@@ -2,12 +2,11 @@ import SwiftUI
 
 typealias BoardId = UUID
 
-struct Board: Identifiable, Equatable, Hashable, Orderable, Codable {
+struct Board: Identifiable, Equatable, Hashable, Codable {
 
     var id: BoardId = BoardId()
     var name: String
-    var order: Int
     var timestamp: Date = Date.now
 
-    public static let foo = Board(name: "n/a", order: -1)
+    public static let foo = Board(name: "n/a")
 }

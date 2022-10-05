@@ -2,11 +2,10 @@ import Foundation
 
 typealias TaskGroupId = UUID
 
-struct TaskGroup: Identifiable, Equatable, Orderable, Codable {
+struct TaskGroup: Identifiable, Equatable, Codable {
 
     var id: TaskGroupId = TaskGroupId()
-    var title: String
-    var order: Int
+    var name: String
     var tasks: [Task] = []
 
 }

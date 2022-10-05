@@ -24,7 +24,7 @@ class TaskListsService {
             Self.logger.notice("Board fetched: \(boardId)")
         } catch {
             Self.logger.error("Failed to fetch board: \(error._code)")
-            lists = [TaskList(boardId: boardId, title: "Error", order: -1)]
+            lists = [TaskList(boardId: boardId, title: "Error")]
         }
         return lists
     }

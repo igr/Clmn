@@ -16,7 +16,7 @@ struct TaskListSheet: View {
                 FormTextField(
                     text: $title,
                     placeholder: "List title",
-                    imageName: Icons.appList)
+                    imageName: Icons.list)
                 FormTextEditor(
                     text: $description,
                     placeholder: "Description",

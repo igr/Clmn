@@ -1,5 +1,6 @@
 import CoreData
 
+/// Optional container used for adding/editing model details.
 struct ModelOpt<T>: Identifiable {
     let id: UUID = UUID()
     let model: T?

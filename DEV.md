@@ -29,10 +29,6 @@ This is not working:
 
 Sheets, for example, are not getting themed.
 
-## Passing @State in ViewBuilder extension method
-
-This does not work as it should either. The binded field change was triggered twice.
-
 
 ## Don't use `Form`.
 

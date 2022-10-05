@@ -12,7 +12,7 @@ struct BoardSheet: View {
         VStack {
             SheetHeader("Board")
             VStack {
-                FormTextField(text: $boardName, placeholder: "Board Title", imageName: Icons.appBoard)
+                FormTextField(text: $boardName, placeholder: "Board Title", imageName: Icons.board)
                 Spacer()
                 SheetCancelOk {
                     onSave(boardName)

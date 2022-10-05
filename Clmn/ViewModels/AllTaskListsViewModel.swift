@@ -1,0 +1,93 @@
+import SwiftUI
+
+typealias TaskListProvider = ()->TaskList
+
+class AllTaskListsVM: ObservableObject {
+    @Published private(set) var lists: [TaskList] = []
+
+    private var board: Board = Board.foo
+
+    func loadLists(board: Board) {
+        lists = services.lists.fetchBoardLists(board.id)
+        self.board = board
+        queue.clear()
+    }
+
+    func saveLists() {
+        services.lists.storeBoardLists(boardId: board.id, boardTaskList: lists)
+    }
+
+    func addNewList(_ title: String, _ description: String?) {
+        let list = TaskList(boardId: board.id, title: title, description: description)
+        lists.append(list)
+        saveLists()
+    }
+
+    func deleteList(_ list: TaskList) {
+        lists.removeElement(list)
+        saveLists()
+    }
+
+    func updateList(_ list: TaskList, _ title: String, _ description: String?) {
+        lists.withElement(list) { index in
+            lists[index].title = title
+            lists[index].description = description
+        }
+        saveLists()
+    }
+
+    func addOrUpdateList(item: ModelOpt<TaskList>, _ title: String, _ description: String?) {
+        item.apply {
+            addNewList(title, description)
+        } or: { list in
+            updateList(list, title, description)
+        }
+    }
+
+    // ---------------------------------------------------------------- reorder
+
+    func reorder(from: TaskList, to destination: TaskList) {
+        let fromIndex = lists.firstIndex(of: from)
+        let toIndex = lists.firstIndex(of: destination)
+        guard (fromIndex != nil && toIndex != nil) else { return }
+        reorder(from: [fromIndex!], to: toIndex!)
+    }
+
+    /// Reorders the lists.
+    func reorder(from set: IndexSet, to destinationIndex: Int) {
+        lists.move(fromOffsets: set, toOffset: destinationIndex)
+        saveLists()
+    }
+
+    // ---------------------------------------------------------------- child VMs
+
+    private var queue: Queue<TaskListProvider> = Queue()
+
+    /// Registers tasklist provider that will queued and used later.
+    func register(_ taskListProvider: @escaping TaskListProvider) {
+        queue.push(taskListProvider)
+    }
+
+    /// Handle queued list changes. If there are changes, invoke the commit
+    /// lambda function.
+    func handleListChanges(commit: ()->Void) {
+        if (queue.size == 0) {
+            return
+        }
+        while true {
+            let tlp = queue.pop()
+            if tlp == nil {
+                break
+            }
+            let listToReplace = tlp!()
+            replaceList(listToReplace)
+        }
+        commit()
+    }
+
+    private func replaceList(_ list: TaskList) {
+        let ndx = lists.firstIndex(where: {tl in tl.id == list.id})
+        guard (ndx != nil) else { return }
+        lists[ndx!] = list
+    }
+}

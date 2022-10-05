@@ -1,7 +1,11 @@
 import SwiftUI
 
 struct TaskView: View {
+    @EnvironmentObject var dragTask: DragTaskModel
+
     var task: Task
+    var editTaskAction: () -> Void
+    var deleteTaskAction: () -> Void
 
     var body: some View {
         #if DEBUG
@@ -28,37 +32,32 @@ struct TaskView: View {
 
                 Text((task.name).trimmingCharacters(in: .whitespacesAndNewlines).markdown())
                 .strikethrough(task.completed)
-                .padding(.top, 2)
-//                .gesture(TapGesture(count: 2).onEnded {
-//                    editTaskAction()
-//                })
+                .gesture(TapGesture(count: 2).onEnded { editTaskAction() })
 
                 Spacer()
             }
             .padding(2)
+            .contentShape(Rectangle())
         }
-//        .contextMenu {
-//            Button(
-//                action: editTaskAction,
-//                label: {
-//                    Label("Edit Task", systemImage: "square.and.pencil")
-//                    .labelStyle(.titleAndIcon)
-//
-//                }
-//            )
-//            Button(
-//                action: deleteTaskAction,
-//                label: {
-//                    Label("Delete Task", systemImage: "minus.square.fill")
-//                    .labelStyle(.titleAndIcon)
-//
-//                }
-//            )
-//        }
-//        .onDrag {
-//            dragTask.task = task
-//            return NSItemProvider(item: task.name! as NSString, typeIdentifier: TASK_UTI.identifier)
-//        }
+        .contextMenu {
+            Button(
+                action: editTaskAction,
+                label: {
+                    Label("Edit Task", systemImage: Icons.squareAndPencil)
+                    .labelStyle(.titleAndIcon)
+
+                }
+            )
+            Button(
+                action: deleteTaskAction,
+                label: {
+                    Label("Delete Task", systemImage: Icons.minusSquareFill)
+                    .labelStyle(.titleAndIcon)
+
+                }
+            )
+        }
+        .onDrag { dragTask.startDragOf(task) }
 //        .onDrop(of: [TASK_UTI], delegate: TaskDropOnTaskDelegate(source: dragTask.task, target: task))
     }
 }

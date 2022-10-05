@@ -2,8 +2,6 @@ import SwiftUI
 
 @main
 struct ClmnApp: App {
-    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
-
     @AppStorage("appThemeSetting") private var appThemeSetting = Appearance.system
     @Environment(\.colorScheme) var colorScheme
 
@@ -72,7 +70,19 @@ struct ClmnApp: App {
     fileprivate func MenuLine_App_About() -> CommandGroup<Button<Text>> {
         CommandGroup(replacing: CommandGroupPlacement.appInfo) {
             Button("About \(Bundle.main.appName)") {
-                appDelegate.showAboutWnd()
+                NSApplication.shared.orderFrontStandardAboutPanel(
+                    options: [
+                        NSApplication.AboutPanelOptionKey.credits: NSAttributedString(
+                            string: APP_DESCRIPTION,
+                            attributes: [
+                                NSAttributedString.Key.font: NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
+                            ]
+                        ),
+                        NSApplication.AboutPanelOptionKey(
+                            rawValue: "Copyright"
+                        ): APP_COPYRIGHT
+                    ]
+                )
             }
         }
     }
