@@ -15,8 +15,9 @@ struct TaskListTitle: View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
                 Text(list.title)
+                .font(Font.App.listTitle)
                 .gesture(TapGesture(count: 2).onEnded {
-//                        taskListDetails = list
+                    //taskListDetails = list
                 })
             }
             .padding(.top, 10)
@@ -24,19 +25,5 @@ struct TaskListTitle: View {
         }
         .padding(.horizontal)
     }
-
-//    /// Deletes a task list.
-//    private func deleteTaskList(_ taskListToDelete: TaskList) {
-//        withAnimation {
-//            taskListToDelete.delete()
-//        }
-//    }
-//
-//    /// Adds task group.
-//    private func addTaskGroup() -> TaskGroup {
-//        withAnimation {
-//            //list.newTaskGroup()
-//        }
-//    }
 
 }

@@ -22,9 +22,13 @@ struct BoardView: View {
                     spacing: 2
                 ) {
                     ForEach(allListsVM.lists, id: \.id) { list in
-                        TaskListView(allListsVM: allListsVM, listVM: TaskListVM(list))
+                        TaskListView(
+                            allListsVM: allListsVM,
+                            listVM: TaskListVM(list)
+                        )
                         .frame(minWidth: 200, minHeight: 200)
-                        .onDrop(of: [TASKLIST_UTI], delegate: DragTaskListDropOnTaskList(source: dragTaskList.list, target: list, reorder: allListsVM.reorder))
+                        .onDrop(of: [TASKLIST_UTI],
+                            delegate: DragTaskListDropOnTaskList(source: dragTaskList, target: list, reorder: allListsVM.reorder))
                     }
                 }
             }

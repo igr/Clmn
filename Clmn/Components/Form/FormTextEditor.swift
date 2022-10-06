@@ -23,6 +23,7 @@ struct FormTextEditor: View {
                 .frame(width: 16, height: 16)
                 .padding([.vertical], 8)
                 .padding(.leading, 16)
+                .foregroundColor(Color.App.formGray)
                 Spacer()
             }
             MacTextEditor(
@@ -34,8 +35,8 @@ struct FormTextEditor: View {
         .cornerRadius(5)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
-                .stroke(.black, lineWidth: 1 / 3)
-                .opacity(0.3)
+            .strokeBorder(.black, lineWidth: 1/3)
+            .opacity(0.5)
         )
         .font(Font.App.formField)
         .frame(height: 120)

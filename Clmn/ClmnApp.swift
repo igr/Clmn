@@ -51,8 +51,8 @@ struct ClmnApp: App {
     fileprivate func MenuLine_Help_Examples() -> CommandGroup<Button<Text>> {
         CommandGroup(after: CommandGroupPlacement.help) {
             Button("Add Example") {
-                // todo
-                //createExample()
+                createExample()
+                // TODO: How to refresh the app?
             }
         }
     }

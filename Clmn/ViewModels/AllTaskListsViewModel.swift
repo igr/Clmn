@@ -17,10 +17,12 @@ class AllTaskListsVM: ObservableObject {
         services.lists.storeBoardLists(boardId: board.id, boardTaskList: lists)
     }
 
-    func addNewList(_ title: String, _ description: String?) {
+    @discardableResult
+    func addNewList(_ title: String, description: String? = nil) -> TaskList {
         let list = TaskList(boardId: board.id, title: title, description: description)
         lists.append(list)
         saveLists()
+        return list
     }
 
     func deleteList(_ list: TaskList) {
@@ -29,7 +31,7 @@ class AllTaskListsVM: ObservableObject {
     }
 
     func updateList(_ list: TaskList, _ title: String, _ description: String?) {
-        lists.withElement(list) { index in
+        lists.with(list) { index in
             lists[index].title = title
             lists[index].description = description
         }
@@ -37,9 +39,9 @@ class AllTaskListsVM: ObservableObject {
     }
 
     func addOrUpdateList(item: ModelOpt<TaskList>, _ title: String, _ description: String?) {
-        item.apply {
-            addNewList(title, description)
-        } or: { list in
+        item.new {
+            addNewList(title, description: description)
+        } existing: { list in
             updateList(list, title, description)
         }
     }
@@ -80,12 +82,12 @@ class AllTaskListsVM: ObservableObject {
                 break
             }
             let listToReplace = tlp!()
-            replaceList(listToReplace)
+            apply(from: listToReplace)
         }
         commit()
     }
 
-    private func replaceList(_ list: TaskList) {
+    func apply(from list: TaskList) {
         let ndx = lists.firstIndex(where: {tl in tl.id == list.id})
         guard (ndx != nil) else { return }
         lists[ndx!] = list

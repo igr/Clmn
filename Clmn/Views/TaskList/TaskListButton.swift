@@ -3,54 +3,67 @@ import SwiftUI
 struct TaskListButton: View {
     var list: TaskList
     @Binding var taskListDetails: ModelOpt<TaskList>?
-    @Binding var taskDetails: ModelOpt<Task>?
     @Binding var taskGroupDetails: ModelOpt<TaskGroup>?
+    @Binding var taskDetails: ModelPairOpt<TaskGroup, Task>?
     @Binding var deleteTaskList: DeleteIntent<TaskList>
+    @Binding var hovered: Bool
 
     var body: some View {
-        HStack {
-            Spacer()
-            Menu {
-                Button {
-                    taskListDetails = ModelOpt<TaskList>.of(list)
-                } label: {
-                    Label("Edit List", systemImage: Icons.squareAndPencil)
+        if (hovered) {
+            HStack {
+                Spacer()
+                Menu {
+                    Button {
+                        taskListDetails = ModelOpt<TaskList>.of(list)
+                    } label: {
+                        Label("Edit List", systemImage: Icons.squareAndPencil)
                         .labelStyle(.titleAndIcon)
-                }
-                Button(role: .destructive) {
-                    deleteTaskList.set(list)
-                } label: {
-                    Label("Delete List", systemImage: Icons.minusSquareFill)
+                    }
+                    Button(role: .destructive) {
+                        deleteTaskList.set(list)
+                    } label: {
+                        Label("Delete List", systemImage: Icons.minusSquareFill)
                         .labelStyle(.titleAndIcon)
-                }
-                Divider()
-                Button {
-
+                    }
+                    Divider()
+                    Button {
+                        taskListDetails = ModelOpt<TaskList>.ofNew()
+                    } label: {
+                        Label("Add List", systemImage: Icons.plusSquare)
+                        .labelStyle(.titleAndIcon)
+                    }
+                    Divider()
+                    Button {
+                        taskGroupDetails = ModelOpt<TaskGroup>.ofNew()
+                    } label: {
+                        Label("Add Group", systemImage: Icons.plusCircle)
+                        .labelStyle(.titleAndIcon)
+                    }
+                    Button {
+                        taskDetails = ModelPairOpt<TaskGroup, Task>.ofNew(list.defaultGroup())
+                    } label: {
+                        Label("Add Task", systemImage: Icons.plus)
+                        .labelStyle(.titleAndIcon)
+                    }
                 } label: {
-                    Label("Add List", systemImage: Icons.plusSquare)
-                    .labelStyle(.titleAndIcon)
+                    TaskListMenuLabel()
                 }
-                Divider()
-                Button {
-                    taskGroupDetails = ModelOpt<TaskGroup>.ofNew()
-                } label: {
-                    Label("Add Group", systemImage: Icons.plusCircle)
-                    .labelStyle(.titleAndIcon)
-                }
-                Button {
-                    taskDetails = ModelOpt<Task>.ofNew()
-                } label: {
-                    Label("Add Task", systemImage: Icons.plus)
-                    .labelStyle(.titleAndIcon)
-                }
-            } label: {
-                Image(systemName: Icons.ellipsis)
+                .menuStyle(.borderlessButton)
+                .menuIndicator(.hidden)
+                .fixedSize()
+                Spacer()
             }
-            .menuStyle(.borderlessButton)
-            .menuIndicator(.hidden)
-            .fixedSize()
+        } else {
             Spacer()
+            .frame(height: 32)
         }
+    }
+}
 
+internal struct TaskListMenuLabel: View {
+
+    internal var body: some View {
+        Text(Image.init(systemName: Icons.ellipsis).resizable())
+        .font(.system(size: 20))
     }
 }

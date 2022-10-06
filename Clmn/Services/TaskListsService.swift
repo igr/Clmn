@@ -26,7 +26,9 @@ class TaskListsService {
             Self.logger.error("Failed to fetch board: \(error._code)")
             lists = [TaskList(boardId: boardId, title: "Error")]
         }
-        return lists
+        
+        // make sure that all lists are valid
+        return lists.filter { $0.valid() }
     }
 
     func storeBoardLists(boardId: BoardId, boardTaskList: [TaskList]) {

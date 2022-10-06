@@ -1,13 +1,19 @@
 struct Icons {
 
     /// MARK: - app
-
     static let board = "rectangle.split.3x1"
     static let list = "list.bullet.rectangle.portrait"
     static let group = "list.bullet.below.rectangle"
+    static let task = "checkmark.shield"
+
+    static let taskOpen = "square"
+    static let taskCompleted = "square.fill"
+    static let taskProgress1 = "square.lefthalf.filled"
+    static let taskProgress2 = "square.righthalf.filled"
 
     /// MARK: - form
 
+    static let formSheetHeader = "note"
     static let formDescription = "character.textbox"
 
     /// MARK: - generic

@@ -13,8 +13,10 @@ struct TaskGroupSheet: View {
         VStack {
             SheetHeader("Group")
             Form {
-                FormLabel("Group name:")
-                TextField("", text: $groupName)
+                FormTextField(
+                    text: $groupName,
+                    placeholder: "Group Name...",
+                    imageName: Icons.group)
                 Spacer()
                 SheetCancelOk {
                     onSave(groupName)

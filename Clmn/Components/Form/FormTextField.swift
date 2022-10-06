@@ -20,17 +20,22 @@ struct FormTextField: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 16, height: 16)
-                .padding([.vertical], 8)
+                .padding([.vertical], 9)
                 .padding(.leading, 16)
+                .foregroundColor(Color.App.formGray)
 
-            TextField(placeholder, text: $text)
+            TextField("", text: $text)
+                .placeholder(when: text.isEmpty) {
+                    Text(placeholder)
+                        .foregroundColor(Color.App.formGray)
+                }
                 .textFieldStyle(.plain)
         }
         .cornerRadius(5)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
-                .stroke(.black, lineWidth: 1 / 3)
-                .opacity(0.3)
+                .strokeBorder(.black, lineWidth: 1/3)
+                .opacity(0.5)
         )
         .font(Font.App.formField)
         .frame(height: 30)

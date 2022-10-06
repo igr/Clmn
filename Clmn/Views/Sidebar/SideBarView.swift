@@ -21,6 +21,7 @@ struct SideBarView: View {
                         selection: $selectedBoard) {
                         Text(board.name)
                         .font(Font.App.sideboard)
+                        .padding(2)
                     }
                     .contextMenu {
                         Button {
@@ -49,13 +50,25 @@ struct SideBarView: View {
                 }
             }
             .listStyle(.sidebar)
+            if (allBoardsVM.isEmpty()) {
+                ZeroBoardView()
+            }
         }
         .sheet(item: $boardDetails) { item in
             BoardSheet(board: item.model) { boardName in
                 allBoardsVM.addOrUpdateBoard(item: item, boardName: boardName)
             }
         }
-        .deleteBoardConfirmation($deleteBoard) { deletedBoard in allBoardsVM.deleteBoard(deletedBoard) }
+        .deleteBoardConfirmation($deleteBoard) { deletedBoard in
+            let deletedIndex = allBoardsVM.deleteBoard(deletedBoard)
+            let newIndex = allBoardsVM.boards.safeIndex(deletedIndex)
+            if (newIndex != -1) {
+                selectedBoard = allBoardsVM.boards[newIndex]
+            } else {
+                selectedBoard = nil
+            }
+            allBoardsVM.objectWillChange.send()
+        }
         .onAppear {
             allBoardsVM.loadBoards()
             selectedBoard = allBoardsVM.boards.first

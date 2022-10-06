@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct TaskView: View {
-    @EnvironmentObject var dragTask: DragTaskModel
-
+    @ObservedObject var listVM: TaskListVM
     var task: Task
     var editTaskAction: () -> Void
     var deleteTaskAction: () -> Void
@@ -13,20 +12,20 @@ struct TaskView: View {
         #endif
         HStack {
             HStack(alignment: .top) {
-//                Image(systemName: checkboxName(task))
-//                .font(Font.system(size: 16, design: .monospaced))
+                Image(systemName: checkboxName(task))
+                    .font(Font.App.taskIcon)
 //                .foregroundColor(.gray)
-//                .gesture(TapGesture().onEnded {
-//                    let hasOption = NSEvent.modifierFlags.contains(.option)
-//                    if (hasOption) {
-//                        toggleProgress(task)
-//                    } else {
+                .gesture(TapGesture().onEnded {
+                    let optionKeyPressed = NSEvent.modifierFlags.contains(.option)
+                    if (optionKeyPressed) {
+                        listVM.toggleProgress(task)
+                    } else {
 //                        task.completed.toggle()
 //                        if (task.completed == false) {
 //                            task.inProgress = 0
 //                        }
-//                    }
-//                })
+                    }
+                })
 //                .onHover { isHovered in CursorUtil.handOnHover(isHovered) }
 //                .padding(.top, 2)
 
@@ -57,7 +56,18 @@ struct TaskView: View {
                 }
             )
         }
-        .onDrag { dragTask.startDragOf(task) }
-//        .onDrop(of: [TASK_UTI], delegate: TaskDropOnTaskDelegate(source: dragTask.task, target: task))
+    }
+
+
+    private func checkboxName(_ task: Task) -> String {
+        if (task.completed) {
+            return Icons.taskCompleted
+        }
+        switch task.progress {
+        case 1: return Icons.taskProgress1
+        case 2: return Icons.taskProgress2
+        default:
+            return Icons.taskOpen
+        }
     }
 }

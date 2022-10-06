@@ -8,14 +8,22 @@ struct SheetHeader: View {
     }
 
     var body: some View {
-        VStack(alignment: .center) {
-            Text(title)
-            .padding()
+        VStack {
+            HStack(alignment: .center) {
+                Spacer()
+                Image(systemName: Icons.formSheetHeader)
+                Text(title)
+                    .padding([.top, .bottom])
+                Spacer()
+            }
+            .frame(
+                maxWidth: .infinity
+            )
+            .font(Font.App.formSheetHeader)
+            .colorInvert()
+            .background(Color.App.formSheetBackground)
         }
-        .frame(
-            maxWidth: .infinity
-        )
-//        .background(Color.App.sheetBackground)
+        Spacer().frame(height: 20)
     }
 }
 

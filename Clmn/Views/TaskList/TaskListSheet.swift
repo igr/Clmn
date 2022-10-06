@@ -15,7 +15,7 @@ struct TaskListSheet: View {
             VStack {
                 FormTextField(
                     text: $title,
-                    placeholder: "List title",
+                    placeholder: "List Title...",
                     imageName: Icons.list)
                 FormTextEditor(
                     text: $description,

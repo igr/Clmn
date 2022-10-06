@@ -7,63 +7,76 @@ class TaskListVM: ObservableObject {
         self.list = list
     }
 
-    private func addNewTask(_ name: String) {
-        list.tasks.append(Task(name: name))
-    }
-
-    private func updateTask(_ task: Task, _ name: String) {
-        list.tasks.withElement(task) { index in
-            list.tasks[index].name = name
+    /// Adds a new task to the list or a group.
+    func addNewTask(toGroup group: TaskGroup? = nil, _ name: String, progress: Int = 0, completed: Bool = false) {
+        let task = Task(name: name, completed: completed, progress: progress)
+        let realGroup = group ?? list.groups[0]
+        list.groups.with(realGroup) { g in
+            list.groups[g].tasks.append(task)
         }
     }
 
-    func addOrUpdateTask(item: ModelOpt<Task>, _ name: String) {
-        item.apply {
-            addNewTask(name)
-        } or: { task in
+    private func updateTask(_ task: Task, _ name: String) {
+        list.groups.with(task) { g, i in
+            list.groups[g].tasks[i].name = name
+        }
+    }
+
+    func addOrUpdateTask(item: ModelPairOpt<TaskGroup, Task>, _ name: String) {
+        item.new { group in
+            addNewTask(toGroup: group, name)
+        } existing: { group, task in
             updateTask(task, name)
         }
     }
 
+    /// Removes a task from the list.
     func deleteTask(_ task: Task) {
-        list.tasks.removeElement(task)
-    }
-
-
-    // ---------------------------------------------------------------- tasks of groups
-
-    private func addNewTaskToGroup(_ group: TaskGroup, _ name: String) {
-        list.groups.withElement(group) { i in
-            list.groups[i].tasks.append(Task(name: name))
+        list.groups.with(task) { g, i in
+            list.groups[g].tasks.remove(at: i)
         }
     }
 
-    private func updateTaskOfGroup(_ group: TaskGroup,_ task: Task, _ name: String) {
-        list.groups.withElement(group) { i in
-            list.groups[i].tasks.withElement(task) { index in
-                list.groups[i].tasks[index].name = name
+    func insertTask(_ task: Task, before: Task) {
+        list.groups.with(before) { g, i in
+            list.groups[g].tasks.insert(task, at: i)
+        }
+    }
+
+    func toggleProgress(_ task: Task) {
+        list.groups.with(task) { g, i in
+            var progress = list.groups[g].tasks[i].progress
+            progress += 1
+            if (progress == 3) {
+                progress = 0
             }
+            list.groups[g].tasks[i].progress = progress
         }
     }
 
-    func addOrUpdateTaskOfGroup(item: ModelPairOpt<Task, TaskGroup>, _ name: String) {
-        item.apply { group in
-            addNewTaskToGroup(group, name)
-        } or: { group, task in
-            updateTaskOfGroup(group, task, name)
+    func addTask(toGroup group: TaskGroup, task: Task) {
+        list.groups.with(group) { g in
+            list.groups[g].tasks.append(task)
         }
     }
 
-    func deleteTaskOfGroup(_ group: TaskGroup, _ task: Task) {
-        list.groups.withElement(group) { i in
-            list.groups[i].tasks.removeElement(task)
+    func reorder(group: TaskGroup, source: Task, destination: Task) {
+        let fromIndex = group.tasks.firstIndex(of: source)
+        let toIndex = group.tasks.firstIndex(of: destination)
+        guard (fromIndex != nil && toIndex != nil) else { return }
+        list.groups.with(group) { g in
+            list.groups[g].tasks.move(fromOffsets: [fromIndex!], toOffset: toIndex!)
         }
     }
+
 
     // ---------------------------------------------------------------- groups
 
-    private func addNewTaskGroup(_ name: String) {
-        list.groups.append(TaskGroup(name: name))
+    @discardableResult
+    func addNewTaskGroup(_ name: String) -> TaskGroup {
+        let group = TaskGroup(name: name)
+        list.groups.append(group)
+        return group
     }
 
     func deleteTaskGroup(_ taskGroup: TaskGroup) {
@@ -71,15 +84,15 @@ class TaskListVM: ObservableObject {
     }
 
     private func updateTaskGroup(_ taskGroup: TaskGroup, _ name: String) {
-        list.groups.withElement(taskGroup) { index in
+        list.groups.with(taskGroup) { index in
             list.groups[index].name = name
         }
     }
 
     func addOrUpdateTaskGroup(item: ModelOpt<TaskGroup>, _ name: String) {
-        item.apply {
+        item.new {
             addNewTaskGroup(name)
-        } or: { taskGroup in
+        } existing: { taskGroup in
             updateTaskGroup(taskGroup, name)
         }
     }
@@ -88,10 +101,14 @@ class TaskListVM: ObservableObject {
         let fromIndex = list.groups.firstIndex(of: source)
         let toIndex = list.groups.firstIndex(of: destination)
         guard (fromIndex != nil && toIndex != nil) else { return }
-        reorderTaskGroups(from: [fromIndex!], to: toIndex!)
+        list.groups.move(fromOffsets: [fromIndex!], toOffset: toIndex!)
     }
 
-    private func reorderTaskGroups(from set: IndexSet, to destinationIndex: Int) {
-        list.groups.move(fromOffsets: set, toOffset: destinationIndex)
+    // ----------------------------------------------------------------
+
+    func load(from lists: [TaskList]) {
+        lists.with(list) { index in
+            list = lists[index]
+        }
     }
 }

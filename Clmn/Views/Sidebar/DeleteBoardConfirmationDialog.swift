@@ -7,8 +7,8 @@ struct DeleteBoardConfirmationDialog: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-        .confirmationDialog("Are you sure?", isPresented: $deleteIntent.isPresented) {
-            Button("Delete Board?", role: .destructive) {
+        .confirmationDialog("Delete Board \n\(deleteIntent.target?.name ?? "")?", isPresented: $deleteIntent.isPresented) {
+            Button("Yes", role: .destructive) {
                 guard (deleteIntent.target != nil) else { return }
                 onCommit(deleteIntent.target!)
                 deleteIntent.reset()

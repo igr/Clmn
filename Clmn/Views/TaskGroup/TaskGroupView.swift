@@ -1,21 +1,17 @@
 import SwiftUI
 
 struct TaskGroupView: View {
-    @EnvironmentObject var dragTask: DragTaskModel
-    @EnvironmentObject var dragTaskGroup: DragTaskGroupModel
-
-    @ObservedObject var listVM: TaskListVM
     var group: TaskGroup
     @Binding var taskGroupDetails: ModelOpt<TaskGroup>?
+    @Binding var taskDetails: ModelPairOpt<TaskGroup, Task>?
     @Binding var deleteTaskGroup: DeleteIntent<TaskGroup>
-    @Binding var taskDetails: ModelPairOpt<Task, TaskGroup>?
-    @Binding var deleteTask: DeleteIntent<(TaskGroup, Task)>
     @Binding var hovered: Bool
 
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 Text(group.name)
+                    .font(Font.App.groupName)
                 Spacer()
                 if (hovered) {
                     Menu {
@@ -33,7 +29,7 @@ struct TaskGroupView: View {
                         }
                         Divider()
                         Button {
-                            taskDetails = ModelPairOpt<Task, TaskGroup>.ofNew(group)
+                            taskDetails = ModelPairOpt<TaskGroup, Task>.ofNew(group)
                         } label: {
                             Label("Add Task", systemImage: Icons.plus)
                             .labelStyle(.titleAndIcon)
@@ -44,35 +40,14 @@ struct TaskGroupView: View {
                     .menuStyle(.borderlessButton)
                     .menuIndicator(.hidden)
                     .fixedSize()
-                    .padding(.top, 6)
+                    .padding(.top, 4)
                 }
 //                .onHover { isHovered in
 //                    CursorUtil.handOnHover(isHovered)
 //                }
             }
-//            .padding(.top, 50)
+            .padding(.top, 50)
             Divider()
         }
-        .onDrag {
-            dragTaskGroup.startDragOf(group)
-        }
-        .onDrop(of: [TASK_UTI, TASKGROUP_UTI],
-            delegate: DropOnTaskGroupDispatcher(
-                sourceTask: dragTask.task,
-                sourceGroup: dragTaskGroup.group,
-                target: group,
-                reorderGroups: listVM.reorder
-            )
-        )
-
-        let tasks = group.tasks
-        ForEach(tasks, id: \.id) { task in
-            TaskView(
-                task: task,
-                editTaskAction: { taskDetails = ModelPairOpt<Task, TaskGroup>.of(group, task) },
-                deleteTaskAction: { deleteTask.set((group, task)) }
-            )
-        }
-//        AddTaskLink(hovered: $hovered) { taskDetails = addTask(group) }
     }
 }

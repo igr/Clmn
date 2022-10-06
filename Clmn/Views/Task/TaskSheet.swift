@@ -13,8 +13,10 @@ struct TaskSheet: View {
         VStack {
             SheetHeader("Task")
             Form {
-                Spacer()
-                TextEditor(text: $name)
+                FormTextEditor(
+                    text: $name,
+                    placeholder: "Task",
+                    imageName: Icons.task)
                 Spacer()
                 SheetCancelOk {
                     onSave(name)

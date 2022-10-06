@@ -17,7 +17,7 @@ struct ModelOpt<T>: Identifiable {
         ModelOpt<R>(model: model)
     }
 
-    func apply(ifEmpty: () -> Void, or ifExisting: (T) -> Void) {
+    func new(ifEmpty: () -> Void, existing ifExisting: (T) -> Void) {
         if (model == nil) {
             ifEmpty()
         } else {

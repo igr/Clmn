@@ -12,31 +12,40 @@ class AllBoardsVM: ObservableObject {
         services.boards.storeBoards(boards)
     }
 
+    /// Returns `true` if no board is loaded
+    func isEmpty() -> Bool {
+        boards.isEmpty
+    }
+
     /// Creates a new board.
-    private func addNewBoard(_ name: String) {
+    @discardableResult
+    func addNewBoard(_ name: String) -> Board {
         let newBoard = Board(name: name)
         boards.append(newBoard)
         saveBoards()
+        return newBoard
     }
 
-    /// Deletes a board.
-    func deleteBoard(_ boardToDelete: Board) {
-        boards.removeElement(boardToDelete)
+    /// Deletes a board. Returns index of removed element.
+    @discardableResult
+    func deleteBoard(_ boardToDelete: Board) -> Int {
+        let removedIndex = boards.removeElement(boardToDelete)
         saveBoards()
+        return removedIndex
     }
 
     /// Updates the board.
     private func updateBoard(_ boardToUpdate: Board, _ name: String) {
-        boards.withElement(boardToUpdate) { i in
+        boards.with(boardToUpdate) { i in
             boards[i].name = name
         }
     }
 
     /// Adds or updates the board.
     func addOrUpdateBoard(item: ModelOpt<Board>, boardName: String) {
-        item.apply {
+        item.new {
             addNewBoard(boardName)
-        } or: { b in
+        } existing: { b in
             updateBoard(b, boardName)
         }
     }

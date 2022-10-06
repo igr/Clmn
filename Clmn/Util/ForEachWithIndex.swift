@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// Cool, extended version of ForEach that includes loop index.
 public struct ForEachWithIndex<Data: RandomAccessCollection, ID: Hashable, Content: View>: View {
     public var data: Data
     public var content: (_ index: Data.Index, _ element: Data.Element) -> Content
