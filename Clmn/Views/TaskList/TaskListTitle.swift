@@ -1,15 +1,7 @@
 import SwiftUI
 
 struct TaskListTitle: View {
-//    @EnvironmentObject var dragTask: DragTaskModel
-//    @EnvironmentObject var dragTaskList: DragTaskListModel
-
     var list: TaskList
-//    @Binding var taskDetails: Task?
-//    @Binding var taskListDetails: TaskList?
-//    @Binding var taskGroupDetails: TaskGroup?
-//    @State private var isConfirmingTaskListDelete = false
-//    var addTaskAction: () -> Task
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -17,13 +9,18 @@ struct TaskListTitle: View {
                 Text(list.title)
                 .font(Font.App.listTitle)
                 .gesture(TapGesture(count: 2).onEnded {
+                    // todo?
                     //taskListDetails = list
                 })
             }
             .padding(.top, 10)
             Text((list.description ?? "").markdown())
+            .font(Font.App.listSubtitle)
+            .foregroundColor(Color.App.listSubtitle)
         }
+        .contentShape(Rectangle())
         .padding(.horizontal)
+        .padding(.bottom, 4)
     }
 
 }

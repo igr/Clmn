@@ -43,6 +43,18 @@ class TaskListVM: ObservableObject {
         }
     }
 
+    func addTask(toGroup group: TaskGroup, task: Task) {
+        list.groups.with(group) { g in
+            list.groups[g].tasks.append(task)
+        }
+    }
+
+    func addTaskToList(_ task: Task) {
+        list.groups[0].tasks.append(task)
+    }
+
+    // ----------------------------------------------------------------
+
     func toggleProgress(_ task: Task) {
         list.groups.with(task) { g, i in
             var progress = list.groups[g].tasks[i].progress
@@ -54,9 +66,14 @@ class TaskListVM: ObservableObject {
         }
     }
 
-    func addTask(toGroup group: TaskGroup, task: Task) {
-        list.groups.with(group) { g in
-            list.groups[g].tasks.append(task)
+    func toggleCompleted(_ task: Task) {
+        list.groups.with(task) { g, i in
+            var completed = list.groups[g].tasks[i].completed
+            completed.toggle()
+            if (completed == false) {
+                list.groups[g].tasks[i].progress = 0
+            }
+            list.groups[g].tasks[i].completed = completed
         }
     }
 

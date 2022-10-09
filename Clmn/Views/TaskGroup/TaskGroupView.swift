@@ -46,7 +46,6 @@ struct TaskGroupView: View {
 //                    CursorUtil.handOnHover(isHovered)
 //                }
             }
-            .padding(.top, 50)
             Divider()
         }
     }

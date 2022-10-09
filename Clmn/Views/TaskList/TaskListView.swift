@@ -50,7 +50,7 @@ struct TaskListView: View {
                             deleteTaskAction: { deleteTask.set(task) }
                         )
                         .onDrag {
-                            dragTask.startDragOf((defaultGroup, task), removeOnDrop: { task in listVM.deleteTask(task)})
+                            dragTask.startDragOf((list, defaultGroup, task), removeOnDrop: { task in listVM.deleteTask(task)})
                         }
                         .onDrop(
                             of: [TASK_UTI],
@@ -66,6 +66,9 @@ struct TaskListView: View {
                     AddTaskButton(hovered: $hovered) { taskDetails = ModelPairOpt<TaskGroup, Task>.ofNew(defaultGroup) }
 
                     // ---------------------------------------------------------------- groups
+                    if (!defaultGroup.tasks.isEmpty) {
+                        Spacer().frame(height: 50)
+                    }
 
                     let groups = list.appGroups()
                     ForEach(groups, id: \.id) { group in
@@ -85,9 +88,7 @@ struct TaskListView: View {
                                 sourceGroup: dragTaskGroup,
                                 target: (list, group),
                                 reorderGroups: listVM.reorder,
-                                appendTaskToGroup: { taskGroup, task in
-                                    listVM.addTask(toGroup: taskGroup, task: task)
-                                }
+                                appendTaskToGroup: { taskGroup, task in  listVM.addTask(toGroup: taskGroup, task: task) }
                             )
                         )
 
@@ -101,7 +102,7 @@ struct TaskListView: View {
                                 deleteTaskAction: { deleteTask.set(task) }
                             )
                             .onDrag {
-                                dragTask.startDragOf((group, task), removeOnDrop: { task in listVM.deleteTask(task)})
+                                dragTask.startDragOf((list, group, task), removeOnDrop: { task in listVM.deleteTask(task)})
                             }
                             .onDrop(
                                 of: [TASK_UTI],
@@ -115,6 +116,10 @@ struct TaskListView: View {
                         }
 
                         AddTaskButton(hovered: $hovered) { taskDetails = ModelPairOpt<TaskGroup, Task>.ofNew(group) }
+
+                        if (!group.tasks.isEmpty) {
+                            Spacer().frame(height: 50)
+                        }
                     }
                 }
             }
@@ -141,6 +146,15 @@ struct TaskListView: View {
         }
         .background(Color.App.listBackground)
         .roundedCorners(2, corners: .allCorners)
+        .onDrop(of: [TASK_UTI, TASKLIST_UTI],
+            delegate: DropOnTaskListDispatcher(
+                sourceTask: dragTask,
+                sourceList: dragTaskList,
+                target: list,
+                reorderLists: allListsVM.reorder,
+                appendTaskToList: { t in  listVM.addTaskToList(t) }
+            )
+        )
         .onHover { hovered in
             self.hovered = hovered
         }

@@ -5,7 +5,6 @@ struct BoardView: View {
     @Binding var taskListDetails: ModelOpt<TaskList>?
 
     @StateObject var allListsVM = AllTaskListsVM()
-    @EnvironmentObject var dragTaskList: DragTaskListModel
 
     var body: some View {
         #if DEBUG
@@ -27,8 +26,6 @@ struct BoardView: View {
                             listVM: TaskListVM(list)
                         )
                         .frame(minWidth: 200, minHeight: 200)
-                        .onDrop(of: [TASKLIST_UTI],
-                            delegate: DragTaskListDropOnTaskList(source: dragTaskList, target: list, reorder: allListsVM.reorder))
                     }
                 }
             }

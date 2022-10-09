@@ -6,6 +6,7 @@ struct Typography {
     let formField: Font!
     let formSheetHeader: Font!
     let listTitle: Font!
+    let listSubtitle: Font!
     let groupName: Font!
     let taskIcon: Font!
 
@@ -14,6 +15,7 @@ struct Typography {
         self.formField = Font.system(size: 14)
         self.formSheetHeader = Font.system(size: 14).bold()
         self.listTitle = Font.custom("PeriodicoDisplay-Bd", size: 32)
+        self.listSubtitle = Font.system(size: 15, design: .default)
         self.groupName = Font.custom("PeriodicoDisplay-Rg", size: 22)
         self.taskIcon = Font.system(size: 16, design: .monospaced)
     }

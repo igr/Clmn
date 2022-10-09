@@ -23,6 +23,7 @@
 		7D03B549D393F9EAF3BE5058 /* OnDragTaskGroup+DropOnTaskGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B96B278D4FCBCC3CCD85 /* OnDragTaskGroup+DropOnTaskGroup.swift */; };
 		7D03B5A4B57F0C907535AC77 /* +String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B09347E3EE400E40BAF3 /* +String.swift */; };
 		7D03B61ADB7BF70F9C46FBC1 /* TaskGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B3E5A26EBFC20E0FA2FF /* TaskGroupView.swift */; };
+		7D03B621D9D8AA3AAAD075EB /* Many+DropOnTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BAF4A5AF00CB7F02EFD8 /* Many+DropOnTaskList.swift */; };
 		7D03B690DD77334E2375C916 /* AboutWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B60E08FF453A6244B2E7 /* AboutWindow.swift */; };
 		7D03B692DB3864533C410B55 /* DragTaskGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BADF47001F44F8D2AC11 /* DragTaskGroupModel.swift */; };
 		7D03B6A82021172420CCB7E9 /* OnDragTask+DropOnTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B4C900407EA4A09F4956 /* OnDragTask+DropOnTask.swift */; };
@@ -38,6 +39,7 @@
 		7D03B9B178CCC3A2A8EFC2C3 /* TaskListTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B1B973AB6D46919D5EC8 /* TaskListTitle.swift */; };
 		7D03B9B638A0EBD3D0E3ADD2 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BD365BEE108882BEDDAB /* Queue.swift */; };
 		7D03B9CEA7B5A111FC780AC7 /* TaskGroupSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B09A2AE36E61E0FB8BE3 /* TaskGroupSheet.swift */; };
+		7D03BA2CB5F2790D9C061789 /* OnDragTask+DropOnTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BD1C3EB4EADD52123484 /* OnDragTask+DropOnTaskList.swift */; };
 		7D03BAEF220B5E7A564A8A3E /* DeleteTaskListConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B0567106732BED0679E5 /* DeleteTaskListConfirmationDialog.swift */; };
 		7D03BB6A4EEC65622BF9042F /* ForEachWithIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B193AB1259F3657599C8 /* ForEachWithIndex.swift */; };
 		7D03BB9AB5FF56DD242DA03C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B97280E0A2788CAB0FF9 /* App.swift */; };
@@ -138,12 +140,14 @@
 		7D03BADA2C833841E673870C /* ZeroBoardsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZeroBoardsView.swift; sourceTree = "<group>"; };
 		7D03BADE1BAF8E85B5381366 /* ModelOpt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelOpt.swift; sourceTree = "<group>"; };
 		7D03BADF47001F44F8D2AC11 /* DragTaskGroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragTaskGroupModel.swift; sourceTree = "<group>"; };
+		7D03BAF4A5AF00CB7F02EFD8 /* Many+DropOnTaskList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Many+DropOnTaskList.swift"; sourceTree = "<group>"; };
 		7D03BB6A204058C65591AE09 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		7D03BB87A080431895F31A35 /* AppExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppExample.swift; sourceTree = "<group>"; };
 		7D03BBC9A7E84C587B478DD7 /* TaskListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
 		7D03BBDB2A745E19FFF676EB /* LazyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		7D03BC78CE7AEF46EAD67D0B /* FormTextEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextEditor.swift; sourceTree = "<group>"; };
 		7D03BCED3371096A81568EFB /* DeleteTaskGroupConfirmationDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteTaskGroupConfirmationDialog.swift; sourceTree = "<group>"; };
+		7D03BD1C3EB4EADD52123484 /* OnDragTask+DropOnTaskList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnDragTask+DropOnTaskList.swift"; sourceTree = "<group>"; };
 		7D03BD365BEE108882BEDDAB /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		7D03BD462CF56C328B5298E6 /* DeleteTaskConfirmationDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteTaskConfirmationDialog.swift; sourceTree = "<group>"; };
 		7D03BD4A62909CC852C803DB /* EmptyBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyBoardView.swift; sourceTree = "<group>"; };
@@ -243,6 +247,8 @@
 				7D03B96B278D4FCBCC3CCD85 /* OnDragTaskGroup+DropOnTaskGroup.swift */,
 				7D03BFFB6D0B0B3570BE85CA /* OnDragTaskList+DropOnTaskList.swift */,
 				7D03B4C900407EA4A09F4956 /* OnDragTask+DropOnTask.swift */,
+				7D03BD1C3EB4EADD52123484 /* OnDragTask+DropOnTaskList.swift */,
+				7D03BAF4A5AF00CB7F02EFD8 /* Many+DropOnTaskList.swift */,
 			);
 			path = DragDrop;
 			sourceTree = "<group>";
@@ -580,6 +586,8 @@
 				7D03BF8820DEBA790AB2D178 /* ZeroBoardsView.swift in Sources */,
 				7D03B15A4A5893CAC2E9A349 /* EmptyNavigationLink.swift in Sources */,
 				7D03BF5E3C85EF1B908450D4 /* AddTaskButton.swift in Sources */,
+				7D03BA2CB5F2790D9C061789 /* OnDragTask+DropOnTaskList.swift in Sources */,
+				7D03B621D9D8AA3AAAD075EB /* Many+DropOnTaskList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

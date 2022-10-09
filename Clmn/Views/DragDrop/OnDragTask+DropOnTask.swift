@@ -12,8 +12,8 @@ struct DragTaskDropOnTask: DropDelegate {
         let originRemoveOnDrop = source.removeOnDrop
         source.stopDrop()
 
-        let sourceTaskGroup = origin.0
-        let sourceTask = origin.1
+        let sourceTaskGroup = origin.1
+        let sourceTask = origin.2
 
         let targetTaskGroup = target.0
         let targetTask = target.1

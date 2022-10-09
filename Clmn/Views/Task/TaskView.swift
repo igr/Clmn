@@ -20,10 +20,7 @@ struct TaskView: View {
                     if (optionKeyPressed) {
                         listVM.toggleProgress(task)
                     } else {
-//                        task.completed.toggle()
-//                        if (task.completed == false) {
-//                            task.inProgress = 0
-//                        }
+                        listVM.toggleCompleted(task)
                     }
                 })
 //                .onHover { isHovered in CursorUtil.handOnHover(isHovered) }
@@ -32,8 +29,6 @@ struct TaskView: View {
                 Text((task.name).trimmingCharacters(in: .whitespacesAndNewlines).markdown())
                 .strikethrough(task.completed)
                 .gesture(TapGesture(count: 2).onEnded { editTaskAction() })
-
-                Spacer()
             }
             .padding(2)
             .contentShape(Rectangle())
@@ -57,7 +52,6 @@ struct TaskView: View {
             )
         }
     }
-
 
     private func checkboxName(_ task: Task) -> String {
         if (task.completed) {
