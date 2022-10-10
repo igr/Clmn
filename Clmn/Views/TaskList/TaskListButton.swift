@@ -5,7 +5,6 @@ struct TaskListButton: View {
     @Binding var taskListDetails: ModelOpt<TaskList>?
     @Binding var taskGroupDetails: ModelOpt<TaskGroup>?
     @Binding var taskDetails: ModelPairOpt<TaskGroup, Task>?
-    @Binding var deleteTaskList: DeleteIntent<TaskList>
     @Binding var hovered: Bool
 
     var body: some View {
@@ -19,12 +18,6 @@ struct TaskListButton: View {
                         Label("Edit List", systemImage: Icons.squareAndPencil)
                         .labelStyle(.titleAndIcon)
                     }
-                    Button(role: .destructive) {
-                        deleteTaskList.set(list)
-                    } label: {
-                        Label("Delete List", systemImage: Icons.minusSquareFill)
-                        .labelStyle(.titleAndIcon)
-                    }
                     Divider()
                     Button {
                         taskListDetails = ModelOpt<TaskList>.ofNew()
@@ -36,7 +29,7 @@ struct TaskListButton: View {
                     Button {
                         taskGroupDetails = ModelOpt<TaskGroup>.ofNew()
                     } label: {
-                        Label("Add Group", systemImage: Icons.plusCircle)
+                        Label("Add Group", systemImage: Icons.plusViewfinder)
                         .labelStyle(.titleAndIcon)
                     }
                     Button {

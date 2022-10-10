@@ -12,9 +12,10 @@ struct AppColors {
     let formBorders = Color.secondary
 
     let textInvert = Color("TextInvert")
+    let textWarn = Color.red
 
     let taskCompleted = Color.gray
-    
+
     let taskColors = [
         Color("TaskColor0"),
         Color("TaskColor1"),

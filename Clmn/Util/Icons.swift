@@ -23,7 +23,7 @@ struct Icons {
 
     static let plus = "plus"
     static let plusSquare = "plus.square"
-    static let plusCircle = "plus.circle"
+    static let plusViewfinder = "plus.viewfinder"
     static let plusSquareOnSquare = "plus.square.on.square"
     static let plusSquareFill = "plus.square.fill"
     static let squareAndPencil = "square.and.pencil"

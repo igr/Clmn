@@ -4,8 +4,7 @@ struct TaskView: View {
     @ObservedObject var listVM: TaskListVM
     var task: Task
     var editTaskAction: () -> Void
-    var deleteTaskAction: () -> Void
-    
+
     @State private var showEditButton = false
 
     var body: some View {
@@ -24,40 +23,27 @@ struct TaskView: View {
                         listVM.toggleCompleted(task)
                     }
                 })
-//                .onHover { isHovered in CursorUtil.handOnHover(isHovered) }
                 .padding(.top, 2)
+                .onHover { isHovered in CursorUtil.changeCursorOnHover(isHovered, cursor: NSCursor.pointingHand) }
 
                 Text((task.name).trimmingCharacters(in: .whitespacesAndNewlines).markdown())
                 .font(Font.App.taskText)
                 .strikethrough(task.completed)
                 .if(task.completed) { text in text.foregroundColor(Color.App.taskCompleted) }
-                .gesture(TapGesture(count: 2).onEnded { editTaskAction() })
+//                .gesture(TapGesture(count: 2).onEnded { editTaskAction() })
+
                 Spacer()
+
                 if (showEditButton) {
-                    Menu {
-                        Button(
-                            action: editTaskAction,
-                            label: {
-                                Label("Edit Task", systemImage: Icons.squareAndPencil)
-                                .labelStyle(.titleAndIcon)
-
-                            }
-                        )
-                        Button(
-                            action: deleteTaskAction,
-                            label: {
-                                Label("Delete Task", systemImage: Icons.minusSquareFill)
-                                .labelStyle(.titleAndIcon)
-
-                            }
-                        )
-                    } label: {
-                        Image(systemName: Icons.ellipsis)
-                    }
-                    .menuStyle(.borderlessButton)
-                    .menuIndicator(.hidden)
-                    .fixedSize()
-                    .padding(.top, 4)
+                    Button(
+                        action: editTaskAction,
+                        label: {
+                            Image(systemName: Icons.ellipsis)
+                            .frame(width: 18, height: 18)
+                            .contentShape(Rectangle())
+                        }
+                    )
+                    .buttonStyle(.plain)
                 }
             }
             .padding(6)
@@ -80,7 +66,7 @@ struct TaskView: View {
             return Icons.taskOpen
         }
     }
-    
+
     private func taskColor(_ task: Task) -> Color {
         if (task.color == 0) {
             return Color.App.listBackground

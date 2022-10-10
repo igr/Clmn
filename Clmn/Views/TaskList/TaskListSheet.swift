@@ -5,6 +5,7 @@ struct TaskListSheet: View {
 
     var taskList: TaskList?
     var onSave: (_: String, _: String) -> Void
+    var onDelete: (_:TaskList) -> Void = {_ in }
 
     @State private var title = ""
     @State private var description = ""
@@ -23,8 +24,11 @@ struct TaskListSheet: View {
                     imageName: Icons.formDescription
                 )
                 Spacer()
-                SheetCancelOk {
+                SheetCancelOk(isUpdate: taskList != nil) {
                     onSave(title, description)
+                } onDelete: {
+                    guard taskList != nil else { return }
+                    onDelete(taskList!)
                 }
             }
             .padding()

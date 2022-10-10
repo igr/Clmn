@@ -6,6 +6,15 @@ struct EmptyBoardView: View {
     var body: some View {
         VStack {
             Spacer()
+            Image("AppBW")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 256, height: 256)
+            Text("Add some Lists for your tasks...")
+            .font(.system(size: 16).italic())
+            .foregroundColor(Color.secondary)
+            Image(systemName: "arrow.down")
+            Spacer()
             Button(
                 action: { taskListDetails = ModelOpt<TaskList>.ofNew() },
                 label: {

@@ -8,10 +8,6 @@ struct TaskListView: View {
     @State private var taskListDetails: ModelOpt<TaskList>?
     @State private var taskGroupDetails: ModelOpt<TaskGroup>?
 
-    @State private var deleteTask: DeleteIntent<Task> = DeleteIntent()
-    @State private var deleteTaskList: DeleteIntent<TaskList> = DeleteIntent()
-    @State private var deleteTaskGroup: DeleteIntent<TaskGroup> = DeleteIntent()
-
     @State private var hovered: Bool = false
 
     @EnvironmentObject var dragTask: DragTaskModel
@@ -29,7 +25,6 @@ struct TaskListView: View {
                 taskListDetails: $taskListDetails,
                 taskGroupDetails: $taskGroupDetails,
                 taskDetails: $taskDetails,
-                deleteTaskList: $deleteTaskList,
                 hovered: $hovered
             )
             TaskListTitle(list: list)
@@ -46,8 +41,7 @@ struct TaskListView: View {
                         TaskView(
                             listVM: listVM,
                             task: task,
-                            editTaskAction: { taskDetails = ModelPairOpt<TaskGroup, Task>.of(defaultGroup, task) },
-                            deleteTaskAction: { deleteTask.set(task) }
+                            editTaskAction: { taskDetails = ModelPairOpt<TaskGroup, Task>.of(defaultGroup, task) }
                         )
                         .onDrag {
                             dragTask.startDragOf((list, defaultGroup, task), removeOnDrop: { task in listVM.deleteTask(task)})
@@ -63,7 +57,12 @@ struct TaskListView: View {
                         )
                     }
 
-                    AddTaskButton(hovered: $hovered) { taskDetails = ModelPairOpt<TaskGroup, Task>.ofNew(defaultGroup) }
+                    AddTaskButtons(
+                        hovered: $hovered,
+                        action: { taskDetails = ModelPairOpt<TaskGroup, Task>.ofNew(defaultGroup) },
+                        showAction2: list.groups.endIndex == 1,
+                        action2: { taskGroupDetails = ModelOpt<TaskGroup>.ofNew() }
+                    )
 
                     // ---------------------------------------------------------------- groups
                     if (!defaultGroup.tasks.isEmpty) {
@@ -71,12 +70,11 @@ struct TaskListView: View {
                     }
 
                     let groups = list.appGroups()
+
                     ForEach(groups, id: \.id) { group in
                         TaskGroupView(
                             group: group,
                             taskGroupDetails: $taskGroupDetails,
-                            taskDetails: $taskDetails,
-                            deleteTaskGroup: $deleteTaskGroup,
                             hovered: $hovered
                         )
                         .onDrag {
@@ -98,8 +96,7 @@ struct TaskListView: View {
                             TaskView(
                                 listVM: listVM,
                                 task: task,
-                                editTaskAction: { taskDetails = ModelPairOpt<TaskGroup, Task>.of(group, task) },
-                                deleteTaskAction: { deleteTask.set(task) }
+                                editTaskAction: { taskDetails = ModelPairOpt<TaskGroup, Task>.of(group, task) }
                             )
                             .onDrag {
                                 dragTask.startDragOf((list, group, task), removeOnDrop: { task in listVM.deleteTask(task)})
@@ -115,8 +112,12 @@ struct TaskListView: View {
                             )
                         }
 
-                        AddTaskButton(hovered: $hovered) { taskDetails = ModelPairOpt<TaskGroup, Task>.ofNew(group) }
-
+                        AddTaskButtons(
+                            hovered: $hovered,
+                            action: { taskDetails = ModelPairOpt<TaskGroup, Task>.ofNew(group) },
+                            showAction2: groups.isLast(group),
+                            action2: { taskGroupDetails = ModelOpt<TaskGroup>.ofNew() }
+                        )
                         if (!group.tasks.isEmpty) {
                             Spacer().frame(height: 50)
                         }
@@ -125,24 +126,29 @@ struct TaskListView: View {
             }
             .padding()
         }
-        .deleteTaskConfirmation($deleteTask) { deletedTask in listVM.deleteTask(deletedTask) }
-        .deleteTaskListConfirmation($deleteTaskList) { deletedTaskList in allListsVM.deleteList(deletedTaskList) }
-        .deleteTaskGroupConfirmation($deleteTaskGroup) { deletedTaskGroup in listVM.deleteTaskGroup(deletedTaskGroup) }
         .sheet(item: $taskListDetails) { item in
-            TaskListSheet(taskList: item.model) { title, description in
-                allListsVM.addOrUpdateList(item: item, title, description)
-                listVM.load(from: allListsVM.lists)
-            }
+            TaskListSheet(
+                taskList: item.model,
+                onSave: { title, description in
+                    allListsVM.addOrUpdateList(item: item, title, description)
+                    listVM.load(from: allListsVM.lists)
+                },
+                onDelete: { l in allListsVM.deleteList(l) }
+            )
         }
         .sheet(item: $taskDetails) { item in
             TaskSheet(task: item.model) { taskName, taskColor in
                 listVM.addOrUpdateTask(item: item, taskName, taskColor)
+            } onDelete: { task in
+                listVM.deleteTask(task)
             }
         }
         .sheet(item: $taskGroupDetails) { item in
-            TaskGroupSheet(taskGroup: item.model) { groupName in
-                listVM.addOrUpdateTaskGroup(item: item, groupName)
-            }
+            TaskGroupSheet(
+                group: item.model,
+                onSave: { groupName in listVM.addOrUpdateTaskGroup(item: item, groupName) },
+                onDelete: { g in listVM.deleteTaskGroup(g) }
+            )
         }
         .background(Color.App.listBackground)
         .roundedCorners(2, corners: .allCorners)

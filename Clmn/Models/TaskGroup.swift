@@ -28,3 +28,8 @@ extension Array where Element == TaskGroup {
     }
 }
 
+extension ArraySlice where Element == TaskGroup {
+    func isLast(_ group: TaskGroup) -> Bool {
+        last?.id == group.id
+    }
+}

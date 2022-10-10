@@ -6,6 +6,7 @@ struct TaskSheet: View {
 
     var task: Task?
     var onSave: (_: String, _: Int) -> Void
+    var onDelete: (_:Task) -> Void = {_ in }
 
     @State private var name = ""
     @State private var color = 0
@@ -20,13 +21,16 @@ struct TaskSheet: View {
                     imageName: Icons.task)
                 TaskColorRadioButtons(selectedColor: $color)
                 Spacer()
-                SheetCancelOk {
+                SheetCancelOk(isUpdate: task != nil) {
                     onSave(name, color)
+                } onDelete: {
+                    guard task != nil else { return }
+                    onDelete(task!)
                 }
             }
             .padding()
         }
-        .frame(width: 360, height: 300)
+        .frame(width: 360, height: 320)
         .onAppear {
             name = task?.name ?? ""
             color = task?.color ?? 0
