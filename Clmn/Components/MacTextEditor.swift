@@ -9,6 +9,7 @@ struct MacTextEditor: NSViewRepresentable {
     var singleLine: Bool = false
     var moveCursorToEnd: Bool = true
     var font: NSFont = .systemFont(ofSize: 14, weight: .regular)
+    var fontColor: Color = Color.text
 
     var onSubmit        : () -> Void       = {}
     var onTextChange    : (String) -> Void = { _ in }
@@ -16,7 +17,10 @@ struct MacTextEditor: NSViewRepresentable {
 
     // Need to compute text attributes as lazy var seems to be mutable, meh.
     private var textAttributes: [NSAttributedString.Key : Any] {
-        [NSAttributedString.Key.font: font]
+        [
+            NSAttributedString.Key.font: font,
+            .foregroundColor: NSColor(fontColor)
+        ]
     }
 
     func makeCoordinator() -> Coordinator {
@@ -53,7 +57,7 @@ struct MacTextEditor: NSViewRepresentable {
         //scrollView.translatesAutoresizingMaskIntoConstraints = false
 
         if (singleLine) {
-            scrollView.hasHorizontalScroller = true
+            scrollView.hasHorizontalScroller = false
             textView.maxSize = NSMakeSize(CGFloat.greatestFiniteMagnitude, CGFloat.greatestFiniteMagnitude)
             textView.isHorizontallyResizable = true
             textView.textContainer?.widthTracksTextView = false

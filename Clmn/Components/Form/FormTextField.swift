@@ -27,7 +27,8 @@ struct FormTextField: View {
                 placeholderText: placeholder,
                 placeholderColor: Color.App.formGray,
                 text: $text,
-                singleLine: true
+                singleLine: true,
+                font: Font.App.formFieldFont
             )
             .padding([.top], 6)
 
@@ -42,10 +43,9 @@ struct FormTextField: View {
         .cornerRadius(5)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
-                .strokeBorder(.black, lineWidth: 1/3)
+                .strokeBorder(Color.App.formBorders, lineWidth: 1/3)
                 .opacity(0.5)
         )
-        .font(Font.App.formField)
         .frame(height: 30)
         .foregroundColor(colorScheme == .dark ? .white : .black)
     }

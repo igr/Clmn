@@ -43,7 +43,7 @@ struct TaskGroupView: View {
                     .padding(.top, 4)
                 }
             }
-            Divider()
+            Divider().padding(.bottom, 6)
         }
     }
 }

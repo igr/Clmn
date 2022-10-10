@@ -8,12 +8,10 @@ struct FormLabel: View {
     }
 
     var body: some View {
-        HStack {
-            Text(text)
-                .padding(.top, 10)
-                .frame(height: 18)
-            Spacer()
-        }
+        Text(text)
+        .padding(.top, 2)
+        .frame(height: 18)
+        .font(Font.App.formField)
     }
 }
 

@@ -5,10 +5,10 @@ struct TaskSheet: View {
     @Environment(\.dismiss) var dismiss
 
     var task: Task?
-    var onSave: (_: String) -> Void
+    var onSave: (_: String, _: Int) -> Void
 
     @State private var name = ""
-    @State private var selected = 1
+    @State private var color = 0
 
     var body: some View {
         VStack {
@@ -18,10 +18,10 @@ struct TaskSheet: View {
                     text: $name,
                     placeholder: "Task",
                     imageName: Icons.task)
-                TaskColorRadioButtons()
+                TaskColorRadioButtons(selectedColor: $color)
                 Spacer()
                 SheetCancelOk {
-                    onSave(name)
+                    onSave(name, color)
                 }
             }
             .padding()
@@ -29,6 +29,7 @@ struct TaskSheet: View {
         .frame(width: 360, height: 300)
         .onAppear {
             name = task?.name ?? ""
+            color = task?.color ?? 0
         }
     }
 }

@@ -55,7 +55,7 @@ struct TaskListButton: View {
             }
         } else {
             Spacer()
-            .frame(height: 32)
+            .frame(height: 24)
         }
     }
 }

@@ -1,22 +1,18 @@
 import SwiftUI
 
 struct TaskColorRadioButtons: View {
-
-    let colors: [Color] = [.purple,
-                           .red,
-                           .orange,
-                           .yellow,
-                           .green,
-                           .blue]
-
-    @State var selectedColor: Color?
+    @Binding var selectedColor: Int
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         HStack {
-            ForEach(colors, id:  \.description) { color in
-                ColorCheckBox(selectedColor: self.$selectedColor, color: color)
+            FormLabel("Background:")
+            ForEachWithIndex(Color.App.taskColors, id:  \.description) { index, color in
+                ColorCheckBox(selectedColor: $selectedColor, color: (index, color))
+                    .colorScheme(colorScheme == .dark ? .light : .dark)
             }
+            Spacer()
         }
-        .padding()
+        .padding([.top,.bottom])
     }
 }

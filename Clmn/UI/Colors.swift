@@ -9,10 +9,20 @@ struct AppColors {
 
     let formGray = Color.gray
     let formSheetBackground = Color.primary
+    let formBorders = Color.secondary
 
     let textInvert = Color("TextInvert")
 
     let taskCompleted = Color.gray
+    
+    let taskColors = [
+        Color("TaskColor0"),
+        Color("TaskColor1"),
+        Color("TaskColor2"),
+        Color("TaskColor3"),
+        Color("TaskColor4"),
+        Color("TaskColor5")
+    ]
 }
 
 extension Color {

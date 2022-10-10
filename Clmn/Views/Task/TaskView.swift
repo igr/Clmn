@@ -60,10 +60,13 @@ struct TaskView: View {
                     .padding(.top, 4)
                 }
             }
-            .padding(2)
-            .contentShape(Rectangle())
+            .padding(6)
             .onHover { isHovered in showEditButton = isHovered }
         }
+        .background(taskColor(task))
+        .roundedCorners(4, corners: .allCorners)
+        .contentShape(Rectangle())
+        .padding(.bottom, 2)
     }
 
     private func checkboxName(_ task: Task) -> String {
@@ -77,4 +80,12 @@ struct TaskView: View {
             return Icons.taskOpen
         }
     }
+    
+    private func taskColor(_ task: Task) -> Color {
+        if (task.color == 0) {
+            return Color.App.listBackground
+        }
+        return Color.App.taskColors[task.color]
+    }
+
 }

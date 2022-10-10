@@ -20,17 +20,20 @@ class TaskListVM: ObservableObject {
         }
     }
 
-    private func updateTask(_ task: Task, _ name: String) {
+    private func updateTask(_ task: Task, _ name: String, color: Int? = nil) {
         list.groups.with(task) { g, i in
             list.groups[g].tasks[i].name = name
+            if (color != nil) {
+                list.groups[g].tasks[i].color = color!
+            }
         }
     }
 
-    func addOrUpdateTask(item: ModelPairOpt<TaskGroup, Task>, _ name: String) {
+    func addOrUpdateTask(item: ModelPairOpt<TaskGroup, Task>, _ name: String, _ color: Int) {
         item.new { group in
-            addNewTask(toGroup: group, name)
+            addNewTask(toGroup: group, name, color: color)
         } existing: { group, task in
-            updateTask(task, name)
+            updateTask(task, name, color: color)
         }
     }
 

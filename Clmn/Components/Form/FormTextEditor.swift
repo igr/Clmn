@@ -29,13 +29,15 @@ struct FormTextEditor: View {
             MacTextEditor(
                 placeholderText: placeholder,
                 placeholderColor: Color.App.formGray,
-                text: $text)
+                text: $text,
+                font: Font.App.formFieldFont
+            )
             .padding([.top,.bottom], 6)
         }
         .cornerRadius(5)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
-            .strokeBorder(.black, lineWidth: 1/3)
+                .strokeBorder(Color.App.formBorders, lineWidth: 1/3)
             .opacity(0.5)
         )
         .font(Font.App.formField)

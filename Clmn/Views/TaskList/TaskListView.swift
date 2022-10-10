@@ -23,7 +23,7 @@ struct TaskListView: View {
         let _ = Self._printChanges()
         #endif
         let list = listVM.list
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             TaskListButton(
                 list: list,
                 taskListDetails: $taskListDetails,
@@ -37,7 +37,7 @@ struct TaskListView: View {
                 dragTaskList.startDragOf(list)
             }
             ScrollView(showsIndicators: false) {
-                LazyVStack(alignment: .leading) {
+                LazyVStack(alignment: .leading, spacing: 0) {
 
                     let defaultGroup = list.defaultGroup()
                     let tasks = defaultGroup.tasks
@@ -135,8 +135,8 @@ struct TaskListView: View {
             }
         }
         .sheet(item: $taskDetails) { item in
-            TaskSheet(task: item.model) { taskName in
-                listVM.addOrUpdateTask(item: item, taskName)
+            TaskSheet(task: item.model) { taskName, taskColor in
+                listVM.addOrUpdateTask(item: item, taskName, taskColor)
             }
         }
         .sheet(item: $taskGroupDetails) { item in
