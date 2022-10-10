@@ -8,10 +8,6 @@ struct TaskListTitle: View {
             HStack(alignment: .top) {
                 Text(list.title)
                 .font(Font.App.listTitle)
-                .gesture(TapGesture(count: 2).onEnded {
-                    // todo?
-                    //taskListDetails = list
-                })
             }
             .padding(.top, 10)
             Text((list.description ?? "").markdown())

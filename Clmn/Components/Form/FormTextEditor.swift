@@ -28,8 +28,8 @@ struct FormTextEditor: View {
             }
             MacTextEditor(
                 placeholderText: placeholder,
-                text: $text,
-                shouldMoveCursorToEnd: .constant(true))
+                placeholderColor: Color.App.formGray,
+                text: $text)
             .padding([.top,.bottom], 6)
         }
         .cornerRadius(5)

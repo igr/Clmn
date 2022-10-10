@@ -42,9 +42,6 @@ struct TaskGroupView: View {
                     .fixedSize()
                     .padding(.top, 4)
                 }
-//                .onHover { isHovered in
-//                    CursorUtil.handOnHover(isHovered)
-//                }
             }
             Divider()
         }

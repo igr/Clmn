@@ -4,32 +4,32 @@ import Foundation
 extension Bundle {
 
     public var appName: String {
-        g("CFBundleName")
+        i("CFBundleName")
     }
     public var displayName: String {
-        g("CFBundleDisplayName")
+        i("CFBundleDisplayName")
     }
     public var language: String {
-        g("CFBundleDevelopmentRegion")
+        i("CFBundleDevelopmentRegion")
     }
     public var identifier: String {
-        g("CFBundleIdentifier")
+        i("CFBundleIdentifier")
     }
     public var copyright: String {
-        g("NSHumanReadableCopyright").replacingOccurrences(of: "\\\\n", with: "\n")
+        i("NSHumanReadableCopyright").replacingOccurrences(of: "\\\\n", with: "\n")
     }
 
     public var appBuild: String {
-        g("CFBundleVersion")
+        i("CFBundleVersion")
     }
     public var appVersionLong: String {
-        g("CFBundleShortVersionString")
+        i("CFBundleShortVersionString")
     }
     public var appVersionShort: String {
-        g("CFBundleShortVersion")
+        i("CFBundleShortVersion")
     }
 
-    fileprivate func g(_ str: String) -> String {
+    fileprivate func i(_ str: String) -> String {
         infoDictionary?[str] as? String ?? "⚠️"
     }
 }

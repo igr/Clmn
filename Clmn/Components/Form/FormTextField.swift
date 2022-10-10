@@ -23,13 +23,21 @@ struct FormTextField: View {
                 .padding([.vertical], 9)
                 .padding(.leading, 16)
                 .foregroundColor(Color.App.formGray)
+            MacTextEditor(
+                placeholderText: placeholder,
+                placeholderColor: Color.App.formGray,
+                text: $text,
+                singleLine: true
+            )
+            .padding([.top], 6)
 
-            TextField("", text: $text)
-                .placeholder(when: text.isEmpty) {
-                    Text(placeholder)
-                        .foregroundColor(Color.App.formGray)
-                }
-                .textFieldStyle(.plain)
+            // original take
+//            TextField("", text: $text)
+//                .placeholder(when: text.isEmpty) {
+//                    Text(placeholder)
+//                        .foregroundColor(Color.App.formGray)
+//                }
+//                .textFieldStyle(.plain)
         }
         .cornerRadius(5)
         .overlay(

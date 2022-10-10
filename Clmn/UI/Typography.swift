@@ -9,6 +9,7 @@ struct Typography {
     let listSubtitle: Font!
     let groupName: Font!
     let taskIcon: Font!
+    let taskText: Font!
 
     init() {
         self.sideboard = Font.system(size: 14).weight(.semibold)
@@ -18,6 +19,7 @@ struct Typography {
         self.listSubtitle = Font.system(size: 15, design: .default)
         self.groupName = Font.custom("PeriodicoDisplay-Rg", size: 22)
         self.taskIcon = Font.system(size: 16, design: .monospaced)
+        self.taskText = Font.system(size: 16)
     }
 }
 

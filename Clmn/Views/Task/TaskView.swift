@@ -5,6 +5,8 @@ struct TaskView: View {
     var task: Task
     var editTaskAction: () -> Void
     var deleteTaskAction: () -> Void
+    
+    @State private var showEditButton = false
 
     var body: some View {
         #if DEBUG
@@ -13,8 +15,7 @@ struct TaskView: View {
         HStack {
             HStack(alignment: .top) {
                 Image(systemName: checkboxName(task))
-                    .font(Font.App.taskIcon)
-//                .foregroundColor(.gray)
+                .font(Font.App.taskIcon)
                 .gesture(TapGesture().onEnded {
                     let optionKeyPressed = NSEvent.modifierFlags.contains(.option)
                     if (optionKeyPressed) {
@@ -24,32 +25,44 @@ struct TaskView: View {
                     }
                 })
 //                .onHover { isHovered in CursorUtil.handOnHover(isHovered) }
-//                .padding(.top, 2)
+                .padding(.top, 2)
 
                 Text((task.name).trimmingCharacters(in: .whitespacesAndNewlines).markdown())
+                .font(Font.App.taskText)
                 .strikethrough(task.completed)
+                .if(task.completed) { text in text.foregroundColor(Color.App.taskCompleted) }
                 .gesture(TapGesture(count: 2).onEnded { editTaskAction() })
+                Spacer()
+                if (showEditButton) {
+                    Menu {
+                        Button(
+                            action: editTaskAction,
+                            label: {
+                                Label("Edit Task", systemImage: Icons.squareAndPencil)
+                                .labelStyle(.titleAndIcon)
+
+                            }
+                        )
+                        Button(
+                            action: deleteTaskAction,
+                            label: {
+                                Label("Delete Task", systemImage: Icons.minusSquareFill)
+                                .labelStyle(.titleAndIcon)
+
+                            }
+                        )
+                    } label: {
+                        Image(systemName: Icons.ellipsis)
+                    }
+                    .menuStyle(.borderlessButton)
+                    .menuIndicator(.hidden)
+                    .fixedSize()
+                    .padding(.top, 4)
+                }
             }
             .padding(2)
             .contentShape(Rectangle())
-        }
-        .contextMenu {
-            Button(
-                action: editTaskAction,
-                label: {
-                    Label("Edit Task", systemImage: Icons.squareAndPencil)
-                    .labelStyle(.titleAndIcon)
-
-                }
-            )
-            Button(
-                action: deleteTaskAction,
-                label: {
-                    Label("Delete Task", systemImage: Icons.minusSquareFill)
-                    .labelStyle(.titleAndIcon)
-
-                }
-            )
+            .onHover { isHovered in showEditButton = isHovered }
         }
     }
 

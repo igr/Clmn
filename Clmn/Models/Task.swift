@@ -6,9 +6,12 @@ struct Task: Identifiable, Equatable, Codable {
 
     var id: TaskId = TaskId()
     var name: String
+    var color: Int = 0
+    // meta
     var completed: Bool = false
     var progress: Int = 0
     var created: Date = Date.now
+    var completedAt: Date? = nil
 
     public static let foo = Task(id: TaskId(), name: "n/a")
 }

@@ -1,6 +1,7 @@
 import SwiftUI
 
 extension View {
+    /// Adds a placeholder to any view, sort of.
     func placeholder<Content: View>(
         when shouldShow: Bool,
         alignment: Alignment = .leading,

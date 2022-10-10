@@ -27,11 +27,12 @@
 		7D03B690DD77334E2375C916 /* AboutWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B60E08FF453A6244B2E7 /* AboutWindow.swift */; };
 		7D03B692DB3864533C410B55 /* DragTaskGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BADF47001F44F8D2AC11 /* DragTaskGroupModel.swift */; };
 		7D03B6A82021172420CCB7E9 /* OnDragTask+DropOnTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B4C900407EA4A09F4956 /* OnDragTask+DropOnTask.swift */; };
-		7D03B6C26840EC4D17CCF417 /* .editorconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7D03B4444C77294035BA3F53 /* .editorconfig */; };
 		7D03B72DAFDFC030C8BA9473 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BA2D8D3A2892979CEC4D /* Icons.swift */; };
 		7D03B73453D318E550D7382B /* EmptyBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BD4A62909CC852C803DB /* EmptyBoardView.swift */; };
+		7D03B79E5F81A049F7859F8C /* +Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B34CC6CE227792EEA511 /* +Binding.swift */; };
 		7D03B7A0F2F48F99D91FF758 /* BoardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B76F9CEEA50F0FA69B9C /* BoardSheet.swift */; };
 		7D03B7DB9FDAAC55E87A4952 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BB6A204058C65591AE09 /* Appearance.swift */; };
+		7D03B7DCEF533A91F520036D /* CursorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B59CA762D95CAB842FB2 /* CursorUtil.swift */; };
 		7D03B8696D4C23E8E13BE679 /* TaskListsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B56EB2FD2C75F443311D /* TaskListsService.swift */; };
 		7D03B8A09C6A5505DCF02208 /* OnDragTaskList+DropOnTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BFFB6D0B0B3570BE85CA /* OnDragTaskList+DropOnTaskList.swift */; };
 		7D03B987702F605266E72E50 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BBC9A7E84C587B478DD7 /* TaskListViewModel.swift */; };
@@ -74,6 +75,8 @@
 		C7830B3328E7A59300F3BF75 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7830B3228E7A59300F3BF75 /* Typography.swift */; };
 		C7887E1828E1EB32008DCA58 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7887E1728E1EB32008DCA58 /* Services.swift */; };
 		C7887E1A28E1EC53008DCA58 /* BoardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7887E1928E1EC53008DCA58 /* BoardsService.swift */; };
+		C7C0AA7928F365AA00DE836D /* ColorCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C0AA7828F365AA00DE836D /* ColorCheckBox.swift */; };
+		C7C0AA7B28F365E100DE836D /* TaskColorRadioButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C0AA7A28F365E100DE836D /* TaskColorRadioButtons.swift */; };
 		C7E1081228E0E93900445362 /* ClmnApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E1081128E0E93900445362 /* ClmnApp.swift */; };
 		C7E1081428E0E93900445362 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E1081328E0E93900445362 /* ContentView.swift */; };
 		C7E1081628E0E93A00445362 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7E1081528E0E93A00445362 /* Assets.xcassets */; };
@@ -113,8 +116,8 @@
 		7D03B259D8FD3F56E8BB72C8 /* +NSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+NSTextField.swift"; sourceTree = "<group>"; };
 		7D03B2C11409AFBC9AC03FC1 /* FormLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormLabel.swift; sourceTree = "<group>"; };
 		7D03B2FCE3D7F96A4C263586 /* TaskGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroup.swift; sourceTree = "<group>"; };
+		7D03B34CC6CE227792EEA511 /* +Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+Binding.swift"; sourceTree = "<group>"; };
 		7D03B3E5A26EBFC20E0FA2FF /* TaskGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroupView.swift; sourceTree = "<group>"; };
-		7D03B4444C77294035BA3F53 /* .editorconfig */ = {isa = PBXFileReference; lastKnownFileType = file.editorconfig; path = .editorconfig; sourceTree = "<group>"; };
 		7D03B446D34F3ED98A635B29 /* SideBarUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarUtil.swift; sourceTree = "<group>"; };
 		7D03B44C9E8B5E8EB31FEC0F /* +Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+Bundle.swift"; sourceTree = "<group>"; };
 		7D03B469B197E123BCBF6110 /* BoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
@@ -125,6 +128,7 @@
 		7D03B51885376A25932BA331 /* GoldenRatio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoldenRatio.swift; sourceTree = "<group>"; };
 		7D03B54A842C5D571B17995E /* OnDragTask+DropOnTaskGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnDragTask+DropOnTaskGroup.swift"; sourceTree = "<group>"; };
 		7D03B56EB2FD2C75F443311D /* TaskListsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListsService.swift; sourceTree = "<group>"; };
+		7D03B59CA762D95CAB842FB2 /* CursorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CursorUtil.swift; sourceTree = "<group>"; };
 		7D03B5C3F59970E44E843962 /* Many+DropOnTaskGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Many+DropOnTaskGroup.swift"; sourceTree = "<group>"; };
 		7D03B60E08FF453A6244B2E7 /* AboutWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWindow.swift; sourceTree = "<group>"; };
 		7D03B61545D536BA1F4882E3 /* DeleteBoardConfirmationDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBoardConfirmationDialog.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 		C7830B3228E7A59300F3BF75 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		C7887E1728E1EB32008DCA58 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		C7887E1928E1EC53008DCA58 /* BoardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsService.swift; sourceTree = "<group>"; };
+		C7C0AA7828F365AA00DE836D /* ColorCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCheckBox.swift; sourceTree = "<group>"; };
+		C7C0AA7A28F365E100DE836D /* TaskColorRadioButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskColorRadioButtons.swift; sourceTree = "<group>"; };
 		C7E1080E28E0E93900445362 /* Clmn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clmn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7E1081128E0E93900445362 /* ClmnApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClmnApp.swift; sourceTree = "<group>"; };
 		C7E1081328E0E93900445362 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -222,6 +228,7 @@
 			children = (
 				7D03B68DC1F4B87FC1CAFFFF /* TaskView.swift */,
 				7D03B4EEB1470F99AA92E5D6 /* TaskSheet.swift */,
+				C7C0AA7A28F365E100DE836D /* TaskColorRadioButtons.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -261,6 +268,7 @@
 				7D03BA85511C38E0E6E10EB3 /* SheetCancelOk.swift */,
 				C74B223428EACD1900FCF55E /* MacTextEditor.swift */,
 				7D03BDA9A8F78356368D1458 /* AddTaskButton.swift */,
+				C7C0AA7828F365AA00DE836D /* ColorCheckBox.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -293,6 +301,7 @@
 				7D03B193AB1259F3657599C8 /* ForEachWithIndex.swift */,
 				7D03BBDB2A745E19FFF676EB /* LazyView.swift */,
 				7D03BA84076DAFA6778E77F0 /* EmptyNavigationLink.swift */,
+				7D03B59CA762D95CAB842FB2 /* CursorUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -342,7 +351,6 @@
 			children = (
 				C7E1081028E0E93900445362 /* Clmn */,
 				C7E1080F28E0E93900445362 /* Products */,
-				7D03B4444C77294035BA3F53 /* .editorconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -435,6 +443,7 @@
 				C76FBD8C28EAE4B500442B24 /* +View.swift */,
 				C7062FF328F0831500001DEE /* +View+RoundedCorners.swift */,
 				C7F53BBA28F0C00F00864E0E /* +View+Placeholder.swift */,
+				7D03B34CC6CE227792EEA511 /* +Binding.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -506,7 +515,6 @@
 			files = (
 				C7E1081928E0E93A00445362 /* Preview Assets.xcassets in Resources */,
 				C7E1081628E0E93A00445362 /* Assets.xcassets in Resources */,
-				7D03B6C26840EC4D17CCF417 /* .editorconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +533,7 @@
 				C7E1082828E0EAF200445362 /* AllBoardsViewModel.swift in Sources */,
 				C7E1082B28E0EB6500445362 /* +Array.swift in Sources */,
 				C7830B3328E7A59300F3BF75 /* Typography.swift in Sources */,
+				C7C0AA7B28F365E100DE836D /* TaskColorRadioButtons.swift in Sources */,
 				C7887E1828E1EB32008DCA58 /* Services.swift in Sources */,
 				C7E1081228E0E93900445362 /* ClmnApp.swift in Sources */,
 				C7E1082228E0E9EB00445362 /* Board.swift in Sources */,
@@ -559,6 +568,7 @@
 				7D03BB9AB5FF56DD242DA03C /* App.swift in Sources */,
 				7D03B325E58CEC8F5EEE3BA2 /* DeleteBoardConfirmationDialog.swift in Sources */,
 				C74B223528EACD1900FCF55E /* MacTextEditor.swift in Sources */,
+				C7C0AA7928F365AA00DE836D /* ColorCheckBox.swift in Sources */,
 				7D03B145161596F5A773EE09 /* DeleteIntent.swift in Sources */,
 				7D03B3583AA52EAFF082ECBF /* FormTextEditor.swift in Sources */,
 				7D03BC9B315070DFC389D443 /* TaskView.swift in Sources */,
@@ -588,6 +598,8 @@
 				7D03BF5E3C85EF1B908450D4 /* AddTaskButton.swift in Sources */,
 				7D03BA2CB5F2790D9C061789 /* OnDragTask+DropOnTaskList.swift in Sources */,
 				7D03B621D9D8AA3AAAD075EB /* Many+DropOnTaskList.swift in Sources */,
+				7D03B79E5F81A049F7859F8C /* +Binding.swift in Sources */,
+				7D03B7DCEF533A91F520036D /* CursorUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

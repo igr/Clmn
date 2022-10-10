@@ -59,16 +59,12 @@ func createExample() {
             let listVM = TaskListVM(list)
 
             listVM.addNewTask("Fix scroll issues")
+            listVM.addNewTask("Add /wires API endpoint")
 
             with(listVM.addNewTaskGroup("🧊 Backlog")) { group in
                 listVM.addNewTask(toGroup: group, "Clean up code smells", completed: true)
                 listVM.addNewTask(toGroup: group, "Add **README.ME** to _all_ repos")
                 listVM.addNewTask(toGroup: group, "Implement new Github hook")
-            }
-
-            with(listVM.addNewTaskGroup("🚀 In-Progress")) { group in
-                listVM.addNewTask(toGroup: group, "Connectivity issue")
-                listVM.addNewTask(toGroup: group, "Connectivity issue")
             }
 
             allListsVM.apply(from: listVM.list)

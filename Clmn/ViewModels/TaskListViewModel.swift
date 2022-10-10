@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreData
 
 class TaskListVM: ObservableObject {
     @Published private(set) var list: TaskList
@@ -8,8 +9,11 @@ class TaskListVM: ObservableObject {
     }
 
     /// Adds a new task to the list or a group.
-    func addNewTask(toGroup group: TaskGroup? = nil, _ name: String, progress: Int = 0, completed: Bool = false) {
-        let task = Task(name: name, completed: completed, progress: progress)
+    func addNewTask(toGroup group: TaskGroup? = nil, _ name: String, color: Int = 0, progress: Int = 0, completed: Bool = false) {
+        var task = Task(name: name, color: color, completed: completed, progress: progress)
+        if (completed) {
+            task.completedAt = Date.now
+        }
         let realGroup = group ?? list.groups[0]
         list.groups.with(realGroup) { g in
             list.groups[g].tasks.append(task)
@@ -53,7 +57,7 @@ class TaskListVM: ObservableObject {
         list.groups[0].tasks.append(task)
     }
 
-    // ----------------------------------------------------------------
+    // ---------------------------------------------------------------- mutators
 
     func toggleProgress(_ task: Task) {
         list.groups.with(task) { g, i in
@@ -72,6 +76,9 @@ class TaskListVM: ObservableObject {
             completed.toggle()
             if (completed == false) {
                 list.groups[g].tasks[i].progress = 0
+                list.groups[g].tasks[i].completedAt = nil
+            } else {
+                list.groups[g].tasks[i].completedAt = Date.now
             }
             list.groups[g].tasks[i].completed = completed
         }
@@ -85,7 +92,6 @@ class TaskListVM: ObservableObject {
             list.groups[g].tasks.move(fromOffsets: [fromIndex!], toOffset: toIndex!)
         }
     }
-
 
     // ---------------------------------------------------------------- groups
 
@@ -121,7 +127,7 @@ class TaskListVM: ObservableObject {
         list.groups.move(fromOffsets: [fromIndex!], toOffset: toIndex!)
     }
 
-    // ----------------------------------------------------------------
+    // ---------------------------------------------------------------- parent VM
 
     func load(from lists: [TaskList]) {
         lists.with(list) { index in

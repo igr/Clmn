@@ -11,6 +11,8 @@ struct AppColors {
     let formSheetBackground = Color.primary
 
     let textInvert = Color("TextInvert")
+
+    let taskCompleted = Color.gray
 }
 
 extension Color {

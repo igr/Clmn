@@ -8,15 +8,17 @@ struct TaskSheet: View {
     var onSave: (_: String) -> Void
 
     @State private var name = ""
+    @State private var selected = 1
 
     var body: some View {
         VStack {
             SheetHeader("Task")
-            Form {
+            VStack {
                 FormTextEditor(
                     text: $name,
                     placeholder: "Task",
                     imageName: Icons.task)
+                TaskColorRadioButtons()
                 Spacer()
                 SheetCancelOk {
                     onSave(name)
@@ -24,7 +26,7 @@ struct TaskSheet: View {
             }
             .padding()
         }
-        .frame(width: 360, height: 250)
+        .frame(width: 360, height: 300)
         .onAppear {
             name = task?.name ?? ""
         }

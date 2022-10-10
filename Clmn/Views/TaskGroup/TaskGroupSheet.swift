@@ -12,7 +12,7 @@ struct TaskGroupSheet: View {
     var body: some View {
         VStack {
             SheetHeader("Group")
-            Form {
+            VStack {
                 FormTextField(
                     text: $groupName,
                     placeholder: "Group Name...",
@@ -24,7 +24,7 @@ struct TaskGroupSheet: View {
             }
             .padding()
         }
-        .frame(width: 360, height: 200)
+        .frame(width: goldenRatio.of(200), height: 200)
         .onAppear {
             groupName = taskGroup?.name ?? ""
         }

@@ -1,15 +1,23 @@
 import SwiftUI
 
+/// Proper text (field) editor, because default one really sucks.
 struct MacTextEditor: NSViewRepresentable {
 
     var placeholderText: String?
+    var placeholderColor: Color = Color.gray
     @Binding var text: String
-    @Binding var shouldMoveCursorToEnd: Bool
+    var singleLine: Bool = false
+    var moveCursorToEnd: Bool = true
     var font: NSFont = .systemFont(ofSize: 14, weight: .regular)
 
     var onSubmit        : () -> Void       = {}
     var onTextChange    : (String) -> Void = { _ in }
     var onEditingChanged: () -> Void       = {}
+
+    // Need to compute text attributes as lazy var seems to be mutable, meh.
+    private var textAttributes: [NSAttributedString.Key : Any] {
+        [NSAttributedString.Key.font: font]
+    }
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -23,13 +31,34 @@ struct MacTextEditor: NSViewRepresentable {
         }
 
         textView.delegate = context.coordinator
-        textView.string = text
+        textView.isRichText = false
+        textView.importsGraphics = false
+        textView.isEditable = true
+        textView.isSelectable = true
         textView.drawsBackground = false
         textView.font = font
         textView.allowsUndo = true
+
+        textView.placeholderColor = NSColor(placeholderColor)
         textView.placeholderText = placeholderText
 
+        /// IMPORTANT DETAIL
+        // There is a bug in macOS when the first letter of the text is an emoji.
+        // textView.string = text
+        textView.textStorage?.setAttributedString(NSAttributedString(string:text, attributes: textAttributes))
+
         scrollView.hasVerticalScroller = false
+        scrollView.hasHorizontalRuler = false
+        scrollView.borderType = .noBorder
+        //scrollView.translatesAutoresizingMaskIntoConstraints = false
+
+        if (singleLine) {
+            scrollView.hasHorizontalScroller = true
+            textView.maxSize = NSMakeSize(CGFloat.greatestFiniteMagnitude, CGFloat.greatestFiniteMagnitude)
+            textView.isHorizontallyResizable = true
+            textView.textContainer?.widthTracksTextView = false
+            textView.textContainer?.containerSize = NSMakeSize(CGFloat.greatestFiniteMagnitude, CGFloat.greatestFiniteMagnitude)
+        }
 
         return scrollView
     }
@@ -42,8 +71,18 @@ struct MacTextEditor: NSViewRepresentable {
         // the range is reset when updating the string of the textView
         // so this will set it back to where it was previously
         let currentRange = textView.selectedRange()
-        textView.string = text
-        textView.setSelectedRange(currentRange)
+
+        /// IMPORTANT DETAIL
+        // There is a bug in macOS.
+        //textView.string = text
+        textView.textStorage?.setAttributedString(NSAttributedString(string:text, attributes: textAttributes))
+
+        // basically if we want to move the cursor to the end,
+        // we don't set the selected range to what is was before the string update
+        // otherwise, we set it
+        if !moveCursorToEnd {
+            textView.setSelectedRange(currentRange)
+        }
     }
 
 }
@@ -87,8 +126,7 @@ extension MacTextEditor {
         // handles commands
         func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
             if (commandSelector == #selector(NSResponder.insertNewline(_:))) {
-                // Do something when ENTER key pressed
-                parent.onSubmit()
+                parent.onSubmit()   // ENTER is pressed
                 return true
             }
 
@@ -98,16 +136,16 @@ extension MacTextEditor {
     }
 }
 
-// for setting a proper placeholder text on an NSTextView
+// For setting a proper placeholder text on an NSTextView.
 fileprivate class PlaceholderNSTextView: NSTextView {
     @objc private var placeholderAttributedString: NSAttributedString?
+    var placeholderColor: NSColor?
     var placeholderText: String? {
         didSet {
             var attributes = [NSAttributedString.Key: AnyObject]()
             attributes[.font] = font
-            attributes[.foregroundColor] = NSColor.gray
-            let captionAttributedString = NSAttributedString(string: placeholderText ?? "", attributes: attributes)
-            placeholderAttributedString = captionAttributedString
+            attributes[.foregroundColor] = placeholderColor
+            placeholderAttributedString = NSAttributedString(string: placeholderText ?? "", attributes: attributes)
         }
     }
 }
