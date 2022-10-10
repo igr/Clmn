@@ -12,7 +12,7 @@ struct ClmnApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-            .font(.system(.body, design: .rounded))
+            .font(.system(.body, design: .default))
             .onAppear {
                 Appearance.applyTheme(appThemeSetting)
             }
@@ -78,9 +78,7 @@ struct ClmnApp: App {
                                 NSAttributedString.Key.font: NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
                             ]
                         ),
-                        NSApplication.AboutPanelOptionKey(
-                            rawValue: "Copyright"
-                        ): APP_COPYRIGHT
+                        NSApplication.AboutPanelOptionKey(rawValue: "Copyright"): APP_COPYRIGHT
                     ]
                 )
             }
