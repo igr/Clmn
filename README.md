@@ -1,8 +1,8 @@
-<h1 align="center">Clmn</h1>
-
-![](clmn.png)
+# Clmn
 
 Beautiful macOS app that operates with tasks in columns.
+
+![](clmn.png)
 
 Features:
 
