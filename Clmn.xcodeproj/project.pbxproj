@@ -16,6 +16,7 @@
 		7D03B1940A5EDE7C845E3388 /* SheetCancelOk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BA85511C38E0E6E10EB3 /* SheetCancelOk.swift */; };
 		7D03B325E58CEC8F5EEE3BA2 /* DeleteBoardConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B61545D536BA1F4882E3 /* DeleteBoardConfirmationDialog.swift */; };
 		7D03B3583AA52EAFF082ECBF /* FormTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BC78CE7AEF46EAD67D0B /* FormTextEditor.swift */; };
+		7D03B4803533AA66279AF0BD /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BF279FEC44A69DC1B9C4 /* AppService.swift */; };
 		7D03B491C4B1262AF791A0CE /* +Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B4A14320A60A3D55F327 /* +Color.swift */; };
 		7D03B4B641D7519813B2A779 /* +NSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B259D8FD3F56E8BB72C8 /* +NSTextField.swift */; };
 		7D03B4BFD994849E2846A6CB /* +Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B44C9E8B5E8EB31FEC0F /* +Bundle.swift */; };
@@ -35,7 +36,7 @@
 		7D03B7DCEF533A91F520036D /* CursorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B59CA762D95CAB842FB2 /* CursorUtil.swift */; };
 		7D03B8696D4C23E8E13BE679 /* TaskListsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B56EB2FD2C75F443311D /* TaskListsService.swift */; };
 		7D03B8A09C6A5505DCF02208 /* OnDragTaskList+DropOnTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BFFB6D0B0B3570BE85CA /* OnDragTaskList+DropOnTaskList.swift */; };
-		7D03B8C9F66878B619005F23 /* AppMetaInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B684DF3DE8BF33A83059 /* AppMetaInfo.swift */; };
+		7D03B8C9F66878B619005F23 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B684DF3DE8BF33A83059 /* AppMetaData.swift */; };
 		7D03B987702F605266E72E50 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BBC9A7E84C587B478DD7 /* TaskListViewModel.swift */; };
 		7D03B9A1069FCBA61D976F87 /* GoldenRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B51885376A25932BA331 /* GoldenRatio.swift */; };
 		7D03B9B178CCC3A2A8EFC2C3 /* TaskListTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B1B973AB6D46919D5EC8 /* TaskListTitle.swift */; };
@@ -130,7 +131,7 @@
 		7D03B61545D536BA1F4882E3 /* DeleteBoardConfirmationDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBoardConfirmationDialog.swift; sourceTree = "<group>"; };
 		7D03B6451F894C8CFFCEDBF0 /* AllTaskListsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTaskListsViewModel.swift; sourceTree = "<group>"; };
 		7D03B64F79B5D59731E7CC52 /* ModelPairOpt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelPairOpt.swift; sourceTree = "<group>"; };
-		7D03B684DF3DE8BF33A83059 /* AppMetaInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppMetaInfo.swift; sourceTree = "<group>"; };
+		7D03B684DF3DE8BF33A83059 /* AppMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppMetaData.swift; sourceTree = "<group>"; };
 		7D03B68DC1F4B87FC1CAFFFF /* TaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
 		7D03B76F9CEEA50F0FA69B9C /* BoardSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardSheet.swift; sourceTree = "<group>"; };
 		7D03B78259FDE5C1BA7CAC86 /* AddTaskButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskButtons.swift; sourceTree = "<group>"; };
@@ -152,6 +153,7 @@
 		7D03BD4A62909CC852C803DB /* EmptyBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyBoardView.swift; sourceTree = "<group>"; };
 		7D03BE65175A370C62B6DB0F /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		7D03BEB725DEA0FB5654CE08 /* DragTaskListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragTaskListModel.swift; sourceTree = "<group>"; };
+		7D03BF279FEC44A69DC1B9C4 /* AppService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
 		7D03BFFB6D0B0B3570BE85CA /* OnDragTaskList+DropOnTaskList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnDragTaskList+DropOnTaskList.swift"; sourceTree = "<group>"; };
 		C7062FF028F0806300001DEE /* PeriodicoDisplay-Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PeriodicoDisplay-Bd.ttf"; sourceTree = "<group>"; };
 		C7062FF328F0831500001DEE /* +View+RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View+RoundedCorners.swift"; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				C7887E1728E1EB32008DCA58 /* Services.swift */,
 				C7887E1928E1EC53008DCA58 /* BoardsService.swift */,
 				7D03B56EB2FD2C75F443311D /* TaskListsService.swift */,
+				7D03BF279FEC44A69DC1B9C4 /* AppService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -392,7 +395,7 @@
 				7D03BADE1BAF8E85B5381366 /* ModelOpt.swift */,
 				7D03B2FCE3D7F96A4C263586 /* TaskGroup.swift */,
 				7D03B64F79B5D59731E7CC52 /* ModelPairOpt.swift */,
-				7D03B684DF3DE8BF33A83059 /* AppMetaInfo.swift */,
+				7D03B684DF3DE8BF33A83059 /* AppMetaData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -587,7 +590,8 @@
 				7D03B79E5F81A049F7859F8C /* +Binding.swift in Sources */,
 				7D03B7DCEF533A91F520036D /* CursorUtil.swift in Sources */,
 				7D03B043769F85E7DD55926D /* AddTaskButtons.swift in Sources */,
-				7D03B8C9F66878B619005F23 /* AppMetaInfo.swift in Sources */,
+				7D03B8C9F66878B619005F23 /* AppMetaData.swift in Sources */,
+				7D03B4803533AA66279AF0BD /* AppService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

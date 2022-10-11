@@ -8,6 +8,12 @@ let APP_TITLE = "Clmn: Tasks & Columns"
 let APP_COPYRIGHT = "© 2022 igo.rs"
 let APP_DESCRIPTION = "Tasks ❤️ Columns"
 
+/// Meta-data
+// application version, just a simple counter
+let APP_VERSION = 1
+// application data version; the version of the models.
+let APP_DATA_VERSION = 1
+
 @main
 struct ClmnApp: App {
     @AppStorage("appThemeSetting") private var appThemeSetting = Appearance.system
@@ -17,6 +23,11 @@ struct ClmnApp: App {
 
     init() {
         disallowTabbingMode()
+        let appMetaData = services.app.fetchMetadata()
+        if (appMetaData.dataVersion != APP_DATA_VERSION) {
+            // upgrade!
+        }
+        print("\(APP_NAME) \(appMetaData.appVersion)-\(appMetaData.dataVersion)")
     }
 
     var body: some Scene {
