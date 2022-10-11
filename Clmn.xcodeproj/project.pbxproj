@@ -35,6 +35,7 @@
 		7D03B7DCEF533A91F520036D /* CursorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B59CA762D95CAB842FB2 /* CursorUtil.swift */; };
 		7D03B8696D4C23E8E13BE679 /* TaskListsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B56EB2FD2C75F443311D /* TaskListsService.swift */; };
 		7D03B8A09C6A5505DCF02208 /* OnDragTaskList+DropOnTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BFFB6D0B0B3570BE85CA /* OnDragTaskList+DropOnTaskList.swift */; };
+		7D03B8C9F66878B619005F23 /* AppMetaInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B684DF3DE8BF33A83059 /* AppMetaInfo.swift */; };
 		7D03B987702F605266E72E50 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BBC9A7E84C587B478DD7 /* TaskListViewModel.swift */; };
 		7D03B9A1069FCBA61D976F87 /* GoldenRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B51885376A25932BA331 /* GoldenRatio.swift */; };
 		7D03B9B178CCC3A2A8EFC2C3 /* TaskListTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B1B973AB6D46919D5EC8 /* TaskListTitle.swift */; };
@@ -42,7 +43,6 @@
 		7D03B9CEA7B5A111FC780AC7 /* TaskGroupSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B09A2AE36E61E0FB8BE3 /* TaskGroupSheet.swift */; };
 		7D03BA2CB5F2790D9C061789 /* OnDragTask+DropOnTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BD1C3EB4EADD52123484 /* OnDragTask+DropOnTaskList.swift */; };
 		7D03BB6A4EEC65622BF9042F /* ForEachWithIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B193AB1259F3657599C8 /* ForEachWithIndex.swift */; };
-		7D03BB9AB5FF56DD242DA03C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B97280E0A2788CAB0FF9 /* App.swift */; };
 		7D03BBD95B70D6DC2FB340DA /* AllTaskListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B6451F894C8CFFCEDBF0 /* AllTaskListsViewModel.swift */; };
 		7D03BC097D0E3AE50DF17B2C /* ModelPairOpt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B64F79B5D59731E7CC52 /* ModelPairOpt.swift */; };
 		7D03BC8F759F232BCAFC584C /* TaskListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B191C896E8D67F0C0D47 /* TaskListSheet.swift */; };
@@ -130,11 +130,11 @@
 		7D03B61545D536BA1F4882E3 /* DeleteBoardConfirmationDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBoardConfirmationDialog.swift; sourceTree = "<group>"; };
 		7D03B6451F894C8CFFCEDBF0 /* AllTaskListsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTaskListsViewModel.swift; sourceTree = "<group>"; };
 		7D03B64F79B5D59731E7CC52 /* ModelPairOpt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelPairOpt.swift; sourceTree = "<group>"; };
+		7D03B684DF3DE8BF33A83059 /* AppMetaInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppMetaInfo.swift; sourceTree = "<group>"; };
 		7D03B68DC1F4B87FC1CAFFFF /* TaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
 		7D03B76F9CEEA50F0FA69B9C /* BoardSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardSheet.swift; sourceTree = "<group>"; };
 		7D03B78259FDE5C1BA7CAC86 /* AddTaskButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTaskButtons.swift; sourceTree = "<group>"; };
 		7D03B96B278D4FCBCC3CCD85 /* OnDragTaskGroup+DropOnTaskGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnDragTaskGroup+DropOnTaskGroup.swift"; sourceTree = "<group>"; };
-		7D03B97280E0A2788CAB0FF9 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		7D03BA2D8D3A2892979CEC4D /* Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		7D03BA84076DAFA6778E77F0 /* EmptyNavigationLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyNavigationLink.swift; sourceTree = "<group>"; };
 		7D03BA85511C38E0E6E10EB3 /* SheetCancelOk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetCancelOk.swift; sourceTree = "<group>"; };
@@ -370,7 +370,6 @@
 				C7E1081528E0E93A00445362 /* Assets.xcassets */,
 				C7E1081A28E0E93A00445362 /* Clmn.entitlements */,
 				C7E1081728E0E93A00445362 /* Preview Content */,
-				7D03B97280E0A2788CAB0FF9 /* App.swift */,
 				7D03BB87A080431895F31A35 /* AppExample.swift */,
 			);
 			path = Clmn;
@@ -393,6 +392,7 @@
 				7D03BADE1BAF8E85B5381366 /* ModelOpt.swift */,
 				7D03B2FCE3D7F96A4C263586 /* TaskGroup.swift */,
 				7D03B64F79B5D59731E7CC52 /* ModelPairOpt.swift */,
+				7D03B684DF3DE8BF33A83059 /* AppMetaInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -556,7 +556,6 @@
 				7D03BE857E39DDF2288F3AD4 /* TaskListView.swift in Sources */,
 				7D03B4B641D7519813B2A779 /* +NSTextField.swift in Sources */,
 				7D03B9B178CCC3A2A8EFC2C3 /* TaskListTitle.swift in Sources */,
-				7D03BB9AB5FF56DD242DA03C /* App.swift in Sources */,
 				7D03B325E58CEC8F5EEE3BA2 /* DeleteBoardConfirmationDialog.swift in Sources */,
 				C74B223528EACD1900FCF55E /* MacTextEditor.swift in Sources */,
 				C7C0AA7928F365AA00DE836D /* ColorCheckBox.swift in Sources */,
@@ -588,6 +587,7 @@
 				7D03B79E5F81A049F7859F8C /* +Binding.swift in Sources */,
 				7D03B7DCEF533A91F520036D /* CursorUtil.swift in Sources */,
 				7D03B043769F85E7DD55926D /* AddTaskButtons.swift in Sources */,
+				7D03B8C9F66878B619005F23 /* AppMetaInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,19 @@
-/// Creates example
-func createExample() {
-    let allBoardsVM = AllBoardsVM()
+import SwiftUI
+
+class AddExampleModel: ObservableObject {
+    @Published var state: Int = 0
+
+    func toggle() {
+        state += 1
+    }
+
+    func reset() {
+        state = 0
+    }
+}
+
+/// Creates the example.
+func createExample(with allBoardsVM: AllBoardsVM) {
     allBoardsVM.loadBoards()
 
     with(allBoardsVM.addNewBoard("👔 Clients")) { board in
@@ -106,7 +119,7 @@ func createExample() {
 
             listVM.addNewTask("Fix kitchen cupboard")
             listVM.addNewTask("🧽 Clean room")
-            listVM.addNewTask("🗑 Empty trash")
+            listVM.addNewTask("🗑 Empty trash", color: 5)
             listVM.addNewTask("Order the books")
 
             allListsVM.apply(from: listVM.list)
@@ -144,7 +157,7 @@ func createExample() {
         with(allListsVM.addNewList("⚙️ Renovation")) { list in
             let listVM = TaskListVM(list)
 
-            listVM.addNewTask("Dinning table", progress: 1)
+            listVM.addNewTask("Dining table", progress: 1)
             listVM.addNewTask("Measure kitchen")
             listVM.addNewTask("Call John and give him measurements: 220x80, depth: 60, white oak")
             listVM.addNewTask("Wooden tray")

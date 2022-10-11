@@ -9,6 +9,8 @@ struct SideBarView: View {
     @State private var boardDetails: ModelOpt<Board>?
     @State private var deleteBoard: DeleteIntent<Board> = DeleteIntent()
 
+    @EnvironmentObject var addExample: AddExampleModel
+
     var body: some View {
         #if DEBUG
         let _ = Self._printChanges()
@@ -72,6 +74,13 @@ struct SideBarView: View {
         .onAppear {
             allBoardsVM.loadBoards()
             selectedBoard = allBoardsVM.boards.first
+        }
+        .onReceive([addExample.state].publisher.first()) { value in
+            if (value > 0) {
+                createExample(with: allBoardsVM)
+                selectedBoard = allBoardsVM.boards.last
+                addExample.reset()
+            }
         }
         Spacer()
         Divider()

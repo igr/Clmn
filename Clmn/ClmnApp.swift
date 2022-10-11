@@ -1,9 +1,19 @@
 import SwiftUI
 
+let APP_SITE = "https://igo.rs"
+let APP_EMAIL = "clmn@igo.rs"
+let APP_GROUP = "ac.obl.clmn.Clmn"
+let APP_NAME = "Clmn"
+let APP_TITLE = "Clmn: Tasks & Columns"
+let APP_COPYRIGHT = "© 2022 igo.rs"
+let APP_DESCRIPTION = "Tasks ❤️ Columns"
+
 @main
 struct ClmnApp: App {
     @AppStorage("appThemeSetting") private var appThemeSetting = Appearance.system
     @Environment(\.colorScheme) var colorScheme
+
+    @StateObject var addExample = AddExampleModel()
 
     init() {
         disallowTabbingMode()
@@ -12,6 +22,7 @@ struct ClmnApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            .environmentObject(addExample)
             .font(.system(.body, design: .default))
             .onAppear {
                 Appearance.applyTheme(appThemeSetting)
@@ -51,8 +62,7 @@ struct ClmnApp: App {
     fileprivate func MenuLine_Help_Examples() -> CommandGroup<Button<Text>> {
         CommandGroup(after: CommandGroupPlacement.help) {
             Button("Add Example") {
-                createExample()
-                // TODO: How to refresh the app?
+                addExample.toggle()
             }
         }
     }
