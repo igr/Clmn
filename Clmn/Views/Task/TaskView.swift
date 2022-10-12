@@ -3,10 +3,12 @@ import SwiftUI
 struct TaskView: View {
     @ObservedObject var listVM: TaskListVM
     var task: Task
-    var editTaskAction: () -> Void
+    var group: TaskGroup
+    @Binding var taskDetails: ModelPairOpt<TaskGroup, Task>?
+    @Binding var deleteTask: DeleteIntent<Task>
 
     @State private var showEditButton = false
-    
+
     @AppStorage(SETTINGS_TASK_CHECKBOX_IMAGE) private var taskCheckboxImage = false
 
     var body: some View {
@@ -42,7 +44,7 @@ struct TaskView: View {
 
                 if (showEditButton) {
                     Button(
-                        action: editTaskAction,
+                        action: { taskDetails = ModelPairOpt<TaskGroup, Task>.of(group, task) },
                         label: {
                             Image(systemName: Icons.ellipsis)
                             .frame(width: 18, height: 18)
@@ -59,6 +61,34 @@ struct TaskView: View {
         .roundedCorners(4, corners: .allCorners)
         .contentShape(Rectangle())
         .padding(.bottom, 2)
+        .contextMenu {
+            Button {
+                taskDetails = ModelPairOpt<TaskGroup, Task>.of(group, task)
+            } label: {
+                Label("Edit Task", systemImage: Icons.edit)
+                    .labelStyle(.titleAndIcon)
+            }
+            Button(role: .destructive) {
+                deleteTask.set(task)
+            } label: {
+                Label("Delete Task", systemImage: Icons.delete)
+                    .labelStyle(.titleAndIcon)
+            }
+            Divider()
+            Button {
+                listVM.toggleCancel(task)
+            } label: {
+                Label((task.progress == -1) ? "Enable task" : "Cancel task", systemImage: Icons.cancelTask)
+                .labelStyle(.titleAndIcon)
+            }
+            Button {
+                listVM.toggleCompleted(task)
+            } label: {
+                Label((task.completed) ? "Reopen task" : "Complete task", systemImage: Icons.completeTask)
+                .labelStyle(.titleAndIcon)
+            }
+
+        }
     }
 
     private func checkboxName(_ task: Task) -> String {

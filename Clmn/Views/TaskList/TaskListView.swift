@@ -9,6 +9,10 @@ struct TaskListView: View {
     @State private var taskGroupDetails: ModelOpt<TaskGroup>?
 
     @State private var hovered: Bool = false
+    
+    @State private var deleteTask: DeleteIntent<Task> = DeleteIntent()
+    @State private var deleteTaskGroup: DeleteIntent<TaskGroup> = DeleteIntent()
+    @State private var deleteTaskList: DeleteIntent<TaskList> = DeleteIntent()
 
     @EnvironmentObject var dragTask: DragTaskModel
     @EnvironmentObject var dragTaskList: DragTaskListModel
@@ -23,11 +27,15 @@ struct TaskListView: View {
             TaskListButton(
                 list: list,
                 taskListDetails: $taskListDetails,
-                taskGroupDetails: $taskGroupDetails,
-                taskDetails: $taskDetails,
                 hovered: $hovered
             )
-            TaskListTitle(list: list)
+            TaskListTitle(
+                list: list,
+                taskListDetails: $taskListDetails,
+                taskGroupDetails: $taskGroupDetails,
+                taskDetails: $taskDetails,
+                deleteTaskList: $deleteTaskList
+            )
             .onDrag {
                 dragTaskList.startDragOf(list)
             }
@@ -41,7 +49,9 @@ struct TaskListView: View {
                         TaskView(
                             listVM: listVM,
                             task: task,
-                            editTaskAction: { taskDetails = ModelPairOpt<TaskGroup, Task>.of(defaultGroup, task) }
+                            group: defaultGroup,
+                            taskDetails: $taskDetails,
+                            deleteTask: $deleteTask
                         )
                         .onDrag {
                             dragTask.startDragOf((list, defaultGroup, task), removeOnDrop: { task in listVM.deleteTask(task)})
@@ -65,6 +75,7 @@ struct TaskListView: View {
                     )
 
                     // ---------------------------------------------------------------- groups
+
                     if (!defaultGroup.tasks.isEmpty) {
                         Spacer().frame(height: 50)
                     }
@@ -75,6 +86,7 @@ struct TaskListView: View {
                         TaskGroupView(
                             group: group,
                             taskGroupDetails: $taskGroupDetails,
+                            deleteTaskGroup: $deleteTaskGroup,
                             hovered: $hovered
                         )
                         .onDrag {
@@ -96,7 +108,9 @@ struct TaskListView: View {
                             TaskView(
                                 listVM: listVM,
                                 task: task,
-                                editTaskAction: { taskDetails = ModelPairOpt<TaskGroup, Task>.of(group, task) }
+                                group: group,
+                                taskDetails: $taskDetails,
+                                deleteTask: $deleteTask
                             )
                             .onDrag {
                                 dragTask.startDragOf((list, group, task), removeOnDrop: { task in listVM.deleteTask(task)})
@@ -150,6 +164,9 @@ struct TaskListView: View {
                 onDelete: { g in listVM.deleteTaskGroup(g) }
             )
         }
+        .deleteTaskConfirmation($deleteTask) { deletedTask in listVM.deleteTask(deletedTask) }
+        .deleteTaskGroupConfirmation($deleteTaskGroup) { deletedTaskGroup in listVM.deleteTaskGroup(deletedTaskGroup) }
+        .deleteTaskListConfirmation($deleteTaskList) { deletedTaskList in allListsVM.deleteList(deletedTaskList) }        
         .background(Color.App.listBackground)
         .roundedCorners(2, corners: .allCorners)
         .onDrop(of: [TASK_UTI, TASKLIST_UTI],

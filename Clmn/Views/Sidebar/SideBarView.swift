@@ -29,20 +29,20 @@ struct SideBarView: View {
                         Button {
                             boardDetails = ModelOpt<Board>.of(board)
                         } label: {
-                            Label("Edit Board", systemImage: Icons.squareAndPencil)
+                            Label("Edit Board", systemImage: Icons.edit)
                             .labelStyle(.titleAndIcon)
                         }
                         Button(role: .destructive) {
                             deleteBoard.set(board)
                         } label: {
-                            Label("Delete Board", systemImage: Icons.minusSquareFill)
+                            Label("Delete Board", systemImage: Icons.delete)
                             .labelStyle(.titleAndIcon)
                         }
                         Divider()
                         Button {
                             taskListDetails = ModelOpt<TaskList>.ofNew()
                         } label: {
-                            Label("New List", systemImage: Icons.plus)
+                            Label("New List", systemImage: Icons.addList)
                             .labelStyle(.titleAndIcon)
                         }
                     }
@@ -88,7 +88,7 @@ struct SideBarView: View {
             Button(
                 action: { boardDetails = ModelOpt<Board>.ofNew() },
                 label: {
-                    Image(systemName: Icons.plusSquareFill)
+                    Image(systemName: Icons.addBoard)
                     Text("Add Board")
                 }
             )

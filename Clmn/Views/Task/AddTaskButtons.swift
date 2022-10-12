@@ -17,7 +17,7 @@ struct AddTaskButtons: View {
                 Button(
                     action: action,
                     label: {
-                        Image(systemName: Icons.plus)
+                        Image(systemName: Icons.addTask)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 14, height: 14)

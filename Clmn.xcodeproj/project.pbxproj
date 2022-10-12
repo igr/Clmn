@@ -68,6 +68,9 @@
 		C74B223528EACD1900FCF55E /* MacTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74B223428EACD1900FCF55E /* MacTextEditor.swift */; };
 		C74B444628EAA3410026029A /* +NSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74B444528EAA3410026029A /* +NSTextView.swift */; };
 		C7652BAB28F6CA4800AB1F52 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = C7652BAA28F6CA4800AB1F52 /* Credits.html */; };
+		C7652BAF28F6DCAE00AB1F52 /* DeleteTaskListConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7652BAE28F6DCAE00AB1F52 /* DeleteTaskListConfirmationDialog.swift */; };
+		C7652BB128F6DE2000AB1F52 /* DeleteTaskGroupConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7652BB028F6DE2000AB1F52 /* DeleteTaskGroupConfirmationDialog.swift */; };
+		C7652BB328F6E51600AB1F52 /* DeleteTaskConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7652BB228F6E51600AB1F52 /* DeleteTaskConfirmationDialog.swift */; };
 		C76FBD8728EAD1E700442B24 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76FBD8628EAD1E700442B24 /* FormTextField.swift */; };
 		C76FBD8928EAE15400442B24 /* TaskListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76FBD8828EAE15400442B24 /* TaskListButton.swift */; };
 		C76FBD8D28EAE4B500442B24 /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76FBD8C28EAE4B500442B24 /* +View.swift */; };
@@ -166,6 +169,9 @@
 		C74B444528EAA3410026029A /* +NSTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+NSTextView.swift"; sourceTree = "<group>"; };
 		C7574A7628E84AEC003567D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C7652BAA28F6CA4800AB1F52 /* Credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		C7652BAE28F6DCAE00AB1F52 /* DeleteTaskListConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTaskListConfirmationDialog.swift; sourceTree = "<group>"; };
+		C7652BB028F6DE2000AB1F52 /* DeleteTaskGroupConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTaskGroupConfirmationDialog.swift; sourceTree = "<group>"; };
+		C7652BB228F6E51600AB1F52 /* DeleteTaskConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTaskConfirmationDialog.swift; sourceTree = "<group>"; };
 		C76FBD8628EAD1E700442B24 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		C76FBD8828EAE15400442B24 /* TaskListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListButton.swift; sourceTree = "<group>"; };
 		C76FBD8C28EAE4B500442B24 /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
@@ -217,6 +223,7 @@
 				7D03B20FD00D4C5C3E7CDA28 /* TaskListView.swift */,
 				7D03B1B973AB6D46919D5EC8 /* TaskListTitle.swift */,
 				C76FBD8828EAE15400442B24 /* TaskListButton.swift */,
+				C7652BAE28F6DCAE00AB1F52 /* DeleteTaskListConfirmationDialog.swift */,
 			);
 			path = TaskList;
 			sourceTree = "<group>";
@@ -228,6 +235,7 @@
 				7D03B4EEB1470F99AA92E5D6 /* TaskSheet.swift */,
 				C7C0AA7A28F365E100DE836D /* TaskColorRadioButtons.swift */,
 				7D03B78259FDE5C1BA7CAC86 /* AddTaskButtons.swift */,
+				C7652BB228F6E51600AB1F52 /* DeleteTaskConfirmationDialog.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -237,6 +245,7 @@
 			children = (
 				7D03B3E5A26EBFC20E0FA2FF /* TaskGroupView.swift */,
 				7D03B09A2AE36E61E0FB8BE3 /* TaskGroupSheet.swift */,
+				C7652BB028F6DE2000AB1F52 /* DeleteTaskGroupConfirmationDialog.swift */,
 			);
 			path = TaskGroup;
 			sourceTree = "<group>";
@@ -537,6 +546,7 @@
 				C7C0AA7B28F365E100DE836D /* TaskColorRadioButtons.swift in Sources */,
 				C7887E1828E1EB32008DCA58 /* Services.swift in Sources */,
 				C7E1081228E0E93900445362 /* ClmnApp.swift in Sources */,
+				C7652BB328F6E51600AB1F52 /* DeleteTaskConfirmationDialog.swift in Sources */,
 				C7E1082228E0E9EB00445362 /* Board.swift in Sources */,
 				C7887E1A28E1EC53008DCA58 /* BoardsService.swift in Sources */,
 				7D03B0F7997B1FE9DEED030D /* BoardView.swift in Sources */,
@@ -560,6 +570,7 @@
 				7D03B7DB9FDAAC55E87A4952 /* Appearance.swift in Sources */,
 				7D03BC8F759F232BCAFC584C /* TaskListSheet.swift in Sources */,
 				7D03BD84D9EBACEE1F6C8230 /* FormLabel.swift in Sources */,
+				C7652BB128F6DE2000AB1F52 /* DeleteTaskGroupConfirmationDialog.swift in Sources */,
 				7D03B1940A5EDE7C845E3388 /* SheetCancelOk.swift in Sources */,
 				7D03B9A1069FCBA61D976F87 /* GoldenRatio.swift in Sources */,
 				7D03BE857E39DDF2288F3AD4 /* TaskListView.swift in Sources */,
@@ -594,6 +605,7 @@
 				7D03BA2CB5F2790D9C061789 /* OnDragTask+DropOnTaskList.swift in Sources */,
 				7D03B621D9D8AA3AAAD075EB /* Many+DropOnTaskList.swift in Sources */,
 				7D03B79E5F81A049F7859F8C /* +Binding.swift in Sources */,
+				C7652BAF28F6DCAE00AB1F52 /* DeleteTaskListConfirmationDialog.swift in Sources */,
 				7D03B7DCEF533A91F520036D /* CursorUtil.swift in Sources */,
 				7D03B043769F85E7DD55926D /* AddTaskButtons.swift in Sources */,
 				7D03B8C9F66878B619005F23 /* AppMetaData.swift in Sources */,

@@ -1,6 +1,7 @@
 struct Icons {
 
     /// MARK: - app
+
     static let board = "rectangle.split.3x1"
     static let list = "list.bullet.rectangle.portrait"
     static let group = "list.bullet.below.rectangle"
@@ -18,16 +19,20 @@ struct Icons {
     static let formSheetHeader = "note"
     static let formDescription = "character.textbox"
 
-    /// MARK: - generic
+    /// MARK: - misc
 
     static let sidebarToggle = "sidebar.left"
     static let ellipsis = "ellipsis"
 
-    static let plus = "plus"
-    static let plusSquare = "plus.square"
-    static let plusViewfinder = "plus.viewfinder"
-    static let plusSquareOnSquare = "plus.square.on.square"
-    static let plusSquareFill = "plus.square.fill"
-    static let squareAndPencil = "square.and.pencil"
-    static let minusSquareFill = "minus.square.fill"
+    /// MARK: - edit
+
+    static let addTask = "plus"
+    static let addList = "plus.square"
+    static let addGroup = "plus.viewfinder"
+    static let addBoard = "plus.square.fill"
+    static let edit = "square.and.pencil"
+    static let delete = "minus.square.fill"
+
+    static let completeTask = "checkmark"
+    static let cancelTask = "xmark"
 }
