@@ -19,7 +19,7 @@ struct TaskGroupSheet: View {
                     placeholder: "Group Name...",
                     imageName: Icons.group)
                 Spacer()
-                SheetCancelOk(isUpdate: task != nil) {
+                SheetCancelOk(isUpdate: group != nil) {
                     onSave(groupName)
                 } onDelete: {
                     guard group != nil else { return }

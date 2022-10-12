@@ -1,12 +1,9 @@
 import SwiftUI
 
-let APP_SITE = "https://igo.rs"
+let APP_SITE = "https://clmnapp.com"
 let APP_EMAIL = "clmn@igo.rs"
 let APP_GROUP = "ac.obl.clmn.Clmn"
 let APP_NAME = "Clmn"
-let APP_TITLE = "Clmn: Tasks & Columns"
-let APP_COPYRIGHT = "© 2022 igo.rs"
-let APP_DESCRIPTION = "Tasks ❤️ Columns"
 
 /// Meta-data
 // application version, just a simple counter
@@ -47,10 +44,12 @@ struct ClmnApp: App {
         .commands {
             MenuLine_File_NewWindow_Disable()
             MenuLine_Help_SupportEmail()
-            MenuLine_Help_Examples()
             MenuLine_View_ToggleBoards()
             MenuLine_View_Appearance()
-            MenuLine_App_About()
+            MenuLine_Help_Examples()
+        }
+        Settings {
+            SettingsView()
         }
     }
 
@@ -70,8 +69,11 @@ struct ClmnApp: App {
     }
 
     /// Adds some menu button into Help menu.
-    fileprivate func MenuLine_Help_Examples() -> CommandGroup<Button<Text>> {
-        CommandGroup(after: CommandGroupPlacement.help) {
+    fileprivate func MenuLine_Help_Examples() -> CommandGroup<TupleView<(Button<Text>, Button<Text>)>> {
+        CommandGroup(replacing: .help) {
+            Button("Support Email") {
+                NSWorkspace.shared.open(URL(string: "mailto:\(APP_EMAIL)")!)
+            }
             Button("Add Example") {
                 addExample.toggle()
             }
@@ -83,25 +85,6 @@ struct ClmnApp: App {
         CommandGroup(before: CommandGroupPlacement.toolbar) {
             Button("Toggle Boards sidebar") {
                 SideBarUtil.toggleSidebar()
-            }
-        }
-    }
-
-    /// Adds About menu item.
-    fileprivate func MenuLine_App_About() -> CommandGroup<Button<Text>> {
-        CommandGroup(replacing: CommandGroupPlacement.appInfo) {
-            Button("About \(Bundle.main.appName)") {
-                NSApplication.shared.orderFrontStandardAboutPanel(
-                    options: [
-                        NSApplication.AboutPanelOptionKey.credits: NSAttributedString(
-                            string: APP_DESCRIPTION,
-                            attributes: [
-                                NSAttributedString.Key.font: NSFont.boldSystemFont(ofSize: NSFont.smallSystemFontSize)
-                            ]
-                        ),
-                        NSApplication.AboutPanelOptionKey(rawValue: "Copyright"): APP_COPYRIGHT
-                    ]
-                )
             }
         }
     }

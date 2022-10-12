@@ -72,6 +72,19 @@ class TaskListVM: ObservableObject {
             list.groups[g].tasks[i].progress = progress
         }
     }
+    
+    func toggleCancel(_ task: Task) {
+        list.groups.with(task) { g, i in
+            var progress = list.groups[g].tasks[i].progress
+            if (progress >= 0) {
+                progress = -1
+            }
+            else {
+                progress = 0
+            }                
+            list.groups[g].tasks[i].progress = progress
+        }
+    }
 
     func toggleCompleted(_ task: Task) {
         list.groups.with(task) { g, i in

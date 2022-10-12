@@ -8,6 +8,8 @@ struct Icons {
 
     static let taskOpen = "square"
     static let taskCompleted = "square.fill"
+    static let taskCompleted2 = "checkmark.square.fill"
+    static let taskCanceled = "multiply.square.fill"
     static let taskProgress1 = "square.lefthalf.filled"
     static let taskProgress2 = "square.righthalf.filled"
 

@@ -6,6 +6,8 @@ struct TaskView: View {
     var editTaskAction: () -> Void
 
     @State private var showEditButton = false
+    
+    @AppStorage(SETTINGS_TASK_CHECKBOX_IMAGE) private var taskCheckboxImage = false
 
     var body: some View {
         #if DEBUG
@@ -17,21 +19,24 @@ struct TaskView: View {
                 .font(Font.App.taskIcon)
                 .gesture(TapGesture().onEnded {
                     let optionKeyPressed = NSEvent.modifierFlags.contains(.option)
+                    let controlKeyPressed = NSEvent.modifierFlags.contains(.control)
                     if (optionKeyPressed) {
                         listVM.toggleProgress(task)
-                    } else {
+                    } else if (controlKeyPressed) {
+                        listVM.toggleCancel(task)
+                    }
+                    else {
                         listVM.toggleCompleted(task)
                     }
                 })
                 .padding(.top, 2)
                 .onHover { isHovered in CursorUtil.changeCursorOnHover(isHovered, cursor: NSCursor.pointingHand) }
-                .if(task.completed) { text in text.foregroundColor(Color.App.taskCompleted) }
+                .if(task.inactive()) { text in text.foregroundColor(Color.App.taskCompleted) }
 
                 Text((task.name).trimmingCharacters(in: .whitespacesAndNewlines).markdown())
                 .font(Font.App.taskText)
-                .strikethrough(task.completed)
-                .if(task.completed) { text in text.foregroundColor(Color.App.taskCompleted) }
-//                .gesture(TapGesture(count: 2).onEnded { editTaskAction() })
+                .strikethrough(task.canceled())
+                .if(task.inactive()) { text in text.foregroundColor(Color.App.taskCompleted) }
 
                 Spacer()
 
@@ -58,9 +63,14 @@ struct TaskView: View {
 
     private func checkboxName(_ task: Task) -> String {
         if (task.completed) {
-            return Icons.taskCompleted
+            if (taskCheckboxImage) {
+                return Icons.taskCompleted2
+            } else {
+                return Icons.taskCompleted
+            }
         }
         switch task.progress {
+        case -1: return Icons.taskCanceled
         case 1: return Icons.taskProgress1
         case 2: return Icons.taskProgress2
         default:
