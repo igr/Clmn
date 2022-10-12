@@ -24,8 +24,8 @@ class AppService {
             appMetaData = try Fridge.unfreeze🪅🎉(objId)
             Self.logger.notice("App meta-data fetched.")
         } catch {
-            Self.logger.error("Failed to fetch app meta-data: \(error._code)")
-            fatalError("App meta-data missing!")
+            Self.logger.error("Failed to fetch app meta-data: \(error.localizedDescription)")
+            fatalError("App meta-data failure!")
         }
         return appMetaData
     }
@@ -36,7 +36,7 @@ class AppService {
             try Fridge.freeze🧊(appMeta, id: objId)
             Self.logger.notice("App meta-data stored.")
         } catch {
-            Self.logger.error("Failed to store app meta-data: \(error._code)")
+            Self.logger.error("Failed to store app meta-data: \(error.localizedDescription)")
         }
     }
 }

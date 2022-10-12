@@ -23,10 +23,10 @@ class TaskListsService {
             lists = try Fridge.unfreeze🪅🎉(objId)
             Self.logger.notice("Board fetched: \(boardId)")
         } catch {
-            Self.logger.error("Failed to fetch board: \(error._code)")
+            Self.logger.error("Failed to fetch board: \(error.localizedDescription)")
             lists = [TaskList(boardId: boardId, title: "Error")]
         }
-        
+
         // make sure that all lists are valid
         return lists.filter { $0.valid() }
     }
@@ -37,7 +37,7 @@ class TaskListsService {
             try Fridge.freeze🧊(boardTaskList, id: objId)
             Self.logger.notice("Boards stored: \(boardId)")
         } catch {
-            Self.logger.error("Failed to store boards: \(error._code)")
+            Self.logger.error("Failed to store boards: \(error.localizedDescription)")
         }
     }
 

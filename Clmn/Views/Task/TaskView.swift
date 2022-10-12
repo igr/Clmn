@@ -25,6 +25,7 @@ struct TaskView: View {
                 })
                 .padding(.top, 2)
                 .onHover { isHovered in CursorUtil.changeCursorOnHover(isHovered, cursor: NSCursor.pointingHand) }
+                .if(task.completed) { text in text.foregroundColor(Color.App.taskCompleted) }
 
                 Text((task.name).trimmingCharacters(in: .whitespacesAndNewlines).markdown())
                 .font(Font.App.taskText)

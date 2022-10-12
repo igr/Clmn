@@ -23,7 +23,7 @@ class BoardsService {
             boards = try Fridge.unfreeze🪅🎉(objId)
             Self.logger.notice("Boards fetched: \(boards.count)")
         } catch {
-            Self.logger.error("Failed to fetch boards: \(error._code)")
+            Self.logger.error("Failed to fetch boards: \(error.localizedDescription)")
             boards = []
         }
         return boards
@@ -35,7 +35,7 @@ class BoardsService {
             try Fridge.freeze🧊(boards, id: objId)
             Self.logger.notice("Boards stored: \(boards.count)")
         } catch {
-            Self.logger.error("Failed to store boards: \(error._code)")
+            Self.logger.error("Failed to store boards: \(error.localizedDescription)")
         }
     }
 
