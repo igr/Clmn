@@ -39,7 +39,9 @@ class TaskListVM: ObservableObject {
 
     /// Removes a task from the list.
     func deleteTask(_ task: Task) {
+        print("delete task")
         list.groups.with(task) { g, i in
+            print("delete task!!! \(i)")
             list.groups[g].tasks.remove(at: i)
         }
     }
@@ -72,7 +74,7 @@ class TaskListVM: ObservableObject {
             list.groups[g].tasks[i].progress = progress
         }
     }
-    
+
     func toggleCancel(_ task: Task) {
         list.groups.with(task) { g, i in
             var progress = list.groups[g].tasks[i].progress
@@ -81,7 +83,7 @@ class TaskListVM: ObservableObject {
             }
             else {
                 progress = 0
-            }                
+            }
             list.groups[g].tasks[i].progress = progress
         }
     }

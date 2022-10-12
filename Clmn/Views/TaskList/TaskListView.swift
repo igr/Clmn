@@ -3,13 +3,14 @@ import SwiftUI
 struct TaskListView: View {
     @ObservedObject var allListsVM: AllTaskListsVM
     @StateObject var listVM: TaskListVM
+    @Binding var selectedTask: Task?
 
     @State private var taskDetails: ModelPairOpt<TaskGroup, Task>?
     @State private var taskListDetails: ModelOpt<TaskList>?
     @State private var taskGroupDetails: ModelOpt<TaskGroup>?
 
     @State private var hovered: Bool = false
-    
+
     @State private var deleteTask: DeleteIntent<Task> = DeleteIntent()
     @State private var deleteTaskGroup: DeleteIntent<TaskGroup> = DeleteIntent()
     @State private var deleteTaskList: DeleteIntent<TaskList> = DeleteIntent()
@@ -51,7 +52,8 @@ struct TaskListView: View {
                             task: task,
                             group: defaultGroup,
                             taskDetails: $taskDetails,
-                            deleteTask: $deleteTask
+                            deleteTask: $deleteTask,
+                            selectedTask: $selectedTask
                         )
                         .onDrag {
                             dragTask.startDragOf((list, defaultGroup, task), removeOnDrop: { task in listVM.deleteTask(task)})
@@ -110,7 +112,8 @@ struct TaskListView: View {
                                 task: task,
                                 group: group,
                                 taskDetails: $taskDetails,
-                                deleteTask: $deleteTask
+                                deleteTask: $deleteTask,
+                                selectedTask: $selectedTask
                             )
                             .onDrag {
                                 dragTask.startDragOf((list, group, task), removeOnDrop: { task in listVM.deleteTask(task)})
@@ -166,7 +169,7 @@ struct TaskListView: View {
         }
         .deleteTaskConfirmation($deleteTask) { deletedTask in listVM.deleteTask(deletedTask) }
         .deleteTaskGroupConfirmation($deleteTaskGroup) { deletedTaskGroup in listVM.deleteTaskGroup(deletedTaskGroup) }
-        .deleteTaskListConfirmation($deleteTaskList) { deletedTaskList in allListsVM.deleteList(deletedTaskList) }        
+        .deleteTaskListConfirmation($deleteTaskList) { deletedTaskList in allListsVM.deleteList(deletedTaskList) }
         .background(Color.App.listBackground)
         .roundedCorners(2, corners: .allCorners)
         .onDrop(of: [TASK_UTI, TASKLIST_UTI],

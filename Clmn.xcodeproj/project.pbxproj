@@ -386,9 +386,9 @@
 				C7E1081128E0E93900445362 /* ClmnApp.swift */,
 				C7E1081528E0E93A00445362 /* Assets.xcassets */,
 				C7E1081A28E0E93A00445362 /* Clmn.entitlements */,
-				C7E1081728E0E93A00445362 /* Preview Content */,
 				7D03BB87A080431895F31A35 /* AppExample.swift */,
 				C7652BAA28F6CA4800AB1F52 /* Credits.html */,
+				C7E1081728E0E93A00445362 /* Preview Content */,
 			);
 			path = Clmn;
 			sourceTree = "<group>";

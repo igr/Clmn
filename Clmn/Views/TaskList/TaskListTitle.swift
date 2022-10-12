@@ -9,7 +9,7 @@ struct TaskListTitle: View {
     @Binding var deleteTaskList: DeleteIntent<TaskList>
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 2) {
             HStack(alignment: .top) {
                 Text(list.title)
                 .font(Font.App.listTitle)

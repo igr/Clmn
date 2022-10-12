@@ -31,7 +31,7 @@ struct Icons {
     static let addGroup = "plus.viewfinder"
     static let addBoard = "plus.square.fill"
     static let edit = "square.and.pencil"
-    static let delete = "minus.square.fill"
+    static let delete = "delete.left"
 
     static let completeTask = "checkmark"
     static let cancelTask = "xmark"

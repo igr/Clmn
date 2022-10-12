@@ -4,6 +4,8 @@ struct BoardView: View {
     var board: Board
     @Binding var taskListDetails: ModelOpt<TaskList>?
 
+    @State private var selectedTask: Task?
+
     @StateObject var allListsVM = AllTaskListsVM()
 
     var body: some View {
@@ -23,7 +25,8 @@ struct BoardView: View {
                     ForEach(allListsVM.lists, id: \.id) { list in
                         TaskListView(
                             allListsVM: allListsVM,
-                            listVM: TaskListVM(list)
+                            listVM: TaskListVM(list),
+                            selectedTask: $selectedTask
                         )
                         .frame(minWidth: 200, minHeight: 200)
                     }
@@ -37,6 +40,7 @@ struct BoardView: View {
         }
         .onAppear {
             allListsVM.loadLists(board: board)
+            selectedTask = nil
         }
         .onDisappear {
             allListsVM.handleListChanges {

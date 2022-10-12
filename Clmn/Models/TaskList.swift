@@ -21,8 +21,21 @@ struct TaskList: Identifiable, Equatable, Codable {
         groups[0]
     }
 
-    func valid()  -> Bool {
+    func valid() -> Bool {
         !groups.isEmpty
+    }
+    
+    /// Calculates total tasks.
+    func totalTasks() -> Int {
+        groups.reduce(0) { $0 + $1.tasks.count }
+    }
+    
+    func completedTasks() -> Int {
+        groups.reduce(0) { $0 + $1.tasks.filter{$0.completed}.count }
+    }
+    
+    func progress() -> Float {
+        Float(completedTasks()) / Float(totalTasks())
     }
 }
 

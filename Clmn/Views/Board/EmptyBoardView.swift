@@ -14,6 +14,9 @@ struct EmptyBoardView: View {
             .font(.system(size: 16).italic())
             .foregroundColor(Color.secondary)
             Image(systemName: "arrow.down")
+            .resizable()
+            .frame(width: 26, height: 26)
+            .foregroundColor(Color.secondary)
             Spacer()
             Button(
                 action: { taskListDetails = ModelOpt<TaskList>.ofNew() },

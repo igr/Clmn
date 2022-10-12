@@ -6,6 +6,8 @@ struct AppColors {
 
     let listBackground = Color("ListBackground")
     let listSubtitle = Color.secondary
+    let listSelect = Color("ListSelect")
+    let listText = Color.text
 
     let formGray = Color.gray
     let formSheetBackground = Color.primary

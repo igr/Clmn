@@ -6,10 +6,13 @@ struct TaskView: View {
     var group: TaskGroup
     @Binding var taskDetails: ModelPairOpt<TaskGroup, Task>?
     @Binding var deleteTask: DeleteIntent<Task>
+    @Binding var selectedTask: Task?
 
     @State private var showEditButton = false
 
+    @Environment(\.colorScheme) var colorScheme
     @AppStorage(SETTINGS_TASK_CHECKBOX_IMAGE) private var taskCheckboxImage = false
+    @AppStorage(SETTINGS_TASK_SELECTABLE) private var taskSelectable = true
 
     var body: some View {
         #if DEBUG
@@ -21,10 +24,10 @@ struct TaskView: View {
                 .font(Font.App.taskIcon)
                 .gesture(TapGesture().onEnded {
                     let optionKeyPressed = NSEvent.modifierFlags.contains(.option)
-                    let controlKeyPressed = NSEvent.modifierFlags.contains(.control)
-                    if (optionKeyPressed) {
+                    let commandKeyPressed = NSEvent.modifierFlags.contains(.command)
+                    if (commandKeyPressed) {
                         listVM.toggleProgress(task)
-                    } else if (controlKeyPressed) {
+                    } else if (optionKeyPressed) {
                         listVM.toggleCancel(task)
                     }
                     else {
@@ -33,12 +36,12 @@ struct TaskView: View {
                 })
                 .padding(.top, 2)
                 .onHover { isHovered in CursorUtil.changeCursorOnHover(isHovered, cursor: NSCursor.pointingHand) }
-                .if(task.inactive()) { text in text.foregroundColor(Color.App.taskCompleted) }
+                .foregroundColor(task.inactive() ? Color.App.taskCompleted : Color.App.listText)
 
                 Text((task.name).trimmingCharacters(in: .whitespacesAndNewlines).markdown())
                 .font(Font.App.taskText)
                 .strikethrough(task.canceled())
-                .if(task.inactive()) { text in text.foregroundColor(Color.App.taskCompleted) }
+                .foregroundColor(task.inactive() ? Color.App.taskCompleted : Color.App.listText)
 
                 Spacer()
 
@@ -57,9 +60,13 @@ struct TaskView: View {
             .padding(6)
             .onHover { isHovered in showEditButton = isHovered }
         }
+        .if(selected() && taskSelectable) { view in
+            view.colorScheme(colorScheme == .dark ? .light : .dark).background(Color.App.listSelect)
+        }
         .background(taskColor(task))
         .roundedCorners(4, corners: .allCorners)
         .contentShape(Rectangle())
+        .gesture(TapGesture().onEnded { select() })
         .padding(.bottom, 2)
         .contextMenu {
             Button {
@@ -87,7 +94,6 @@ struct TaskView: View {
                 Label((task.completed) ? "Reopen task" : "Complete task", systemImage: Icons.completeTask)
                 .labelStyle(.titleAndIcon)
             }
-
         }
     }
 
@@ -113,6 +119,23 @@ struct TaskView: View {
             return Color.App.listBackground
         }
         return Color.App.taskColors[task.color]
+    }
+
+    private func selected() -> Bool {
+        guard selectedTask != nil else { return false }
+        return selectedTask!.id == task.id
+    }
+
+    private func select() {
+        if (selectedTask == nil) {
+            selectedTask = task
+            return
+        }
+        if (selectedTask!.id == task.id) {
+            selectedTask = nil
+            return
+        }
+        selectedTask = task
     }
 
 }

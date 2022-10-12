@@ -1,6 +1,7 @@
 import SwiftUI
 
 let SETTINGS_TASK_CHECKBOX_IMAGE = "taskCheckboxImage"
+let SETTINGS_TASK_SELECTABLE = "taskSelectable"
 
 struct SettingsView: View {
     var body: some View {

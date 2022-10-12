@@ -9,6 +9,10 @@ struct TaskListSheet: View {
 
     @State private var title = ""
     @State private var description = ""
+    
+    private func existing() -> Bool {
+        taskList != nil
+    }
 
     var body: some View {
         VStack {
@@ -23,17 +27,29 @@ struct TaskListSheet: View {
                     placeholder: "Description",
                     imageName: Icons.formDescription
                 )
+                if (existing()) {
+                    Text("Completed **\(taskList!.completedTasks())** of **\(taskList!.totalTasks())** tasks".markdown())
+                        .padding()
+//                    HStack {
+//                        Button {
+//
+//                        } label: {
+//                            Text("Delete completed tasks")
+//                        }
+//                    }
+                }
                 Spacer()
-                SheetCancelOk(isUpdate: taskList != nil) {
+                Divider()
+                SheetCancelOk(isUpdate: existing()) {
                     onSave(title, description)
                 } onDelete: {
-                    guard taskList != nil else { return }
+                    guard existing() else { return }
                     onDelete(taskList!)
                 }
             }
             .padding()
         }
-        .frame(width: 360, height: 300)
+        .frame(width: 360, height: 400)
         .onAppear {
             title = taskList?.title ?? ""
             description = taskList?.description ?? ""
