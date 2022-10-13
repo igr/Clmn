@@ -19,6 +19,8 @@ struct TaskListView: View {
     @EnvironmentObject var dragTaskList: DragTaskListModel
     @EnvironmentObject var dragTaskGroup: DragTaskGroupModel
 
+    @State private var isLastList: Bool = false
+
     var body: some View {
         #if DEBUG
         let _ = Self._printChanges()
@@ -28,7 +30,8 @@ struct TaskListView: View {
             TaskListButton(
                 list: list,
                 taskListDetails: $taskListDetails,
-                hovered: $hovered
+                hovered: $hovered,
+                isLast: $isLastList
             )
             TaskListTitle(
                 list: list,
@@ -144,7 +147,7 @@ struct TaskListView: View {
             .padding()
         }
         .sheet(item: $taskListDetails) { item in
-            TaskListSheet(list: item.model, allListsVM: allListsVM) { listVM.load(from: allListsVM.lists) }
+            TaskListSheet(list: item.model, allListsVM: allListsVM, listVM: listVM)
         }
         .sheet(item: $taskDetails) { item in
             TaskSheet(task: item.model, group: item.owner, listVM: listVM)
@@ -171,10 +174,12 @@ struct TaskListView: View {
         }
         .onAppear {
             /// IMPORTANT DETAIL
-            // Since this view dissappear _after_ the parent view, we must
-            // register tasklist providers now, so they become availiable
-            // when parent dissappear.
+            // Since this view disappear _after_ the parent view, we must
+            // register tasklist providers now, so they become available
+            // when parent disappear.
             allListsVM.register({ listVM.list })
+            // other initializations
+            isLastList = allListsVM.lists.isLast(listVM.list)
         }
     }
 }

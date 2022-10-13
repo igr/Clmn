@@ -46,6 +46,13 @@ class TaskListVM: ObservableObject {
         }
     }
 
+    /// Deletes all completed and canceled tasks.
+    func deleteCompletedTask() {
+        for (i, _) in list.groups.enumerated() {
+            list.groups[i].tasks.removeAll(where: { t in t.inactive() } )
+        }
+    }
+
     func insertTask(_ task: Task, before: Task) {
         list.groups.with(before) { g, i in
             list.groups[g].tasks.insert(task, at: i)

@@ -5,6 +5,7 @@ struct TaskListSheet: View {
 
     var list: TaskList?
     var allListsVM: AllTaskListsVM
+    var listVM: TaskListVM? = nil
 
     var onSave: () -> Void = {}
 
@@ -29,21 +30,25 @@ struct TaskListSheet: View {
                     imageName: Icons.formDescription
                 )
                 if (isUpdate()) {
-                    Text("Completed **\(list!.completedTasks())** of **\(list!.totalTasks())** tasks".markdown())
+                    Text("Completed **\(list!.completedTasks())** of **\(list!.totalTasks())** tasks.".markdown())
                     .padding()
-//                    HStack {
-//                        Button {
-//
-//                        } label: {
-//                            Text("Delete completed tasks")
-//                        }
-//                    }
+                    HStack {
+                        Button {
+                            guard listVM != nil else { return }
+                            listVM?.deleteCompletedTask()
+                            allListsVM.apply(from: listVM!.list)
+                        } label: {
+                            Text("Delete completed tasks")
+                        }
+                    }
                 }
                 Spacer()
                 Divider()
                 SheetCancelOk(isUpdate: isUpdate()) {
                     allListsVM.addOrUpdateList(list: list, title, description)
-                    onSave()
+                    if (listVM != nil) {
+                        listVM!.load(from: allListsVM.lists)
+                    }
                 } onDelete: {
                     guard isUpdate() else { return }
                     allListsVM.deleteList(list!)

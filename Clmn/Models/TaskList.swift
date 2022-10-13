@@ -24,16 +24,16 @@ struct TaskList: Identifiable, Equatable, Codable {
     func valid() -> Bool {
         !groups.isEmpty
     }
-    
+
     /// Calculates total tasks.
     func totalTasks() -> Int {
         groups.reduce(0) { $0 + $1.tasks.count }
     }
-    
+
     func completedTasks() -> Int {
         groups.reduce(0) { $0 + $1.tasks.filter{$0.completed}.count }
     }
-    
+
     func progress() -> Float {
         Float(completedTasks()) / Float(totalTasks())
     }
@@ -44,5 +44,10 @@ extension Array where Element == TaskList {
     func with(_ list: TaskList, consumer: (Int) -> Void) {
         guard let index = firstIndex(where: { l in l.id == list.id } ) else { return }
         consumer(index)
+    }
+
+    /// Returns `true` if the list is the last one.
+    func isLast(_ list: TaskList) -> Bool {
+        last?.id == list.id
     }
 }
