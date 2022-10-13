@@ -5,8 +5,7 @@ struct TaskGroupSheet: View {
     @Environment(\.dismiss) var dismiss
 
     var group: TaskGroup?
-    var onSave: (_: String) -> Void
-    var onDelete: (_:TaskGroup) -> Void = {_ in }
+    var listVM: TaskListVM
 
     @State private var groupName = ""
 
@@ -20,10 +19,10 @@ struct TaskGroupSheet: View {
                     imageName: Icons.group)
                 Spacer()
                 SheetCancelOk(isUpdate: group != nil) {
-                    onSave(groupName)
+                    listVM.addOrUpdateTaskGroup(group: group, groupName)
                 } onDelete: {
                     guard group != nil else { return }
-                    onDelete(group!)
+                    listVM.deleteTaskGroup(group!)
                 }
             }
             .padding()

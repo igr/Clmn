@@ -38,11 +38,11 @@ class AllTaskListsVM: ObservableObject {
         saveLists()
     }
 
-    func addOrUpdateList(item: ModelOpt<TaskList>, _ title: String, _ description: String?) {
-        item.new {
+    func addOrUpdateList(list: TaskList?, _ title: String, _ description: String?) {
+        if (list == nil) {
             addNewList(title, description: description)
-        } existing: { list in
-            updateList(list, title, description)
+        } else {
+            updateList(list!, title, description)
         }
     }
 

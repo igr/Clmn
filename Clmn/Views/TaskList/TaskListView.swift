@@ -144,28 +144,13 @@ struct TaskListView: View {
             .padding()
         }
         .sheet(item: $taskListDetails) { item in
-            TaskListSheet(
-                taskList: item.model,
-                onSave: { title, description in
-                    allListsVM.addOrUpdateList(item: item, title, description)
-                    listVM.load(from: allListsVM.lists)
-                },
-                onDelete: { l in allListsVM.deleteList(l) }
-            )
+            TaskListSheet(list: item.model, allListsVM: allListsVM) { listVM.load(from: allListsVM.lists) }
         }
         .sheet(item: $taskDetails) { item in
-            TaskSheet(task: item.model) { taskName, taskColor in
-                listVM.addOrUpdateTask(item: item, taskName, taskColor)
-            } onDelete: { task in
-                listVM.deleteTask(task)
-            }
+            TaskSheet(task: item.model, group: item.owner, listVM: listVM)
         }
         .sheet(item: $taskGroupDetails) { item in
-            TaskGroupSheet(
-                group: item.model,
-                onSave: { groupName in listVM.addOrUpdateTaskGroup(item: item, groupName) },
-                onDelete: { g in listVM.deleteTaskGroup(g) }
-            )
+            TaskGroupSheet(group: item.model, listVM: listVM)
         }
         .deleteTaskConfirmation($deleteTask) { deletedTask in listVM.deleteTask(deletedTask) }
         .deleteTaskGroupConfirmation($deleteTaskGroup) { deletedTaskGroup in listVM.deleteTaskGroup(deletedTaskGroup) }

@@ -3,15 +3,16 @@ import SwiftUI
 struct TaskListSheet: View {
     @Environment(\.dismiss) var dismiss
 
-    var taskList: TaskList?
-    var onSave: (_: String, _: String) -> Void
-    var onDelete: (_:TaskList) -> Void = {_ in }
+    var list: TaskList?
+    var allListsVM: AllTaskListsVM
+
+    var onSave: () -> Void = {}
 
     @State private var title = ""
     @State private var description = ""
-    
-    private func existing() -> Bool {
-        taskList != nil
+
+    private func isUpdate() -> Bool {
+        list != nil
     }
 
     var body: some View {
@@ -27,9 +28,9 @@ struct TaskListSheet: View {
                     placeholder: "Description",
                     imageName: Icons.formDescription
                 )
-                if (existing()) {
-                    Text("Completed **\(taskList!.completedTasks())** of **\(taskList!.totalTasks())** tasks".markdown())
-                        .padding()
+                if (isUpdate()) {
+                    Text("Completed **\(list!.completedTasks())** of **\(list!.totalTasks())** tasks".markdown())
+                    .padding()
 //                    HStack {
 //                        Button {
 //
@@ -40,19 +41,20 @@ struct TaskListSheet: View {
                 }
                 Spacer()
                 Divider()
-                SheetCancelOk(isUpdate: existing()) {
-                    onSave(title, description)
+                SheetCancelOk(isUpdate: isUpdate()) {
+                    allListsVM.addOrUpdateList(list: list, title, description)
+                    onSave()
                 } onDelete: {
-                    guard existing() else { return }
-                    onDelete(taskList!)
+                    guard isUpdate() else { return }
+                    allListsVM.deleteList(list!)
                 }
             }
             .padding()
         }
         .frame(width: 360, height: 400)
         .onAppear {
-            title = taskList?.title ?? ""
-            description = taskList?.description ?? ""
+            title = list?.title ?? ""
+            description = list?.description ?? ""
         }
     }
 }

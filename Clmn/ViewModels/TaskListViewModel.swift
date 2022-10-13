@@ -29,11 +29,11 @@ class TaskListVM: ObservableObject {
         }
     }
 
-    func addOrUpdateTask(item: ModelPairOpt<TaskGroup, Task>, _ name: String, _ color: Int) {
-        item.new { group in
+    func addOrUpdateTask(group: TaskGroup, task: Task?, _ name: String, _ color: Int) {
+        if (task == nil) {
             addNewTask(toGroup: group, name, color: color)
-        } existing: { group, task in
-            updateTask(task, name, color: color)
+        } else {
+            updateTask(task!, name, color: color)
         }
     }
 
@@ -130,11 +130,11 @@ class TaskListVM: ObservableObject {
         }
     }
 
-    func addOrUpdateTaskGroup(item: ModelOpt<TaskGroup>, _ name: String) {
-        item.new {
+    func addOrUpdateTaskGroup(group: TaskGroup?, _ name: String) {
+        if (group == nil) {
             addNewTaskGroup(name)
-        } existing: { taskGroup in
-            updateTaskGroup(taskGroup, name)
+        } else {
+            updateTaskGroup(group!, name)
         }
     }
 

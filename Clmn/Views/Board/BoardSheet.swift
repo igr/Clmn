@@ -5,7 +5,7 @@ struct BoardSheet: View {
     @Environment(\.dismiss) var dismiss
 
     var board: Board?
-    var onSave: (_: String) -> Void
+    var allBoardsVM: AllBoardsVM
 
     @State private var boardName: String = ""
 
@@ -19,7 +19,7 @@ struct BoardSheet: View {
                     imageName: Icons.board)
                 Spacer()
                 SheetCancelOk {
-                    onSave(boardName)
+                    allBoardsVM.addOrUpdateBoard(board: board, name: boardName)
                 }
             }
             .padding()

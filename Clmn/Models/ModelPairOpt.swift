@@ -19,14 +19,6 @@ struct ModelPairOpt<O, T>: Identifiable {
         ModelPairOpt<A, B>(owner: owner, model: model)
     }
 
-    func new(ifEmpty: (O) -> Void, existing ifExisting: (O, T) -> Void) {
-        if (model == nil) {
-            ifEmpty(owner)
-        } else {
-            ifExisting(owner, model!)
-        }
-    }
-
     /// Returns true if optional model exists.
     func exists() -> Bool {
         model != nil

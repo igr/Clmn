@@ -42,11 +42,11 @@ class AllBoardsVM: ObservableObject {
     }
 
     /// Adds or updates the board.
-    func addOrUpdateBoard(item: ModelOpt<Board>, boardName: String) {
-        item.new {
-            addNewBoard(boardName)
-        } existing: { b in
-            updateBoard(b, boardName)
+    func addOrUpdateBoard(board: Board?, name: String) {
+        if (board == nil) {
+            addNewBoard(name)
+        } else {
+            updateBoard(board!, name)
         }
     }
 

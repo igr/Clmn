@@ -5,11 +5,15 @@ struct TaskSheet: View {
     @Environment(\.dismiss) var dismiss
 
     var task: Task?
-    var onSave: (_: String, _: Int) -> Void
-    var onDelete: (_:Task) -> Void = {_ in }
+    var group: TaskGroup
+    var listVM: TaskListVM
 
     @State private var name = ""
     @State private var color = 0
+
+    private func isUpdate() -> Bool {
+        task != nil
+    }
 
     var body: some View {
         VStack {
@@ -21,11 +25,11 @@ struct TaskSheet: View {
                     imageName: Icons.task)
                 TaskColorRadioButtons(selectedColor: $color)
                 Spacer()
-                SheetCancelOk(isUpdate: task != nil) {
-                    onSave(name, color)
+                SheetCancelOk(isUpdate: isUpdate()) {
+                    listVM.addOrUpdateTask(group: group, task: task, name, color)
                 } onDelete: {
-                    guard task != nil else { return }
-                    onDelete(task!)
+                    guard isUpdate() else { return }
+                    listVM.deleteTask(task!)
                 }
             }
             .padding()

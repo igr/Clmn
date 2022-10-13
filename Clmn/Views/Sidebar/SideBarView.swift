@@ -57,9 +57,7 @@ struct SideBarView: View {
             }
         }
         .sheet(item: $boardDetails) { item in
-            BoardSheet(board: item.model) { boardName in
-                allBoardsVM.addOrUpdateBoard(item: item, boardName: boardName)
-            }
+            BoardSheet(board: item.model, allBoardsVM: allBoardsVM)
         }
         .deleteBoardConfirmation($deleteBoard) { deletedBoard in
             let deletedIndex = allBoardsVM.deleteBoard(deletedBoard)

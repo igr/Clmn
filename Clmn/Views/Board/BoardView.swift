@@ -34,9 +34,7 @@ struct BoardView: View {
             }
         }
         .sheet(item: $taskListDetails) { item in
-            TaskListSheet(taskList: item.model) { (title, description) in
-                allListsVM.addOrUpdateList(item: item, title, description)
-            }
+            TaskListSheet(list: item.model, allListsVM: allListsVM)
         }
         .onAppear {
             allListsVM.loadLists(board: board)
