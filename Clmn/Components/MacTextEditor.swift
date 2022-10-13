@@ -141,6 +141,9 @@ extension MacTextEditor {
                 parent.onSubmit()   // ENTER is pressed
                 return true
             }
+//            if (commandSelector == #selector(NSResponder.insertTab(_:))) {
+//                return true
+//            }
 
             // return true if the action was handled; otherwise false
             return false
