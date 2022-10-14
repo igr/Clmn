@@ -24,11 +24,13 @@ func createExample(with allBoardsVM: AllBoardsVM) {
             let listVM = TaskListVM(list)
 
             listVM.addNewTask("Read documentation")
-            listVM.addNewTask("☎️ Schedule a call")
+            listVM.addNewTask("☎️ Schedule a call", note: "This is an important call! Call **Frank** and Iva to join. Prepare PPT for the next Q.")
             listVM.addNewTask("Fix _Felix_ **issue**!!!")
             listVM.addNewTask("Upgrade components", progress: 1)
             listVM.addNewTask("Clean up resources", color: 2)
-            listVM.addNewTask("Stress test")
+            listVM.addNewTask("Stress test, stress!")
+            listVM.addNewTask("Talk to **SEO** team about the keywords")
+            listVM.addNewTask("Publish new API schema")
 
             allListsVM.apply(from: listVM.list)
         }
