@@ -18,7 +18,7 @@ struct TaskView: View {
         #if DEBUG
         let _ = Self._printChanges()
         #endif
-        HStack {
+        VStack {
             HStack(alignment: .top) {
                 Image(systemName: checkboxName(task))
                 .font(Font.App.taskIcon)
@@ -38,42 +38,52 @@ struct TaskView: View {
                 .onHover { isHovered in CursorUtil.changeCursorOnHover(isHovered, cursor: NSCursor.pointingHand) }
                 .foregroundColor(task.inactive() ? Color.App.taskCompleted : Color.App.listText)
 
-                Text((task.name).trimmingCharacters(in: .whitespacesAndNewlines).markdown())
-                .font(Font.App.taskText)
-                .strikethrough(task.canceled())
-                .foregroundColor(task.inactive() ? Color.App.taskCompleted : Color.App.listText)
-                
-                if (task.note != nil) {
-                    Image(systemName: Icons.taskNote)
-                        .foregroundColor(Color.App.listOffText)
-                        .frame(width: 10, height: 10)
-                        .padding(.top, 4)
-                }
+                VStack {
+                    HStack(alignment: .top) {
+                        Text((task.name).trimmingCharacters(in: .whitespacesAndNewlines).markdown())
+                        .font(Font.App.taskText)
+                        .strikethrough(task.canceled())
+                        .foregroundColor(task.inactive() ? Color.App.taskCompleted : Color.App.listText)
 
-                Spacer()
-
-                if (showEditButton) {
-                    Button(
-                        action: { taskDetails = ModelPairOpt<TaskGroup, Task>.of(group, task) },
-                        label: {
-                            Image(systemName: Icons.ellipsis)
-                            .frame(width: 18, height: 18)
-                            .contentShape(Rectangle())
+                        if (task.note != nil) {
+                            Image(systemName: Icons.taskNote)
+                            .foregroundColor(Color.App.listOffText)
+                            .frame(width: 10, height: 10)
+                            .padding(.top, 4)
                         }
-                    )
-                    .buttonStyle(.plain)
+                        Spacer()
+                        if (showEditButton) {
+                            Button(
+                                action: { taskDetails = ModelPairOpt<TaskGroup, Task>.of(group, task) },
+                                label: {
+                                    Image(systemName: Icons.ellipsis)
+                                    .frame(width: 18, height: 18)
+                                    .contentShape(Rectangle())
+                                }
+                            )
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    if (selected() && task.note != nil) {
+                        Text(task.note?.markdown() ?? "")
+                        .font(Font.App.taskNote)
+                        .foregroundColor(Color.App.taskNote)
+                        .padding(.bottom, 4)
+                    }
                 }
             }
             .padding(6)
             .onHover { isHovered in showEditButton = isHovered }
         }
-        .if(selected() && taskSelectable) { view in
+        .if (selected() && taskSelectable) { view in
             view.colorScheme(colorScheme == .dark ? .light : .dark).background(Color.App.listSelect)
         }
         .background(taskColor(task))
         .roundedCorners(4, corners: .allCorners)
         .contentShape(Rectangle())
-        .gesture(TapGesture().onEnded { select() })
+        .gesture(TapGesture().onEnded {
+            select()
+        })
         .padding(.bottom, 2)
         .contextMenu {
             Button {

@@ -16,6 +16,7 @@ struct AppColors {
 
     let textInvert = Color("TextInvert")
     let textWarn = Color.red
+    let taskNote = Color("TaskNote")
 
     let taskCompleted = Color.gray
 

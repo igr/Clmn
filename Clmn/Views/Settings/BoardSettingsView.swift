@@ -8,7 +8,7 @@ struct BoardSettingsView: View {
     var body: some View {
         VStack(spacing:20) {
             Toggle("Use checkbox icon for completed tasks", isOn: $taskCheckboxImage)
-            Toggle("Select a task on a click for focus", isOn: $taskSelectable)
+            Toggle("Use dark background for selected task", isOn: $taskSelectable)
             Spacer()
         }.padding()
     }
