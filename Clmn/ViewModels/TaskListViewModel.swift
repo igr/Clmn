@@ -9,8 +9,8 @@ class TaskListVM: ObservableObject {
     }
 
     /// Adds a new task to the list or a group.
-    func addNewTask(toGroup group: TaskGroup? = nil, _ name: String, color: Int = 0, progress: Int = 0, completed: Bool = false) {
-        var task = Task(name: name, color: color, completed: completed, progress: progress)
+    func addNewTask(toGroup group: TaskGroup? = nil, _ name: String, note: String? = nil, color: Int = 0, progress: Int = 0, completed: Bool = false) {
+        var task = Task(name: name, note: note, color: color, completed: completed, progress: progress)
         if (completed) {
             task.completedAt = Date.now
         }
@@ -20,20 +20,21 @@ class TaskListVM: ObservableObject {
         }
     }
 
-    private func updateTask(_ task: Task, _ name: String, color: Int? = nil) {
+    private func updateTask(_ task: Task, _ name: String, note: String? = nil, color: Int? = nil) {
         list.groups.with(task) { g, i in
             list.groups[g].tasks[i].name = name
+            list.groups[g].tasks[i].note = note
             if (color != nil) {
                 list.groups[g].tasks[i].color = color!
             }
         }
     }
 
-    func addOrUpdateTask(group: TaskGroup, task: Task?, _ name: String, _ color: Int) {
+    func addOrUpdateTask(group: TaskGroup, task: Task?, name: String, note: String?, color: Int) {
         if (task == nil) {
-            addNewTask(toGroup: group, name, color: color)
+            addNewTask(toGroup: group, name, note: note, color: color)
         } else {
-            updateTask(task!, name, color: color)
+            updateTask(task!, name, note: note, color: color)
         }
     }
 

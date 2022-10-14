@@ -9,6 +9,7 @@ struct TaskSheet: View {
     var listVM: TaskListVM
 
     @State private var name = ""
+    @State private var note = ""
     @State private var color = 0
 
     private func isUpdate() -> Bool {
@@ -21,12 +22,17 @@ struct TaskSheet: View {
             VStack {
                 FormTextEditor(
                     text: $name,
-                    placeholder: "Task",
-                    imageName: Icons.task)
+                    placeholder: "Task...",
+                    imageName: Icons.task,
+                    height: 46)
+                FormTextEditor(
+                    text: $note,
+                    placeholder: "Note...",
+                    imageName: Icons.formDescription)
                 TaskColorRadioButtons(selectedColor: $color)
                 Spacer()
                 SheetCancelOk(isUpdate: isUpdate()) {
-                    listVM.addOrUpdateTask(group: group, task: task, name, color)
+                    listVM.addOrUpdateTask(group: group, task: task, name: name, note: note, color: color)
                 } onDelete: {
                     guard isUpdate() else { return }
                     listVM.deleteTask(task!)
@@ -34,10 +40,11 @@ struct TaskSheet: View {
             }
             .padding()
         }
-        .frame(width: 360, height: 320)
+        .frame(width: 360, height: 380)
         .onAppear {
             name = task?.name ?? ""
             color = task?.color ?? 0
+            note = task?.note ?? ""
         }
     }
 }

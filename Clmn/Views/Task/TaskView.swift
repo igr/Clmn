@@ -42,6 +42,13 @@ struct TaskView: View {
                 .font(Font.App.taskText)
                 .strikethrough(task.canceled())
                 .foregroundColor(task.inactive() ? Color.App.taskCompleted : Color.App.listText)
+                
+                if (task.note != nil) {
+                    Image(systemName: Icons.taskNote)
+                        .foregroundColor(Color.App.listOffText)
+                        .frame(width: 10, height: 10)
+                        .padding(.top, 4)
+                }
 
                 Spacer()
 

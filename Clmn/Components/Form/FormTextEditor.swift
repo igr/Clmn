@@ -5,13 +5,15 @@ struct FormTextEditor: View {
     @Binding var text: String
     var placeholder: String
     let imageName: String
+    let height: Int
 
     @Environment(\.colorScheme) var colorScheme
 
-    init(text: Binding<String>, placeholder: String, imageName: String) {
+    init(text: Binding<String>, placeholder: String, imageName: String, height: Int = 120) {
         self._text = text
         self.placeholder = placeholder
         self.imageName = imageName
+        self.height = height
     }
 
     var body: some View {
@@ -41,7 +43,7 @@ struct FormTextEditor: View {
             .opacity(0.5)
         )
         .font(Font.App.formField)
-        .frame(height: 120)
+        .frame(height: CGFloat(height))
         .foregroundColor(colorScheme == .dark ? .white : .black)
     }
 }
