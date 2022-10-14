@@ -6,6 +6,7 @@ struct Task: Identifiable, Equatable, Codable {
 
     var id: TaskId = TaskId()
     var name: String
+    var note: String?
     var color: Int = 0
     // meta
     var completed: Bool = false

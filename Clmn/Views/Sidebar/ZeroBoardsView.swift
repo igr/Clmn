@@ -19,8 +19,8 @@ struct DetailView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 256, height: 256)
-            Text("It's a blast!")
-                .font(.system(size: 16, weight: .bold))
+            Text("Just Columns & Tasks")
+                .font(.system(size: 18, weight: .medium))
                 .foregroundColor(Color.secondary)
             Spacer()
             HStack(alignment: .center) {
@@ -31,7 +31,7 @@ struct DetailView: View {
                 Spacer()
             }
             .padding()
-            .padding(.bottom, 10)
+            .padding(.bottom, 4)
         }
     }
 }

@@ -13,6 +13,7 @@ struct Icons {
     static let taskCanceled = "multiply.square.fill"
     static let taskProgress1 = "square.lefthalf.filled"
     static let taskProgress2 = "square.righthalf.filled"
+    static let taskLink = "link"
 
     /// MARK: - form
 
@@ -35,4 +36,5 @@ struct Icons {
 
     static let completeTask = "checkmark"
     static let cancelTask = "xmark"
+
 }

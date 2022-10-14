@@ -55,4 +55,31 @@ class AllBoardsVM: ObservableObject {
         boards.move(fromOffsets: set, toOffset: destinationIndex)
         saveBoards()
     }
+    
+    // ---------------------------------------------------------------- finder
+    
+    func findTaskById(_ taskId: TaskId) -> (Board, TaskList, TaskGroup, Task)? {
+        var result: (Board, TaskList, TaskGroup, Task)? = nil
+        
+        boards.forEach { board in
+            let lists = services.lists.fetchBoardLists(board.id)
+            lists.forEach { list in
+                list.groups.forEach { group in
+                    group.tasks.forEach { task in
+                        if (task.id == taskId) {
+                            result = (board, list, group, task)
+                            return
+                        }
+                    }
+                    if (result != nil) {
+                        return
+                    }
+                }
+                if (result != nil) {
+                    return
+                }
+            }
+        }
+        return result
+    }
 }

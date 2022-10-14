@@ -3,8 +3,7 @@ import SwiftUI
 struct BoardView: View {
     var board: Board
     @Binding var taskListDetails: ModelOpt<TaskList>?
-
-    @State private var selectedTask: Task?
+    @Binding var selectedTask: Task?
 
     @StateObject var allListsVM = AllTaskListsVM()
 
@@ -38,7 +37,6 @@ struct BoardView: View {
         }
         .onAppear {
             allListsVM.loadLists(board: board)
-            selectedTask = nil
         }
         .onDisappear {
             allListsVM.handleListChanges {

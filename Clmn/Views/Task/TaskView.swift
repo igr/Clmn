@@ -94,6 +94,15 @@ struct TaskView: View {
                 Label((task.completed) ? "Reopen task" : "Complete task", systemImage: Icons.completeTask)
                 .labelStyle(.titleAndIcon)
             }
+            Divider()
+            Button {
+                let pasteboard = NSPasteboard.general
+                pasteboard.declareTypes([.string], owner: nil)
+                pasteboard.setString("\(APP_HOST)://tasks/\(task.id)", forType: .string)
+            } label: {
+                Label("Copy URL to clipboard", systemImage: Icons.taskLink)
+                .labelStyle(.titleAndIcon)
+            }
         }
     }
 

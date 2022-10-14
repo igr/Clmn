@@ -4,6 +4,21 @@
 <dict>
 	<key>ATSApplicationFontsPath</key>
 	<string>Fonts</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLIconFile</key>
+			<string>URLIcon</string>
+			<key>CFBundleURLName</key>
+			<string>ac.obl.clmn</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>clmn</string>
+			</array>
+		</dict>
+	</array>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -12,11 +27,11 @@
 				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Board item</string>
+			<string>Clmn Board item</string>
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>ac.obl.clmn.Clmn.board</string>
+			<string>ac.obl.clmn.board</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>
@@ -26,11 +41,11 @@
 				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Task List item</string>
+			<string>Clmn Task List item</string>
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>ac.obl.clmn.Clmn.list</string>
+			<string>ac.obl.clmn.list</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>
@@ -40,11 +55,11 @@
 				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Task Group item</string>
+			<string>Clmn Task Group item</string>
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>ac.obl.colkm.Clmn.group</string>
+			<string>ac.obl.clmn.group</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>
@@ -54,11 +69,11 @@
 				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Task item</string>
+			<string>Clmn Task item</string>
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>ac.obl.clm.Clmn.task</string>
+			<string>ac.obl.clmn.task</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>

@@ -4,6 +4,7 @@ struct SideBarView: View {
     @StateObject var allBoardsVM = AllBoardsVM()
 
     @State private var selectedBoard: Board?
+    @State private var selectedTask: Task?
     @State private var taskListDetails: ModelOpt<TaskList>?
 
     @State private var boardDetails: ModelOpt<Board>?
@@ -18,7 +19,7 @@ struct SideBarView: View {
         VStack(spacing: 0) {
             List {
                 ForEach(allBoardsVM.boards, id: \.id) { board in
-                    NavigationLink(destination: BoardView(board: board, taskListDetails: $taskListDetails),
+                    NavigationLink(destination: BoardView(board: board, taskListDetails: $taskListDetails, selectedTask: $selectedTask),
                         tag: board,
                         selection: $selectedBoard) {
                         Text(board.name)
@@ -80,6 +81,17 @@ struct SideBarView: View {
                 addExample.reset()
             }
         }
+        .onOpenURL(perform: { url in
+            print(url)
+            if (url.host == "tasks" && url.pathComponents.count >= 2) {
+                let taskId = url.pathComponents[1]
+                print(taskId)
+                guard let locatedTask = allBoardsVM.findTaskById(TaskId(uuidString: taskId)!) else { return }
+                selectedTask = locatedTask.3
+                selectedBoard = locatedTask.0                
+                print(locatedTask.3)
+            }
+       })
         Spacer()
         Divider()
         HStack {

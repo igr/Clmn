@@ -2,8 +2,9 @@ import SwiftUI
 
 let APP_SITE = "https://clmnapp.com"
 let APP_EMAIL = "clmn@igo.rs"
-let APP_GROUP = "ac.obl.clmn.Clmn"
+let APP_GROUP = "ac.obl.clmn"
 let APP_NAME = "Clmn"
+let APP_HOST = "clmn"
 
 /// Meta-data
 // application version, just a simple counter
