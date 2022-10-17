@@ -17,6 +17,10 @@ class AllBoardsVM: ObservableObject {
         boards.isEmpty
     }
 
+    func findBoardById(_ id: BoardId) -> Board? {
+        boards.first(where: { b in b.id == id })
+    }
+
     /// Creates a new board.
     @discardableResult
     func addNewBoard(_ name: String) -> Board {
@@ -41,6 +45,7 @@ class AllBoardsVM: ObservableObject {
         boards.with(boardToUpdate) { i in
             boards[i].name = name.trim()
         }
+        saveBoards()
     }
 
     /// Adds or updates the board.

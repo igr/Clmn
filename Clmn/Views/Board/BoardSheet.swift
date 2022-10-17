@@ -7,6 +7,8 @@ struct BoardSheet: View {
     var board: Board?
     var allBoardsVM: AllBoardsVM
 
+    @Binding var selectedBoard: Board?
+
     @State private var boardName: String = ""
 
     private func isUpdate() -> Bool {
@@ -24,6 +26,10 @@ struct BoardSheet: View {
                 Spacer()
                 SheetCancelOk(isUpdate: isUpdate()) {
                     allBoardsVM.addOrUpdateBoard(board: board, name: boardName)
+                    if (board != nil) {
+                        // need to update the selected board as its content is updated :)
+                        selectedBoard = allBoardsVM.findBoardById(board!.id)
+                    }
                 }
             }
             .padding()

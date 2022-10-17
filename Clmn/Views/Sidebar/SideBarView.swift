@@ -58,7 +58,7 @@ struct SideBarView: View {
             }
         }
         .sheet(item: $boardDetails) { item in
-            BoardSheet(board: item.model, allBoardsVM: allBoardsVM)
+            BoardSheet(board: item.model, allBoardsVM: allBoardsVM, selectedBoard: $selectedBoard)
         }
         .deleteBoardConfirmation($deleteBoard) { deletedBoard in
             let deletedIndex = allBoardsVM.deleteBoard(deletedBoard)
@@ -88,7 +88,7 @@ struct SideBarView: View {
                 print(taskId)
                 guard let locatedTask = allBoardsVM.findTaskById(TaskId(uuidString: taskId)!) else { return }
                 selectedTask = locatedTask.3
-                selectedBoard = locatedTask.0                
+                selectedBoard = locatedTask.0
                 print(locatedTask.3)
             }
        })
