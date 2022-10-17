@@ -65,8 +65,11 @@ struct MacTextEditor: NSViewRepresentable {
         }
 
         if (moveCursorToEnd) {
+            let originalPointColor = textView.insertionPointColor
+            textView.insertionPointColor = NSColor.clear
             DispatchQueue.main.async {
                 textView.moveToEndOfDocument(nil)
+                textView.insertionPointColor = originalPointColor
             }
 //            textView.becomeFirstResponder()
 //            let cursorPosition = text.utf16.count
