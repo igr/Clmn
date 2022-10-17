@@ -65,11 +65,14 @@ struct MacTextEditor: NSViewRepresentable {
         }
 
         if (moveCursorToEnd) {
-            textView.becomeFirstResponder()
-            let cursorPosition = text.utf16.count
-            let cursorRange = NSRange(location: cursorPosition, length: 0)
-            textView.selectedRange = cursorRange
-            textView.scrollRangeToVisible(cursorRange)
+            DispatchQueue.main.async {
+                textView.moveToEndOfDocument(nil)
+            }
+//            textView.becomeFirstResponder()
+//            let cursorPosition = text.utf16.count
+//            let cursorRange = NSRange(location: cursorPosition, length: 0)
+//            textView.selectedRange = cursorRange
+//            textView.scrollRangeToVisible(cursorRange)
         }
 
         return scrollView
@@ -82,19 +85,15 @@ struct MacTextEditor: NSViewRepresentable {
 
         // the range is reset when updating the string of the textView
         // so this will set it back to where it was previously
-//        let currentRange = textView.selectedRange()
+        let currentRange = textView.selectedRange()
 
         /// IMPORTANT DETAIL
         // There is a bug in macOS.
         //textView.string = text
         textView.textStorage?.setAttributedString(NSAttributedString(string:text, attributes: textAttributes))
 
-        // basically if we want to move the cursor to the end,
-        // we don't set the selected range to what is was before the string update
-        // otherwise, we set it
-//        if !moveCursorToEnd {
-//            textView.setSelectedRange(currentRange)
-//        }
+        // set the selected range to what is was before the string update
+        textView.setSelectedRange(currentRange)
     }
 
 }
