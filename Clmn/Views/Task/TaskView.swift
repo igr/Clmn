@@ -65,10 +65,13 @@ struct TaskView: View {
                         }
                     }
                     if (selected() && task.note != nil) {
-                        Text(task.note?.markdown() ?? "")
-                        .font(Font.App.taskNote)
-                        .foregroundColor(Color.App.taskNote)
-                        .padding(.bottom, 4)
+                        HStack() {
+                            Text(task.note?.markdown() ?? "")
+                            .font(Font.App.taskNote)
+                            .foregroundColor(Color.App.taskNote)
+                            .padding(.bottom, 4)
+                            Spacer()
+                        }
                     }
                 }
             }

@@ -12,4 +12,18 @@ extension String {
             return AttributedString("Error parsing markdown: \(error)")
         }
     }
+
+    /// Trims whitespaces.
+    func trim() -> String {
+        trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    /// Turns String to nil if empty.
+    func nilIfEmpty() -> String? {
+        (count == 0) ? nil : self
+    }
+
+    static func trimAndNil(_ str: String?) -> String? {
+        str != nil ? str!.trim().nilIfEmpty() : nil
+    }
 }

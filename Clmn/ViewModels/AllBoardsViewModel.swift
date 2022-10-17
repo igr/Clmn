@@ -20,7 +20,9 @@ class AllBoardsVM: ObservableObject {
     /// Creates a new board.
     @discardableResult
     func addNewBoard(_ name: String) -> Board {
-        let newBoard = Board(name: name)
+        let newBoard = Board(
+            name: name.trim()
+        )
         boards.append(newBoard)
         saveBoards()
         return newBoard
@@ -37,7 +39,7 @@ class AllBoardsVM: ObservableObject {
     /// Updates the board.
     private func updateBoard(_ boardToUpdate: Board, _ name: String) {
         boards.with(boardToUpdate) { i in
-            boards[i].name = name
+            boards[i].name = name.trim()
         }
     }
 
@@ -55,12 +57,12 @@ class AllBoardsVM: ObservableObject {
         boards.move(fromOffsets: set, toOffset: destinationIndex)
         saveBoards()
     }
-    
+
     // ---------------------------------------------------------------- finder
-    
+
     func findTaskById(_ taskId: TaskId) -> (Board, TaskList, TaskGroup, Task)? {
         var result: (Board, TaskList, TaskGroup, Task)? = nil
-        
+
         boards.forEach { board in
             let lists = services.lists.fetchBoardLists(board.id)
             lists.forEach { list in

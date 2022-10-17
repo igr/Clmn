@@ -19,7 +19,11 @@ class AllTaskListsVM: ObservableObject {
 
     @discardableResult
     func addNewList(_ title: String, description: String? = nil) -> TaskList {
-        let list = TaskList(boardId: board.id, title: title, description: description)
+        let list = TaskList(
+            boardId: board.id,
+            title: title.trim(),
+            description: String.trimAndNil(description)
+        )
         lists.append(list)
         saveLists()
         return list
@@ -32,8 +36,8 @@ class AllTaskListsVM: ObservableObject {
 
     func updateList(_ list: TaskList, _ title: String, _ description: String?) {
         lists.with(list) { index in
-            lists[index].title = title
-            lists[index].description = description
+            lists[index].title = title.trim()
+            lists[index].description = String.trimAndNil(description)
         }
         saveLists()
     }

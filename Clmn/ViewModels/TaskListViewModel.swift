@@ -10,7 +10,12 @@ class TaskListVM: ObservableObject {
 
     /// Adds a new task to the list or a group.
     func addNewTask(toGroup group: TaskGroup? = nil, _ name: String, note: String? = nil, color: Int = 0, progress: Int = 0, completed: Bool = false) {
-        var task = Task(name: name, note: note, color: color, completed: completed, progress: progress)
+        var task = Task(
+            name: name.trim(),
+            note: String.trimAndNil(note),
+            color: color,
+            completed: completed,
+            progress: progress)
         if (completed) {
             task.completedAt = Date.now
         }
@@ -22,8 +27,8 @@ class TaskListVM: ObservableObject {
 
     private func updateTask(_ task: Task, _ name: String, note: String? = nil, color: Int? = nil) {
         list.groups.with(task) { g, i in
-            list.groups[g].tasks[i].name = name
-            list.groups[g].tasks[i].note = note
+            list.groups[g].tasks[i].name = name.trim()
+            list.groups[g].tasks[i].note = String.trimAndNil(note)
             if (color != nil) {
                 list.groups[g].tasks[i].color = color!
             }
@@ -123,7 +128,9 @@ class TaskListVM: ObservableObject {
 
     @discardableResult
     func addNewTaskGroup(_ name: String) -> TaskGroup {
-        let group = TaskGroup(name: name)
+        let group = TaskGroup(
+            name: name.trim()
+        )
         list.groups.append(group)
         return group
     }
@@ -134,7 +141,7 @@ class TaskListVM: ObservableObject {
 
     private func updateTaskGroup(_ taskGroup: TaskGroup, _ name: String) {
         list.groups.with(taskGroup) { index in
-            list.groups[index].name = name
+            list.groups[index].name = name.trim()
         }
     }
 
