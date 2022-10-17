@@ -39,6 +39,19 @@ struct ClmnApp: App {
             .onChange(of: appThemeSetting) { newValue in
                 Appearance.applyTheme(newValue)
             }
+            // Handle minimize and show of the window
+            .onReceive(NotificationCenter.default.publisher(for: NSApplication.didChangeOcclusionStateNotification)) { _ in
+                if let window = NSApp.windows.first, window.isMiniaturized {
+                    NSWorkspace.shared.runningApplications.first(where: {
+                        $0.activationPolicy == .regular
+                    })?.activate(options: .activateAllWindows)
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
+                if let window = NSApp.windows.first {
+                    window.deminiaturize(nil)
+                }
+            }
         }
         .windowStyle(.hiddenTitleBar)
         .windowToolbarStyle(.unifiedCompact(showsTitle: false))
