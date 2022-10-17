@@ -9,6 +9,10 @@ struct TaskGroupSheet: View {
 
     @State private var groupName = ""
 
+    private func isUpdate() -> Bool {
+        group != nil
+    }
+
     var body: some View {
         VStack {
             SheetHeader("Group")
@@ -18,10 +22,10 @@ struct TaskGroupSheet: View {
                     placeholder: "Group Name...",
                     imageName: Icons.group)
                 Spacer()
-                SheetCancelOk(isUpdate: group != nil) {
+                SheetCancelOk(isUpdate: isUpdate()) {
                     listVM.addOrUpdateTaskGroup(group: group, groupName)
                 } onDelete: {
-                    guard group != nil else { return }
+                    guard isUpdate() else { return }
                     listVM.deleteTaskGroup(group!)
                 }
             }

@@ -11,3 +11,13 @@ extension View {
     }
 
 }
+
+func withAnimation(if condition: Bool, block: () -> Void) {
+    if condition {
+        withAnimation {
+            block()
+        }
+    } else {
+        block()
+    }
+}

@@ -16,7 +16,9 @@ struct SheetCancelOk: View {
                     if (areYouSure == false) {
                         areYouSure = true
                     } else {
-                        onDelete()
+                        withAnimation {
+                            onDelete()
+                        }
                         dismiss()
                     }
                 }, label: {
@@ -37,7 +39,7 @@ struct SheetCancelOk: View {
             .keyboardShortcut(.cancelAction)
 
             Button(action: {
-                withAnimation {
+                withAnimation(if: !isUpdate) {
                     onOk()
                 }
                 dismiss()

@@ -12,11 +12,9 @@ Features:
 + Drag-n-drop enabled
 + Markdown supported
 
-## A friendly note ❤️
-
-Clmn is a **paid "source-available"** app. That means I'm selling the pre-built version of the app. It takes time and effort to develop, distribute, maintain, and provide supports. If you like the app, please consider buying (one-time purchase). That would help me a lot! Thank you very much! 🙏
-
 ## Screenshots
+
+(not updated frequently.)
 
 ### Multiple clients
 ![](clmn1.png)

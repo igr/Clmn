@@ -9,6 +9,10 @@ struct BoardSheet: View {
 
     @State private var boardName: String = ""
 
+    private func isUpdate() -> Bool {
+        board != nil
+    }
+
     var body: some View {
         VStack {
             SheetHeader("Board")
@@ -18,7 +22,7 @@ struct BoardSheet: View {
                     placeholder: "Board Title...",
                     imageName: Icons.board)
                 Spacer()
-                SheetCancelOk {
+                SheetCancelOk(isUpdate: isUpdate()) {
                     allBoardsVM.addOrUpdateBoard(board: board, name: boardName)
                 }
             }

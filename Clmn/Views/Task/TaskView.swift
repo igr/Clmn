@@ -8,7 +8,7 @@ struct TaskView: View {
     @Binding var deleteTask: DeleteIntent<Task>
     @Binding var selectedTask: Task?
 
-    @State private var showEditButton = false
+    @State private var hovered = false
 
     @Environment(\.colorScheme) var colorScheme
     @AppStorage(SETTINGS_TASK_CHECKBOX_IMAGE) private var taskCheckboxImage = false
@@ -52,7 +52,7 @@ struct TaskView: View {
                             .padding(.top, 4)
                         }
                         Spacer()
-                        if (showEditButton) {
+                        if (selected() || hovered) {
                             Button(
                                 action: { taskDetails = ModelPairOpt<TaskGroup, Task>.of(group, task) },
                                 label: {
@@ -76,7 +76,7 @@ struct TaskView: View {
                 }
             }
             .padding(6)
-            .onHover { isHovered in showEditButton = isHovered }
+            .onHover { isHovered in hovered = isHovered }
         }
         .if (selected() && taskSelectable) { view in
             view.colorScheme(colorScheme == .dark ? .light : .dark).background(Color.App.listSelect)
@@ -150,6 +150,7 @@ struct TaskView: View {
         return Color.App.taskColors[task.color]
     }
 
+    /// Returns `true` if task is selected.
     private func selected() -> Bool {
         guard selectedTask != nil else { return false }
         return selectedTask!.id == task.id
