@@ -19,8 +19,6 @@ struct TaskListView: View {
     @EnvironmentObject var dragTaskList: DragTaskListModel
     @EnvironmentObject var dragTaskGroup: DragTaskGroupModel
 
-    @State private var isLastList: Bool = false
-
     var body: some View {
         #if DEBUG
         let _ = Self._printChanges()
@@ -31,7 +29,7 @@ struct TaskListView: View {
                 list: list,
                 taskListDetails: $taskListDetails,
                 hovered: $hovered,
-                isLast: $isLastList
+                isLast: isLast()
             )
             TaskListTitle(
                 list: list,
@@ -179,7 +177,11 @@ struct TaskListView: View {
             // when parent disappear.
             allListsVM.register({ listVM.list })
             // other initializations
-            isLastList = allListsVM.lists.isLast(listVM.list)
+
         }
+    }
+
+    private func isLast() -> Bool {
+        allListsVM.lists.isLast(listVM.list)
     }
 }

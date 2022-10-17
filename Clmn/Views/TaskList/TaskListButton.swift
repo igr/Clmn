@@ -4,7 +4,7 @@ struct TaskListButton: View {
     var list: TaskList
     @Binding var taskListDetails: ModelOpt<TaskList>?
     @Binding var hovered: Bool
-    @Binding var isLast: Bool
+    var isLast: Bool
 
     var body: some View {
         if (hovered) {
