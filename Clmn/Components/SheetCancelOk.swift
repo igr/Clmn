@@ -47,7 +47,8 @@ struct SheetCancelOk: View {
                 Text("OK")
                 .frame(maxWidth: 60)
             })
-            .keyboardShortcut(.defaultAction)
+            //.keyboardShortcut(.defaultAction)
+            .keyboardShortcut(.return, modifiers: .command)
             .tint(.accentColor)
         }
         .padding(.top, 10)

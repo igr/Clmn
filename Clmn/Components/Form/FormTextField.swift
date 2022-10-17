@@ -31,14 +31,6 @@ struct FormTextField: View {
                 font: Font.App.formFieldFont
             )
             .padding([.top], 6)
-
-            // original take
-//            TextField("", text: $text)
-//                .placeholder(when: text.isEmpty) {
-//                    Text(placeholder)
-//                        .foregroundColor(Color.App.formGray)
-//                }
-//                .textFieldStyle(.plain)
         }
         .cornerRadius(5)
         .overlay(
