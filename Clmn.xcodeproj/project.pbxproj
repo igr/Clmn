@@ -27,6 +27,7 @@
 		7D03B61ADB7BF70F9C46FBC1 /* TaskGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B3E5A26EBFC20E0FA2FF /* TaskGroupView.swift */; };
 		7D03B621D9D8AA3AAAD075EB /* Many+DropOnTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BAF4A5AF00CB7F02EFD8 /* Many+DropOnTaskList.swift */; };
 		7D03B648F13C243894660924 /* BoardSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B29D41A599606B741FD8 /* BoardSettingsView.swift */; };
+		7D03B68A7BE1677B4E198576 /* +NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BB8E8ECC876D07A767EB /* +NSColor.swift */; };
 		7D03B692DB3864533C410B55 /* DragTaskGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BADF47001F44F8D2AC11 /* DragTaskGroupModel.swift */; };
 		7D03B6A82021172420CCB7E9 /* OnDragTask+DropOnTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B4C900407EA4A09F4956 /* OnDragTask+DropOnTask.swift */; };
 		7D03B72DAFDFC030C8BA9473 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BA2D8D3A2892979CEC4D /* Icons.swift */; };
@@ -152,6 +153,7 @@
 		7D03BAF4A5AF00CB7F02EFD8 /* Many+DropOnTaskList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Many+DropOnTaskList.swift"; sourceTree = "<group>"; };
 		7D03BB6A204058C65591AE09 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		7D03BB87A080431895F31A35 /* AppExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppExample.swift; sourceTree = "<group>"; };
+		7D03BB8E8ECC876D07A767EB /* +NSColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+NSColor.swift"; sourceTree = "<group>"; };
 		7D03BBC9A7E84C587B478DD7 /* TaskListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
 		7D03BBDB2A745E19FFF676EB /* LazyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		7D03BC78CE7AEF46EAD67D0B /* FormTextEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextEditor.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				C7062FF328F0831500001DEE /* +View+RoundedCorners.swift */,
 				C7F53BBA28F0C00F00864E0E /* +View+Placeholder.swift */,
 				7D03B34CC6CE227792EEA511 /* +Binding.swift */,
+				7D03BB8E8ECC876D07A767EB /* +NSColor.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				7D03B4803533AA66279AF0BD /* AppService.swift in Sources */,
 				7D03B49AF6898765DFAFC6D9 /* SettingsView.swift in Sources */,
 				7D03B648F13C243894660924 /* BoardSettingsView.swift in Sources */,
+				7D03B68A7BE1677B4E198576 /* +NSColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
