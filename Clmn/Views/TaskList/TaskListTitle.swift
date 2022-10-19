@@ -31,9 +31,9 @@ struct TaskListTitle: View {
                     .font(Font.App.listSubtitle)
                     .foregroundColor(Color.App.listSubtitle)
             }
+            .padding(.horizontal)
         }
         .contentShape(Rectangle())
-        .padding(.horizontal)
         .padding(.bottom, 4)
         .contextMenu {
             Button {

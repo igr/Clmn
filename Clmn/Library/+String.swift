@@ -8,6 +8,8 @@ extension String {
     func markdown() -> AttributedString {
         do {
             return try AttributedString(markdown: self)
+//            let highlight = AttributeContainer.foregroundColor(.red).backgroundColor(.mint)
+//            a.replaceAttributes(AttributeContainer.inlinePresentationIntent(.emphasized), with: highlight)
         } catch {
             return AttributedString("Error parsing markdown: \(error)")
         }

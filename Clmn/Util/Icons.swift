@@ -39,4 +39,8 @@ struct Icons {
     static let completeTask = "checkmark"
     static let cancelTask = "xmark"
 
+    /// MARK: - settings
+
+    static let settingsGeneral = "slider.vertical.3"
+
 }

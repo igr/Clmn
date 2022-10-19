@@ -8,7 +8,7 @@ struct SettingsView: View {
         TabView {
             BoardSettingsView()
             .tabItem {
-                Label("Board", systemImage: Icons.board)
+                Label("General", systemImage: Icons.settingsGeneral)
             }
         }
         .frame(width: 450, height: 250)
