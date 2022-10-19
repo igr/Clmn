@@ -7,18 +7,28 @@ struct TaskListTitle: View {
     @Binding var taskGroupDetails: ModelOpt<TaskGroup>?
     @Binding var taskDetails: ModelPairOpt<TaskGroup, Task>?
     @Binding var deleteTaskList: DeleteIntent<TaskList>
+    @Binding var hovered: Bool
+    var isLast: Bool
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            HStack(alignment: .top) {
-                Text(list.title)
-                .font(Font.App.listTitle)
-                Spacer()
+        VStack(alignment: .leading, spacing: 0) {
+            TaskListButton(
+                list: list,
+                taskListDetails: $taskListDetails,
+                hovered: $hovered,
+                isLast: isLast
+            )
+            VStack(alignment: .leading, spacing: 2) {
+                HStack(alignment: .top) {
+                    Text(list.title)
+                        .font(Font.App.listTitle)
+                    Spacer()
+                }
+                .padding(.top, 10)
+                Text((list.description ?? "").markdown())
+                    .font(Font.App.listSubtitle)
+                    .foregroundColor(Color.App.listSubtitle)
             }
-            .padding(.top, 10)
-            Text((list.description ?? "").markdown())
-            .font(Font.App.listSubtitle)
-            .foregroundColor(Color.App.listSubtitle)
         }
         .contentShape(Rectangle())
         .padding(.horizontal)

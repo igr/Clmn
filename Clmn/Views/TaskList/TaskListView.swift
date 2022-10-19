@@ -25,18 +25,14 @@ struct TaskListView: View {
         #endif
         let list = listVM.list
         VStack(alignment: .leading, spacing: 0) {
-            TaskListButton(
-                list: list,
-                taskListDetails: $taskListDetails,
-                hovered: $hovered,
-                isLast: isLast()
-            )
             TaskListTitle(
                 list: list,
                 taskListDetails: $taskListDetails,
                 taskGroupDetails: $taskGroupDetails,
                 taskDetails: $taskDetails,
-                deleteTaskList: $deleteTaskList
+                deleteTaskList: $deleteTaskList,
+                hovered: $hovered,
+                isLast: isLast()
             )
             .onDrag {
                 dragTaskList.startDragOf(list)
