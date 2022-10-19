@@ -2,6 +2,8 @@ import SwiftUI
 
 struct TaskListTitle: View {
     var list: TaskList
+    var allListsVM: AllTaskListsVM
+    var listVM: TaskListVM
 
     @Binding var taskListDetails: ModelOpt<TaskList>?
     @Binding var taskGroupDetails: ModelOpt<TaskGroup>?
@@ -54,6 +56,27 @@ struct TaskListTitle: View {
                 .labelStyle(.titleAndIcon)
             }
             Divider()
+            Menu {
+                Button {
+                    // TODO Improve this!
+                    listVM.deleteCanceledTasks()
+                    allListsVM.apply(from: listVM.list)
+                } label: {
+                    Label("Delete canceled tasks", systemImage: Icons.cancelTask)
+                    .labelStyle(.titleAndIcon)
+                }
+                Button {
+                    // TODO Improve this!
+                    listVM.deleteCompletedTasks()
+                    allListsVM.apply(from: listVM.list)
+                } label: {
+                    Label("Delete completed tasks", systemImage: Icons.completeTask)
+                    .labelStyle(.titleAndIcon)
+                }
+            } label: {
+                Label("List actions...", systemImage: Icons.taskActions)
+                .labelStyle(.titleAndIcon)
+            }
             Button {
                 taskGroupDetails = ModelOpt<TaskGroup>.ofNew()
             } label: {

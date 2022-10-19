@@ -53,9 +53,14 @@ class TaskListVM: ObservableObject {
     }
 
     /// Deletes all completed and canceled tasks.
-    func deleteCompletedTask() {
+    func deleteCompletedTasks() {
         for (i, _) in list.groups.enumerated() {
-            list.groups[i].tasks.removeAll(where: { t in t.inactive() } )
+            list.groups[i].tasks.removeAll(where: { t in t.completed } )
+        }
+    }
+    func deleteCanceledTasks() {
+        for (i, _) in list.groups.enumerated() {
+            list.groups[i].tasks.removeAll(where: { t in t.canceled() } )
         }
     }
 
@@ -105,12 +110,8 @@ class TaskListVM: ObservableObject {
         list.groups.with(task) { g, i in
             var completed = list.groups[g].tasks[i].completed
             completed.toggle()
-            if (completed == false) {
-                list.groups[g].tasks[i].progress = 0
-                list.groups[g].tasks[i].completedAt = nil
-            } else {
-                list.groups[g].tasks[i].completedAt = Date.now
-            }
+            list.groups[g].tasks[i].completedAt = completed ? Date.now : nil
+            list.groups[g].tasks[i].progress = 0
             list.groups[g].tasks[i].completed = completed
         }
     }

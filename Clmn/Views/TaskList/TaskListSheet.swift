@@ -35,10 +35,12 @@ struct TaskListSheet: View {
                     HStack {
                         Button {
                             guard listVM != nil else { return }
-                            listVM?.deleteCompletedTask()
+                            // TODO Improve this!
+                            listVM!.deleteCompletedTasks()
+                            listVM!.deleteCanceledTasks()
                             allListsVM.apply(from: listVM!.list)
                         } label: {
-                            Text("Delete completed tasks")
+                            Text("Delete inactive tasks")
                         }
                     }
                 }

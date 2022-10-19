@@ -27,6 +27,8 @@ struct TaskListView: View {
         VStack(alignment: .leading, spacing: 0) {
             TaskListTitle(
                 list: list,
+                allListsVM: allListsVM,
+                listVM: listVM,
                 taskListDetails: $taskListDetails,
                 taskGroupDetails: $taskGroupDetails,
                 taskDetails: $taskDetails,

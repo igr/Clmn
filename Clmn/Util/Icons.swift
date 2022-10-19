@@ -15,6 +15,7 @@ struct Icons {
     static let taskProgress2 = "square.righthalf.filled"
     static let taskLink = "link"
     static let taskNote = "doc"
+    static let taskActions = "chevron.right.2"
 
     /// MARK: - form
 
