@@ -1,3 +1,4 @@
+import os
 import SwiftUI
 
 let APP_SITE = "https://clmnapp.com"
@@ -7,13 +8,20 @@ let APP_NAME = "Clmn"
 let APP_HOST = "clmn"
 
 /// Meta-data
+let mainBundle = Bundle.main
 // application version, just a simple counter
-let APP_VERSION = 1
+let APP_BUILD = Int(mainBundle.appBuild) ?? 0
 // application data version; the version of the models.
 let APP_DATA_VERSION = 1
 
 @main
 struct ClmnApp: App {
+
+    private static let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!,
+        category: String(describing: ClmnApp.self)
+    )
+    
     @AppStorage("appThemeSetting") private var appThemeSetting = Appearance.system
     @Environment(\.colorScheme) var colorScheme
 
@@ -21,11 +29,7 @@ struct ClmnApp: App {
 
     init() {
         disallowTabbingMode()
-        let appMetaData = services.app.fetchMetadata()
-        if (appMetaData.dataVersion != APP_DATA_VERSION) {
-            // upgrade!
-        }
-        print("\(APP_NAME) \(appMetaData.appVersion)-\(appMetaData.dataVersion)")
+        metaData()
     }
 
     var body: some Scene {
@@ -66,6 +70,21 @@ struct ClmnApp: App {
             SettingsView()
         }
     }
+    
+    // ---------------------------------------------------------------- meta
+    
+    fileprivate func metaData() {
+        let appMetaData = services.app.fetchMetadata()
+        upgradeData(from: appMetaData.dataVersion, to: APP_DATA_VERSION)
+        
+        // at this point the application is updated
+        services.app.storeMetadata(appVersion: APP_BUILD,
+                                   dataVersion: APP_DATA_VERSION)
+        
+        Self.logger.info("\(APP_NAME): \(APP_BUILD)//\(APP_DATA_VERSION)")
+    }
+    
+    // ---------------------------------------------------------------- menus
 
     /// Adds some menu button into Help menu.
     fileprivate func MenuLine_Help_SupportEmail() -> CommandGroup<Button<Text>> {

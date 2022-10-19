@@ -19,14 +19,13 @@ extension Bundle {
         i("NSHumanReadableCopyright").replacingOccurrences(of: "\\\\n", with: "\n")
     }
 
+    /// Returns the build number.
     public var appBuild: String {
         i("CFBundleVersion")
     }
-    public var appVersionLong: String {
+    /// Returns the public version number.
+    public var appVersion: String {
         i("CFBundleShortVersionString")
-    }
-    public var appVersionShort: String {
-        i("CFBundleShortVersion")
     }
 
     fileprivate func i(_ str: String) -> String {

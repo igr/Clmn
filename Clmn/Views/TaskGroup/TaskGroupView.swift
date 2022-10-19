@@ -26,6 +26,7 @@ struct TaskGroupView: View {
                     .padding(.trailing, 6)
                 }
             }
+            .contentShape(Rectangle())
             .contextMenu {
                 Button {
                     taskGroupDetails = ModelOpt<TaskGroup>.of(group)

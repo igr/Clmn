@@ -12,12 +12,11 @@ class AppService {
         subsystem: Bundle.main.bundleIdentifier!,
         category: String(describing: AppService.self)
     )
-
+    
     func fetchMetadata() -> AppMetaData {
         let objId = appObjectID()
         if (!Fridge.isFrozen🔬(objId)) {
-            let newAppMetaData = AppMetaData(appVersion: APP_VERSION, dataVersion: APP_DATA_VERSION)
-            storeMetadata(newAppMetaData)
+            return AppMetaData(appVersion: 0, dataVersion: 0)
         }
         let appMetaData: AppMetaData
         do {
@@ -30,7 +29,8 @@ class AppService {
         return appMetaData
     }
 
-    func storeMetadata(_ appMeta: AppMetaData) {
+    func storeMetadata(appVersion: Int, dataVersion: Int) {
+        let appMeta = AppMetaData(appVersion: appVersion, dataVersion: dataVersion)
         let objId = appObjectID()
         do {
             try Fridge.freeze🧊(appMeta, id: objId)
@@ -39,4 +39,5 @@ class AppService {
             Self.logger.error("Failed to store app meta-data: \(error.localizedDescription)")
         }
     }
+    
 }

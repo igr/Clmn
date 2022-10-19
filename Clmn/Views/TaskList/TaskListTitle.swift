@@ -13,6 +13,7 @@ struct TaskListTitle: View {
             HStack(alignment: .top) {
                 Text(list.title)
                 .font(Font.App.listTitle)
+                Spacer()
             }
             .padding(.top, 10)
             Text((list.description ?? "").markdown())

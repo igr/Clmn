@@ -71,6 +71,7 @@
 		C7652BAF28F6DCAE00AB1F52 /* DeleteTaskListConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7652BAE28F6DCAE00AB1F52 /* DeleteTaskListConfirmationDialog.swift */; };
 		C7652BB128F6DE2000AB1F52 /* DeleteTaskGroupConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7652BB028F6DE2000AB1F52 /* DeleteTaskGroupConfirmationDialog.swift */; };
 		C7652BB328F6E51600AB1F52 /* DeleteTaskConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7652BB228F6E51600AB1F52 /* DeleteTaskConfirmationDialog.swift */; };
+		C76E165C28FFE05B00CA7185 /* AppUpgrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76E165B28FFE05B00CA7185 /* AppUpgrade.swift */; };
 		C76FBD8728EAD1E700442B24 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76FBD8628EAD1E700442B24 /* FormTextField.swift */; };
 		C76FBD8928EAE15400442B24 /* TaskListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76FBD8828EAE15400442B24 /* TaskListButton.swift */; };
 		C76FBD8D28EAE4B500442B24 /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76FBD8C28EAE4B500442B24 /* +View.swift */; };
@@ -172,6 +173,7 @@
 		C7652BAE28F6DCAE00AB1F52 /* DeleteTaskListConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTaskListConfirmationDialog.swift; sourceTree = "<group>"; };
 		C7652BB028F6DE2000AB1F52 /* DeleteTaskGroupConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTaskGroupConfirmationDialog.swift; sourceTree = "<group>"; };
 		C7652BB228F6E51600AB1F52 /* DeleteTaskConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTaskConfirmationDialog.swift; sourceTree = "<group>"; };
+		C76E165B28FFE05B00CA7185 /* AppUpgrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpgrade.swift; sourceTree = "<group>"; };
 		C76FBD8628EAD1E700442B24 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		C76FBD8828EAE15400442B24 /* TaskListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListButton.swift; sourceTree = "<group>"; };
 		C76FBD8C28EAE4B500442B24 /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 				7D03BB87A080431895F31A35 /* AppExample.swift */,
 				C7652BAA28F6CA4800AB1F52 /* Credits.html */,
 				C7E1081728E0E93A00445362 /* Preview Content */,
+				C76E165B28FFE05B00CA7185 /* AppUpgrade.swift */,
 			);
 			path = Clmn;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				C7F53BBB28F0C00F00864E0E /* +View+Placeholder.swift in Sources */,
 				C7E1081428E0E93900445362 /* ContentView.swift in Sources */,
 				C7E1082828E0EAF200445362 /* AllBoardsViewModel.swift in Sources */,
+				C76E165C28FFE05B00CA7185 /* AppUpgrade.swift in Sources */,
 				C7E1082B28E0EB6500445362 /* +Array.swift in Sources */,
 				C7830B3328E7A59300F3BF75 /* Typography.swift in Sources */,
 				C7C0AA7B28F365E100DE836D /* TaskColorRadioButtons.swift in Sources */,
@@ -757,7 +761,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ac.obl.clmn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -788,7 +792,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ac.obl.clmn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
