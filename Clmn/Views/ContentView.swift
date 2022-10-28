@@ -14,23 +14,6 @@ struct ContentView: View {
 //    }
 
     var body: some View {
-//        HSplitView {
-//            HStack {
-//                Text("A")
-//                Button(action: {  }) {
-//                    Text("CCC")
-//                }
-//                .buttonStyle(.borderless)
-//                Spacer()
-//            }
-//            .colorScheme(.dark)
-//            .background(Color.App.sidebarBackground)
-//
-//            HStack {
-//                Text("B")
-//                Spacer()
-//            }
-//        }
         NavigationView {
             VStack {
                 SideBarView()
