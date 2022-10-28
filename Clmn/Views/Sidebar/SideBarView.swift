@@ -82,16 +82,13 @@ struct SideBarView: View {
             }
         }
         .onOpenURL(perform: { url in
-            print(url)
             if (url.host == "tasks" && url.pathComponents.count >= 2) {
                 let taskId = url.pathComponents[1]
-                print(taskId)
                 guard let locatedTask = allBoardsVM.findTaskById(TaskId(uuidString: taskId)!) else { return }
                 selectedTask = locatedTask.3
                 selectedBoard = locatedTask.0
-                print(locatedTask.3)
             }
-       })
+        })
         Spacer()
         Divider()
         HStack {

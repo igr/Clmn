@@ -45,9 +45,7 @@ class TaskListVM: ObservableObject {
 
     /// Removes a task from the list.
     func deleteTask(_ task: Task) {
-        print("delete task")
         list.groups.with(task) { g, i in
-            print("delete task!!! \(i)")
             list.groups[g].tasks.remove(at: i)
         }
     }
