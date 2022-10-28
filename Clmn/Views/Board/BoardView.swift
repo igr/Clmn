@@ -6,6 +6,7 @@ struct BoardView: View {
     @Binding var selectedTask: Task?
 
     @StateObject var allListsVM = AllTaskListsVM()
+    @State private var isEmpty = false
 
     var body: some View {
         #if DEBUG
@@ -13,7 +14,7 @@ struct BoardView: View {
         #endif
 
         VStack(spacing: 0) {
-            if (allListsVM.lists.isEmpty) {
+            if (isEmpty) {
                 EmptyBoardView(taskListDetails: $taskListDetails)
             } else {
                 Divider()
@@ -37,6 +38,7 @@ struct BoardView: View {
         }
         .onAppear {
             allListsVM.loadLists(board: board)
+            isEmpty = allListsVM.lists.isEmpty
         }
         .onDisappear {
             allListsVM.handleListChanges {
