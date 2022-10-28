@@ -19,7 +19,11 @@ struct SideBarView: View {
         VStack(spacing: 0) {
             List {
                 ForEach(allBoardsVM.boards, id: \.id) { board in
-                    NavigationLink(destination: BoardView(board: board, taskListDetails: $taskListDetails, selectedTask: $selectedTask),
+                    NavigationLink(
+                        destination: BoardView(
+                            board: board,
+                            taskListDetails: $taskListDetails,
+                            selectedTask: $selectedTask),
                         tag: board,
                         selection: $selectedBoard) {
                         Text(board.name)

@@ -6,13 +6,38 @@ struct ContentView: View {
     @StateObject var dragTaskList: DragTaskListModel = DragTaskListModel()
     @StateObject var dragTaskGroup: DragTaskGroupModel = DragTaskGroupModel()
 
+//    @State private var sidebarCollapsed = false
+//    @State private var sidebarInit: (Bool) -> Void = { b in
+//        if (b == true) {
+//            SideBarUtil.toggleSidebar()
+//        }
+//    }
+
     var body: some View {
+//        HSplitView {
+//            HStack {
+//                Text("A")
+//                Button(action: {  }) {
+//                    Text("CCC")
+//                }
+//                .buttonStyle(.borderless)
+//                Spacer()
+//            }
+//            .colorScheme(.dark)
+//            .background(Color.App.sidebarBackground)
+//
+//            HStack {
+//                Text("B")
+//                Spacer()
+//            }
+//        }
         NavigationView {
             VStack {
                 SideBarView()
             }
             .colorScheme(.dark)
             .background(Color.App.sidebarBackground)
+//            .background(SplitViewAccessor(sideCollapsed: $sidebarCollapsed, onInit: $sidebarInit))
         }
         .environmentObject(dragTask)
         .environmentObject(dragTaskList)
