@@ -65,6 +65,9 @@ struct ClmnApp: App {
                     window.titlebarSeparatorStyle = .none
                     window.titleVisibility = .hidden
                     window.backgroundColor = NSColor(Color.App.listBackground)
+//                    window.standardWindowButton(.closeButton)!.isHidden = true
+//                    window.standardWindowButton(.miniaturizeButton)!.isHidden = true
+//                    window.standardWindowButton(.zoomButton)!.isHidden = true
                 }
             }
         }
