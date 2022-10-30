@@ -3,6 +3,7 @@ import SwiftUI
 
 struct AppColors {
     let sidebarBackground = Color("SidebarBackgroundColor")
+    let sidebarSelected = Color.selectedTextBackground
 
     let listBackground = Color("ListBackground")
     let listSplitLine = Color.windowBackground

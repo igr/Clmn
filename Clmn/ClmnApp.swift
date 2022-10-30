@@ -26,6 +26,9 @@ struct ClmnApp: App {
     @Environment(\.colorScheme) var colorScheme
 
     @StateObject var addExample = AddExampleModel()
+    @StateObject var dragTask: DragTaskModel = DragTaskModel()
+    @StateObject var dragTaskList: DragTaskListModel = DragTaskListModel()
+    @StateObject var dragTaskGroup: DragTaskGroupModel = DragTaskGroupModel()
 
     init() {
         disallowTabbingMode()
@@ -34,7 +37,12 @@ struct ClmnApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            VStack(spacing: 0) {
+                MainView()
+            }
+            .environmentObject(dragTask)
+            .environmentObject(dragTaskList)
+            .environmentObject(dragTaskGroup)
             .environmentObject(addExample)
             .font(.system(.body, design: .default))
             .onAppear {
@@ -61,7 +69,7 @@ struct ClmnApp: App {
                 SideBarUtil.toggleSidebar()
                 if let window = NSApp.windows.first {
                     window.titlebarAppearsTransparent = true
-                    window.isMovableByWindowBackground = true
+                    window.isMovableByWindowBackground = false
                     window.titlebarSeparatorStyle = .none
                     window.titleVisibility = .hidden
                     window.backgroundColor = NSColor(Color.App.listBackground)
