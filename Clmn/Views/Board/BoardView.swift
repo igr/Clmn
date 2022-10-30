@@ -17,7 +17,6 @@ struct BoardView: View {
             if (isEmpty) {
                 EmptyBoardView(taskListDetails: $taskListDetails)
             } else {
-                Divider()
                 HStack(
                     alignment: .top,
                     spacing: 2
@@ -29,6 +28,7 @@ struct BoardView: View {
                             selectedTask: $selectedTask
                         )
                         .frame(minWidth: 200, minHeight: 200)
+                        .shadow(color: Color.App.listSplitLine, radius: 5, x: 15, y: 15)
                     }
                 }
             }

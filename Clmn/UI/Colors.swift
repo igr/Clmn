@@ -5,6 +5,7 @@ struct AppColors {
     let sidebarBackground = Color("SidebarBackgroundColor")
 
     let listBackground = Color("ListBackground")
+    let listSplitLine = Color.windowBackground
     let listSubtitle = Color.secondary
     let listSelect = Color("ListSelect")
     let listText = Color.text

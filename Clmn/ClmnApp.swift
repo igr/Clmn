@@ -21,7 +21,7 @@ struct ClmnApp: App {
         subsystem: Bundle.main.bundleIdentifier!,
         category: String(describing: ClmnApp.self)
     )
-    
+
     @AppStorage("appThemeSetting") private var appThemeSetting = Appearance.system
     @Environment(\.colorScheme) var colorScheme
 
@@ -56,9 +56,21 @@ struct ClmnApp: App {
                     window.deminiaturize(nil)
                 }
             }
+            // Change title bar color
+            .onReceive(NotificationCenter.default.publisher(for: NSApplication.didFinishLaunchingNotification)) { _ in
+                SideBarUtil.toggleSidebar()
+                if let window = NSApp.windows.first {
+                    window.titlebarAppearsTransparent = true
+                    window.isMovableByWindowBackground = true
+                    window.titlebarSeparatorStyle = .none
+                    window.titleVisibility = .hidden
+                    window.backgroundColor = NSColor(Color.App.listBackground)
+                }
+            }
         }
-        .windowStyle(.hiddenTitleBar)
-        .windowToolbarStyle(.unifiedCompact(showsTitle: false))
+        // already one inside notification
+//        .windowStyle(.hiddenTitleBar)
+//        .windowToolbarStyle(.unifiedCompact(showsTitle: false))
         .commands {
             MenuLine_File_NewWindow_Disable()
             MenuLine_Help_SupportEmail()
@@ -70,20 +82,20 @@ struct ClmnApp: App {
             SettingsView()
         }
     }
-    
+
     // ---------------------------------------------------------------- meta
-    
+
     fileprivate func metaData() {
         let appMetaData = services.app.fetchMetadata()
         upgradeData(from: appMetaData.dataVersion, to: APP_DATA_VERSION)
-        
+
         // at this point the application is updated
         services.app.storeMetadata(appVersion: APP_BUILD,
                                    dataVersion: APP_DATA_VERSION)
-        
+
         Self.logger.info("\(APP_NAME): \(APP_BUILD)//\(APP_DATA_VERSION)")
     }
-    
+
     // ---------------------------------------------------------------- menus
 
     /// Adds some menu button into Help menu.
