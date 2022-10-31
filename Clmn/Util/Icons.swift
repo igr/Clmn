@@ -42,5 +42,6 @@ struct Icons {
     /// MARK: - settings
 
     static let settingsGeneral = "slider.vertical.3"
+    static let settingsBehaviour = "wand.and.stars.inverse"
 
 }

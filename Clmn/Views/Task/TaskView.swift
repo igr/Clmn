@@ -9,6 +9,7 @@ struct TaskView: View {
     @Binding var selectedTask: Task?
 
     @State private var hovered = false
+    @AppStorage(SETTINGS_HOVER_EDIT) private var hoverEdit = true
 
     @Environment(\.colorScheme) var colorScheme
     @AppStorage(SETTINGS_TASK_CHECKBOX_IMAGE) private var taskCheckboxImage = false
@@ -65,7 +66,7 @@ struct TaskView: View {
                         }
                     }
                     if (selected() && task.note != nil) {
-                        HStack() {
+                        HStack {
                             Text(task.note?.markdown() ?? "")
                             .font(Font.App.taskNote)
                             .foregroundColor(Color.App.taskNote)
@@ -76,7 +77,9 @@ struct TaskView: View {
                 }
             }
             .padding(6)
-            .onHover { isHovered in hovered = isHovered }
+            .onHover { hovered in
+                self.hovered = hoverEdit == true ? hovered : false
+            }
         }
         .if (selected() && taskSelectable) { view in
             view.colorScheme(colorScheme == .dark ? .light : .dark).background(Color.App.listSelect)

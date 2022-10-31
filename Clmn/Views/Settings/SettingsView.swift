@@ -2,6 +2,7 @@ import SwiftUI
 
 let SETTINGS_TASK_CHECKBOX_IMAGE = "taskCheckboxImage"
 let SETTINGS_TASK_SELECTABLE = "taskSelectable"
+let SETTINGS_HOVER_EDIT = "hoverEdit"
 
 struct SettingsView: View {
     var body: some View {
@@ -9,6 +10,10 @@ struct SettingsView: View {
             BoardSettingsView()
             .tabItem {
                 Label("General", systemImage: Icons.settingsGeneral)
+            }
+            BehaviourSettingsView()
+            .tabItem {
+                Label("Behaviour", systemImage: Icons.settingsBehaviour)
             }
         }
         .frame(width: 450, height: 250)

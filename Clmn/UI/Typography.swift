@@ -5,6 +5,7 @@ struct Typography {
     let sideboard: Font!
     let formField: Font!
     let formLabel: Font!
+    let formDescription: Font!
     let formFieldFont: NSFont!
     let formSheetHeader: Font!
     let listTitle: Font!
@@ -26,6 +27,7 @@ struct Typography {
         self.taskIcon = Font.system(size: 16, design: .monospaced)
         self.taskText = Font.system(size: 16)
         self.taskNote = Font.system(size: 14)
+        self.formDescription = Font.system(size: 12).weight(.light)
     }
 }
 

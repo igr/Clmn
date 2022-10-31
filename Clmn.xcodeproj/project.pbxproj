@@ -19,6 +19,7 @@
 		7D03B4803533AA66279AF0BD /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BF279FEC44A69DC1B9C4 /* AppService.swift */; };
 		7D03B491C4B1262AF791A0CE /* +Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B4A14320A60A3D55F327 /* +Color.swift */; };
 		7D03B49AF6898765DFAFC6D9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B9CD2DAFF23ECF34AF7E /* SettingsView.swift */; };
+		7D03B4AD46F54CF23C5B9900 /* BehaviourSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B50EDF969B993BEF7110 /* BehaviourSettingsView.swift */; };
 		7D03B4B641D7519813B2A779 /* +NSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B259D8FD3F56E8BB72C8 /* +NSTextField.swift */; };
 		7D03B4BFD994849E2846A6CB /* +Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B44C9E8B5E8EB31FEC0F /* +Bundle.swift */; };
 		7D03B4E3B707945536BA1729 /* AppExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BB87A080431895F31A35 /* AppExample.swift */; };
@@ -80,6 +81,7 @@
 		C76FBD8D28EAE4B500442B24 /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76FBD8C28EAE4B500442B24 /* +View.swift */; };
 		C7830B3128E7A31400F3BF75 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7830B3028E7A31400F3BF75 /* Colors.swift */; };
 		C7830B3328E7A59300F3BF75 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7830B3228E7A59300F3BF75 /* Typography.swift */; };
+		C78776D8291027DD0016185B /* FormDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78776D7291027DD0016185B /* FormDescription.swift */; };
 		C7887E1828E1EB32008DCA58 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7887E1728E1EB32008DCA58 /* Services.swift */; };
 		C7887E1A28E1EC53008DCA58 /* BoardsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7887E1928E1EC53008DCA58 /* BoardsService.swift */; };
 		C7C0AA7928F365AA00DE836D /* ColorCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C0AA7828F365AA00DE836D /* ColorCheckBox.swift */; };
@@ -132,6 +134,7 @@
 		7D03B4C900407EA4A09F4956 /* OnDragTask+DropOnTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnDragTask+DropOnTask.swift"; sourceTree = "<group>"; };
 		7D03B4CBA512AEDFC4D4F706 /* DeleteIntent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteIntent.swift; sourceTree = "<group>"; };
 		7D03B4EEB1470F99AA92E5D6 /* TaskSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskSheet.swift; sourceTree = "<group>"; };
+		7D03B50EDF969B993BEF7110 /* BehaviourSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviourSettingsView.swift; sourceTree = "<group>"; };
 		7D03B51885376A25932BA331 /* GoldenRatio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoldenRatio.swift; sourceTree = "<group>"; };
 		7D03B54A842C5D571B17995E /* OnDragTask+DropOnTaskGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnDragTask+DropOnTaskGroup.swift"; sourceTree = "<group>"; };
 		7D03B56EB2FD2C75F443311D /* TaskListsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListsService.swift; sourceTree = "<group>"; };
@@ -184,6 +187,7 @@
 		C76FBD8C28EAE4B500442B24 /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
 		C7830B3028E7A31400F3BF75 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		C7830B3228E7A59300F3BF75 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		C78776D7291027DD0016185B /* FormDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDescription.swift; sourceTree = "<group>"; };
 		C7887E1728E1EB32008DCA58 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		C7887E1928E1EC53008DCA58 /* BoardsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsService.swift; sourceTree = "<group>"; };
 		C7C0AA7828F365AA00DE836D /* ColorCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCheckBox.swift; sourceTree = "<group>"; };
@@ -301,6 +305,7 @@
 			children = (
 				7D03B9CD2DAFF23ECF34AF7E /* SettingsView.swift */,
 				7D03B29D41A599606B741FD8 /* BoardSettingsView.swift */,
+				7D03B50EDF969B993BEF7110 /* BehaviourSettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				7D03B2C11409AFBC9AC03FC1 /* FormLabel.swift */,
 				7D03BC78CE7AEF46EAD67D0B /* FormTextEditor.swift */,
 				C76FBD8628EAD1E700442B24 /* FormTextField.swift */,
+				C78776D7291027DD0016185B /* FormDescription.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -572,6 +578,7 @@
 				7D03BE40A06D7BE3FFE6F1C4 /* Task.swift in Sources */,
 				7D03B72DAFDFC030C8BA9473 /* Icons.swift in Sources */,
 				C76FBD8728EAD1E700442B24 /* FormTextField.swift in Sources */,
+				C78776D8291027DD0016185B /* FormDescription.swift in Sources */,
 				7D03BE8D77B09B5F10AC0EEF /* SideBarUtil.swift in Sources */,
 				7D03B7A0F2F48F99D91FF758 /* BoardSheet.swift in Sources */,
 				C7062FF428F0831500001DEE /* +View+RoundedCorners.swift in Sources */,
@@ -632,6 +639,7 @@
 				7D03B68A7BE1677B4E198576 /* +NSColor.swift in Sources */,
 				7D03BF542BC1E71E0FCC55C1 /* SplitView.swift in Sources */,
 				7D03BA5516975CDAD2524322 /* AppAbout.swift in Sources */,
+				7D03B4AD46F54CF23C5B9900 /* BehaviourSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

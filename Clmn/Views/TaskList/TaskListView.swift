@@ -10,6 +10,7 @@ struct TaskListView: View {
     @State private var taskGroupDetails: ModelOpt<TaskGroup>?
 
     @State private var hovered: Bool = false
+    @AppStorage(SETTINGS_HOVER_EDIT) private var hoverEdit = true
 
     @State private var deleteTask: DeleteIntent<Task> = DeleteIntent()
     @State private var deleteTaskGroup: DeleteIntent<TaskGroup> = DeleteIntent()
@@ -166,7 +167,7 @@ struct TaskListView: View {
             )
         )
         .onHover { hovered in
-            self.hovered = hovered
+            self.hovered = hoverEdit == true ? hovered : false
         }
         .onAppear {
             /// IMPORTANT DETAIL
