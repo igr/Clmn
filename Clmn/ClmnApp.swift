@@ -28,6 +28,7 @@ struct ClmnApp: App {
     @AppStorage("sidebar.hidden") private var primaryHidden: Bool = false
 
     @StateObject var addExample = AddExampleModel()
+    @StateObject var dragBoard: DragBoardModel = DragBoardModel()
     @StateObject var dragTask: DragTaskModel = DragTaskModel()
     @StateObject var dragTaskList: DragTaskListModel = DragTaskListModel()
     @StateObject var dragTaskGroup: DragTaskGroupModel = DragTaskGroupModel()
@@ -42,6 +43,7 @@ struct ClmnApp: App {
             VStack(spacing: 0) {
                 MainView()
             }
+            .environmentObject(dragBoard)
             .environmentObject(dragTask)
             .environmentObject(dragTaskList)
             .environmentObject(dragTaskGroup)

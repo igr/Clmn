@@ -11,6 +11,7 @@ struct MainView: View {
     @State private var deleteBoard: DeleteIntent<Board> = DeleteIntent()
 
     @EnvironmentObject var addExample: AddExampleModel
+    @EnvironmentObject var dragBoard: DragBoardModel
 
     var body: some View {
         #if DEBUG
@@ -62,10 +63,6 @@ struct MainView: View {
         VStack(spacing: 0) {
             Spacer().frame(height: 10) // need this to prevent coloring issue.
             ForEach(allBoardsVM.boards, id: \.id) { board in
-//                    }
-//                    .onMove { indices, newOffset in
-//                        allBoardsVM.reorder(from: indices, to: newOffset)
-//                    }
                 Button {
                     selectedBoard = board
                 } label: {
@@ -74,6 +71,9 @@ struct MainView: View {
                     .padding(5)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     .contentShape(Rectangle())
+                    .onDrag {
+                        dragBoard.startDragOf(board)
+                    }
                 }
                 .buttonStyle(.plain)
                 .background(selectedBoard == board ? Color.App.sidebarSelected : .clear)
@@ -98,6 +98,14 @@ struct MainView: View {
                         .labelStyle(.titleAndIcon)
                     }
                 }
+                .onDrop(
+                    of: [BOARD_UTI],
+                    delegate: DragBoardDropOnBoard(
+                        source: dragBoard,
+                        target: board,
+                        reorder: { s, d in allBoardsVM.reorder(from: s, to: d) }
+                    )
+                )
             }
             Spacer()
             Divider()

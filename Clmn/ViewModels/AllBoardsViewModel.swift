@@ -57,6 +57,15 @@ class AllBoardsVM: ObservableObject {
         }
     }
 
+    // ---------------------------------------------------------------- reoreder
+
+    func reorder(from: Board, to destination: Board) {
+        let fromIndex = boards.firstIndex(of: from)
+        let toIndex = boards.firstIndex(of: destination)
+        guard (fromIndex != nil && toIndex != nil) else { return }
+        reorder(from: [fromIndex!], to: toIndex!)
+    }
+
     /// Reorders the boards.
     func reorder(from set: IndexSet, to destinationIndex: Int) {
         boards.move(fromOffsets: set, toOffset: destinationIndex)

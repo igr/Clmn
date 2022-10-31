@@ -39,6 +39,7 @@
 		7D03B7DCEF533A91F520036D /* CursorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B59CA762D95CAB842FB2 /* CursorUtil.swift */; };
 		7D03B8696D4C23E8E13BE679 /* TaskListsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B56EB2FD2C75F443311D /* TaskListsService.swift */; };
 		7D03B8A09C6A5505DCF02208 /* OnDragTaskList+DropOnTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BFFB6D0B0B3570BE85CA /* OnDragTaskList+DropOnTaskList.swift */; };
+		7D03B8A602C69FC6C4D678A1 /* OnDragBoard+DropOnBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B3E5900580807F8E96EC /* OnDragBoard+DropOnBoard.swift */; };
 		7D03B8C9F66878B619005F23 /* AppMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B684DF3DE8BF33A83059 /* AppMetaData.swift */; };
 		7D03B987702F605266E72E50 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BBC9A7E84C587B478DD7 /* TaskListViewModel.swift */; };
 		7D03B9A1069FCBA61D976F87 /* GoldenRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B51885376A25932BA331 /* GoldenRatio.swift */; };
@@ -47,6 +48,7 @@
 		7D03B9CEA7B5A111FC780AC7 /* TaskGroupSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B09A2AE36E61E0FB8BE3 /* TaskGroupSheet.swift */; };
 		7D03BA2CB5F2790D9C061789 /* OnDragTask+DropOnTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BD1C3EB4EADD52123484 /* OnDragTask+DropOnTaskList.swift */; };
 		7D03BA5516975CDAD2524322 /* AppAbout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B234C6A2AEF019B23DEC /* AppAbout.swift */; };
+		7D03BA85BCEE5683DDA09C1C /* DragBoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03BEF6E68874E3D09AF550 /* DragBoardModel.swift */; };
 		7D03BB6A4EEC65622BF9042F /* ForEachWithIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B193AB1259F3657599C8 /* ForEachWithIndex.swift */; };
 		7D03BBD95B70D6DC2FB340DA /* AllTaskListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B6451F894C8CFFCEDBF0 /* AllTaskListsViewModel.swift */; };
 		7D03BC097D0E3AE50DF17B2C /* ModelPairOpt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03B64F79B5D59731E7CC52 /* ModelPairOpt.swift */; };
@@ -126,6 +128,7 @@
 		7D03B2C11409AFBC9AC03FC1 /* FormLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormLabel.swift; sourceTree = "<group>"; };
 		7D03B2FCE3D7F96A4C263586 /* TaskGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroup.swift; sourceTree = "<group>"; };
 		7D03B34CC6CE227792EEA511 /* +Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+Binding.swift"; sourceTree = "<group>"; };
+		7D03B3E5900580807F8E96EC /* OnDragBoard+DropOnBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnDragBoard+DropOnBoard.swift"; sourceTree = "<group>"; };
 		7D03B3E5A26EBFC20E0FA2FF /* TaskGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskGroupView.swift; sourceTree = "<group>"; };
 		7D03B446D34F3ED98A635B29 /* SideBarUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarUtil.swift; sourceTree = "<group>"; };
 		7D03B44C9E8B5E8EB31FEC0F /* +Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "+Bundle.swift"; sourceTree = "<group>"; };
@@ -168,6 +171,7 @@
 		7D03BD4A62909CC852C803DB /* EmptyBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyBoardView.swift; sourceTree = "<group>"; };
 		7D03BE65175A370C62B6DB0F /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		7D03BEB725DEA0FB5654CE08 /* DragTaskListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragTaskListModel.swift; sourceTree = "<group>"; };
+		7D03BEF6E68874E3D09AF550 /* DragBoardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragBoardModel.swift; sourceTree = "<group>"; };
 		7D03BF279FEC44A69DC1B9C4 /* AppService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
 		7D03BFFB6D0B0B3570BE85CA /* OnDragTaskList+DropOnTaskList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnDragTaskList+DropOnTaskList.swift"; sourceTree = "<group>"; };
 		C7062FF028F0806300001DEE /* PeriodicoDisplay-Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PeriodicoDisplay-Bd.ttf"; sourceTree = "<group>"; };
@@ -274,6 +278,8 @@
 				7D03B4C900407EA4A09F4956 /* OnDragTask+DropOnTask.swift */,
 				7D03BD1C3EB4EADD52123484 /* OnDragTask+DropOnTaskList.swift */,
 				7D03BAF4A5AF00CB7F02EFD8 /* Many+DropOnTaskList.swift */,
+				7D03BEF6E68874E3D09AF550 /* DragBoardModel.swift */,
+				7D03B3E5900580807F8E96EC /* OnDragBoard+DropOnBoard.swift */,
 			);
 			path = DragDrop;
 			sourceTree = "<group>";
@@ -640,6 +646,8 @@
 				7D03BF542BC1E71E0FCC55C1 /* SplitView.swift in Sources */,
 				7D03BA5516975CDAD2524322 /* AppAbout.swift in Sources */,
 				7D03B4AD46F54CF23C5B9900 /* BehaviourSettingsView.swift in Sources */,
+				7D03BA85BCEE5683DDA09C1C /* DragBoardModel.swift in Sources */,
+				7D03B8A602C69FC6C4D678A1 /* OnDragBoard+DropOnBoard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
