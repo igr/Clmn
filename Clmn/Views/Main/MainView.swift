@@ -120,9 +120,6 @@ struct MainView: View {
                 .controlSize(.large)
             }
             .padding()
-//                if (allBoardsVM.isEmpty()) {
-//                    ZeroBoardView()
-//                }
         }
         .background(Color.App.sidebarBackground)
         .colorScheme(.dark)
@@ -131,6 +128,9 @@ struct MainView: View {
     /// SINGLE SELECTED BOARD
     private var selectedBoardView: some View {
         VStack(spacing: 0) {
+            if (allBoardsVM.isEmpty()) {
+                ZeroBoardView()
+            }
             ForEach(allBoardsVM.boards, id: \.id) { board in
                 if (selectedBoard == board) {
                     BoardView(

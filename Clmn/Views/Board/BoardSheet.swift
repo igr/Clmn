@@ -26,9 +26,11 @@ struct BoardSheet: View {
                 Spacer()
                 SheetCancelOk(isUpdate: isUpdate()) {
                     allBoardsVM.addOrUpdateBoard(board: board, name: boardName)
-                    if (board != nil) {
+                    if (isUpdate()) {
                         // need to update the selected board as its content is updated :)
                         selectedBoard = allBoardsVM.findBoardById(board!.id)
+                    } else {
+                        selectedBoard = allBoardsVM.boards.last
                     }
                 }
             }
