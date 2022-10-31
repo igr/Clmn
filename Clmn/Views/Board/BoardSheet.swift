@@ -32,6 +32,16 @@ struct BoardSheet: View {
                     } else {
                         selectedBoard = allBoardsVM.boards.last
                     }
+                } onDelete: {
+                    guard isUpdate() else { return }
+                    let removedIndex = allBoardsVM.deleteBoard(board!)
+                    if (allBoardsVM.isEmpty()) {
+                        selectedBoard = nil
+                    } else if (removedIndex >= allBoardsVM.boards.count) {
+                        selectedBoard = allBoardsVM.boards.last
+                    } else {
+                        selectedBoard = allBoardsVM.boards[removedIndex]
+                    }
                 }
             }
             .padding()
