@@ -43,9 +43,11 @@ fileprivate struct SplitDivider: View {
     }
 
     public var body: some View {
-        Color.red
+//        Color.red
+        SliderBackgroundViewImpl()
         .frame(width: 10)
         .gesture(drag)
+
     }
 
     var drag: some Gesture {
@@ -68,6 +70,35 @@ fileprivate struct SplitDivider: View {
             dimensionStart = nil
             NSCursor.pop()
             dragStarted = true
+        }
+    }
+}
+
+final class SliderBackgroundViewImpl: NSViewRepresentable {
+    func makeNSView(context: NSViewRepresentableContext<SliderBackgroundViewImpl>) -> SliderBackgroundView {
+        SliderBackgroundView(frame: NSRect(x: 0, y: 0, width: 100, height: 200))
+    }
+    func updateNSView(_ nsView: SliderBackgroundView, context: NSViewRepresentableContext<SliderBackgroundViewImpl>) {
+    }
+}
+class SliderBackgroundView: NSView {
+    override func draw(_ rect: CGRect) {
+        guard let context = NSGraphicsContext.current?.cgContext else { return }
+
+        let T: CGFloat = 15     // desired thickness of lines
+        let G: CGFloat = 15     // desired gap between lines
+        let W = rect.size.width
+        let H = rect.size.height
+
+        context.setStrokeColor(NSColor(Color.App.listSplitLine).cgColor)
+        context.setLineWidth(T)
+
+        var p = -(W > H ? W : H) - T
+        while p <= W {
+            context.move(to: CGPoint(x: p - T, y: -T))
+            context.addLine(to: CGPoint(x: p + T + H, y: T + H))
+            context.strokePath()
+            p += G + T + T
         }
     }
 }

@@ -25,6 +25,8 @@ struct ClmnApp: App {
     @AppStorage("appThemeSetting") private var appThemeSetting = Appearance.system
     @Environment(\.colorScheme) var colorScheme
 
+    @AppStorage("sidebar.hidden") private var primaryHidden: Bool = false
+
     @StateObject var addExample = AddExampleModel()
     @StateObject var dragTask: DragTaskModel = DragTaskModel()
     @StateObject var dragTaskList: DragTaskListModel = DragTaskListModel()
@@ -88,6 +90,7 @@ struct ClmnApp: App {
             MenuLine_View_ToggleBoards()
             MenuLine_View_Appearance()
             MenuLine_Help_Examples()
+            MenuLine_About()
         }
         Settings {
             SettingsView()
@@ -140,7 +143,7 @@ struct ClmnApp: App {
     fileprivate func MenuLine_View_ToggleBoards() -> CommandGroup<Button<Text>> {
         CommandGroup(before: CommandGroupPlacement.toolbar) {
             Button("Toggle Boards sidebar") {
-                SideBarUtil.toggleSidebar()
+                primaryHidden.toggle()
             }
         }
     }
@@ -155,6 +158,17 @@ struct ClmnApp: App {
                 }
             }
         }
+    }
+
+    fileprivate func MenuLine_About() -> CommandGroup<Button<Text>> {
+        CommandGroup(replacing: .appInfo, addition: {
+            Button(action: {
+                AppAbout.aboutWindow().makeKeyAndOrderFront(nil)
+            }, label: {
+                let aboutSuffix = NSLocalizedString("About", comment: "")
+                Text("\(aboutSuffix)\u{00a0}\(Bundle.main.appName)")
+            })
+        })
     }
 }
 
