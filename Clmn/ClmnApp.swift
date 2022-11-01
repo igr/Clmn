@@ -84,8 +84,8 @@ struct ClmnApp: App {
             }
         }
         // already one inside notification
-//        .windowStyle(.hiddenTitleBar)
-//        .windowToolbarStyle(.unifiedCompact(showsTitle: false))
+        .windowStyle(.hiddenTitleBar)
+        .windowToolbarStyle(.unifiedCompact(showsTitle: false))
         .commands {
             MenuLine_File_NewWindow_Disable()
             MenuLine_Help_SupportEmail()
