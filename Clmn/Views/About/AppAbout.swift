@@ -89,7 +89,7 @@ fileprivate struct AppAboutView: View {
 
     private var appLongText: some View {
         HStack {
-            Text("Clmn is a beautiful task board native app for macOS. It is thoughtfully simple and unbearably efficient; nothing fancy, just enough." +
+            Text("Clmn is a beautiful task board native app for macOS. It is thoughtfully simple and unbearably efficient; nothing fancy, just enough. " +
                 "Clmn is designed for professionals that work mostly on laptops.")
         }
         .padding()
