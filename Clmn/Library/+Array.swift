@@ -13,18 +13,18 @@ extension Array where Element: Equatable {
         return index
     }
 
-    /// Returns safe index or -1 if array is empty
-    func safeIndex(_ index: Int) -> Int {
-        if (endIndex == 0) {
-            return -1
+    /// Returns element on the index safely.
+    func safeGet(_ index: Int) -> Element? {
+        if (count == 0) {
+            return nil
         }
         if (index < 0) {
-            return 0
+            return first
         }
         if (index >= endIndex) {
-            return endIndex - 1
+            return last
         }
-        return index
+        return self[index]
     }
 
     /// Returns random element from the array.

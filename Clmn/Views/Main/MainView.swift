@@ -27,12 +27,7 @@ struct MainView: View {
         }
         .deleteBoardConfirmation($deleteBoard) { deletedBoard in
             let deletedIndex = allBoardsVM.deleteBoard(deletedBoard)
-            let newIndex = allBoardsVM.boards.safeIndex(deletedIndex)
-            if (newIndex != -1) {
-                selectedBoard = allBoardsVM.boards[newIndex]
-            } else {
-                selectedBoard = nil
-            }
+            selectedBoard = allBoardsVM.boards.safeGet(deletedIndex)
             allBoardsVM.objectWillChange.send()
         }
         .onAppear {

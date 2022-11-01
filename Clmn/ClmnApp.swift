@@ -109,7 +109,7 @@ struct ClmnApp: App {
         services.app.storeMetadata(appVersion: APP_BUILD,
                                    dataVersion: APP_DATA_VERSION)
 
-        Self.logger.info("\(APP_NAME): \(APP_BUILD)//\(APP_DATA_VERSION)")
+        Self.logger.info("\(APP_NAME): \(APP_BUILD)/\(APP_DATA_VERSION)")
     }
 
     // ---------------------------------------------------------------- menus
