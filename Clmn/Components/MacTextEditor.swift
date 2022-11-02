@@ -67,7 +67,7 @@ struct MacTextEditor: NSViewRepresentable {
         if (moveCursorToEnd) {
             let originalPointColor = textView.insertionPointColor
             textView.insertionPointColor = NSColor.clear
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                 textView.moveToEndOfDocument(nil)
                 textView.insertionPointColor = originalPointColor
             }
