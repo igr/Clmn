@@ -74,7 +74,7 @@ fileprivate struct SplitDivider: View {
     }
 }
 
-final class SliderBackgroundViewImpl: NSViewRepresentable {
+struct SliderBackgroundViewImpl: NSViewRepresentable {
     func makeNSView(context: NSViewRepresentableContext<SliderBackgroundViewImpl>) -> SliderBackgroundView {
         SliderBackgroundView(frame: NSRect(x: 0, y: 0, width: 100, height: 200))
     }

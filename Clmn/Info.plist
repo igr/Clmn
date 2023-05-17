@@ -12,7 +12,7 @@
 			<key>CFBundleURLIconFile</key>
 			<string>URLIcon</string>
 			<key>CFBundleURLName</key>
-			<string>ac.obl.clmn</string>
+			<string>studio.oblac.clmn</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>clmn</string>
@@ -31,7 +31,7 @@
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>ac.obl.clmn.board</string>
+			<string>studio.oblac.clmn.board</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>
@@ -45,7 +45,7 @@
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>ac.obl.clmn.list</string>
+			<string>studio.oblac.clmn.list</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>
@@ -59,7 +59,7 @@
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>ac.obl.clmn.group</string>
+			<string>studio.oblac.clmn.group</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>
@@ -73,7 +73,7 @@
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>ac.obl.clmn.task</string>
+			<string>studio.oblac.clmn.task</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>

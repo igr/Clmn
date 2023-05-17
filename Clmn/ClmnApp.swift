@@ -3,7 +3,7 @@ import SwiftUI
 
 let APP_SITE = "https://clmnapp.com"
 let APP_EMAIL = "clmn@igo.rs"
-let APP_GROUP = "ac.obl.clmn"
+let APP_GROUP = "studio.oblac.clmn"
 let APP_NAME = "Clmn"
 let APP_HOST = "clmn"
 
